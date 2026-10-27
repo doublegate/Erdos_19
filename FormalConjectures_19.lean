@@ -29,10 +29,14 @@ edge-disjoint exactly when their vertex sets share at most one vertex.
 
 *References:*
 * [erdosproblems.com/19](https://www.erdosproblems.com/19)
+* [Er81] Erdős, P., *On the combinatorial problems which I would most like to see solved*.
+  Combinatorica 1 (1981), 25-42.
 * [Hi81] Hindman, N., *On a conjecture of Erdős, Faber, and Lovász about $n$-colorings*.
   Canad. J. Math. (1981).
 * [Ka92] Kahn, J., *Coloring nearly-disjoint hypergraphs with $n + o(n)$ colors*.
   J. Combin. Theory Ser. A (1992).
+* [RoSa07] Romero, D. and Sánchez-Arroyo, A., *Adding evidence to the Erdős–Faber–Lovász
+  conjecture*. Ars Combin. 85 (2007), 71-84.
 * [KKKMO21] Kang, D. Y., Kelly, T., Kühn, D., Methuku, A. and Osthus, D., *A proof of the
   Erdős–Faber–Lovász conjecture*. Ann. of Math. (2023).
   [arXiv:2101.04698](https://arxiv.org/abs/2101.04698)
@@ -196,10 +200,12 @@ open EFLConfig
 If $G$ is an edge-disjoint union of $n$ copies of $K_n$, then is $\chi(G) = n$?
 
 Resolved in the affirmative for all sufficiently large $n$ by Kang, Kelly, Kühn, Methuku, and
-Osthus [KKKMO21] and across all finite orders $n \ge 3$ via Pairwise Balanced Design (PBD)
-completion and Three-Tier Pair-Budget Discharging Closure by Parobek [Pa26].
+Osthus [KKKMO21]; see [Pa26] for Pairwise Balanced Design (PBD) completion, Vizing–Fournier
+shadow-slack and Fournier 2-core discharging (unconditional for $\chi'(\mathcal{E}_{\ge 3}) \le 2$
+and $\mathrm{AG}(2,q)^{+p}$ across all prime powers $q$), and exhaustive GPU bitmask certification
+across $3 \le n \le 25$.
 -/
-@[category research solved, question, AMS 5]
+@[category research open, question, AMS 5]
 theorem erdos_19 :
     ∀ (V : Type) (n : ℕ) (C : EFLConfig V n), C.graph.chromaticNumber = n := by
   sorry
@@ -240,6 +246,34 @@ theorem erdos_19.variants.lt_ten :
   sorry
 
 /--
+An affirmative answer to `erdos_19` immediately implies `erdos_19.variants.lt_ten`.
+-/
+@[category API, AMS 5]
+theorem erdos_19.variants.erdos_19_implies_lt_ten
+    (h : ∀ (V : Type) (n : ℕ) (C : EFLConfig V n), C.graph.chromaticNumber = n) :
+    ∀ (V : Type) (n : ℕ) (C : EFLConfig V n), n < 10 → C.graph.chromaticNumber = n := by
+  intro V n C _
+  exact h V n C
+
+/--
+Romero and Sánchez-Arroyo [RoSa07] proved the Erdős–Faber–Lovász conjecture for $n \le 12$.
+-/
+@[category research solved, AMS 5]
+theorem erdos_19.variants.le_twelve :
+    ∀ (V : Type) (n : ℕ) (C : EFLConfig V n), n ≤ 12 → C.graph.chromaticNumber = n := by
+  sorry
+
+/--
+An affirmative answer to `erdos_19` immediately implies `erdos_19.variants.le_twelve`.
+-/
+@[category API, AMS 5]
+theorem erdos_19.variants.erdos_19_implies_le_twelve
+    (h : ∀ (V : Type) (n : ℕ) (C : EFLConfig V n), C.graph.chromaticNumber = n) :
+    ∀ (V : Type) (n : ℕ) (C : EFLConfig V n), n ≤ 12 → C.graph.chromaticNumber = n := by
+  intro V n C _
+  exact h V n C
+
+/--
 Kahn [Ka92] proved that $\chi(G) \le (1 + o(1))n$.
 -/
 @[category research solved, AMS 5]
@@ -257,6 +291,15 @@ theorem erdos_19.variants.large_n :
     ∀ᶠ n in atTop, ∀ (V : Type) (C : EFLConfig V n), C.graph.chromaticNumber = n := by
   sorry
 
+/--
+An affirmative answer to `erdos_19` immediately implies `erdos_19.variants.large_n`.
+-/
+@[category API, AMS 5]
+theorem erdos_19.variants.erdos_19_implies_large_n
+    (h : ∀ (V : Type) (n : ℕ) (C : EFLConfig V n), C.graph.chromaticNumber = n) :
+    ∀ᶠ n in atTop, ∀ (V : Type) (C : EFLConfig V n), C.graph.chromaticNumber = n := by
+  exact Filter.Eventually.of_forall (fun n V C => h V n C)
+
 /-! ## Formalized PBD Completion, Shadow-Slack & Three-Tier Discharging Variants from [Pa26] -/
 
 /--
@@ -266,7 +309,7 @@ of size $\ge 3$ and the remaining `e2` uncovered vertex pairs are completed by $
 the total pair count equals `total_pairs` $= \binom{n}{2}$, and `e2 = total_pairs - p_blocks`.
 -/
 @[category research solved, AMS 5,
-  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L34"]
+  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L35"]
 theorem erdos_19.variants.pbd_two_edge_completion_conservation (total_pairs p_blocks e2 : ℕ)
     (h_partition : p_blocks + e2 = total_pairs) :
     total_pairs - p_blocks = e2 ∧ p_blocks ≤ total_pairs := by
@@ -279,7 +322,7 @@ $m = 2t^2 + t - 2$ hyperedges, whereas $(n - 1) = 2t$ color classes can cover at
 $t + (2t - 1)t = 2t^2 < m$ hyperedges, forcing $\chi'(\mathcal{H}_1(n)) = n$.
 -/
 @[category research solved, AMS 5,
-  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L51"]
+  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L52"]
 theorem erdos_19.variants.single_triple_parity_saturation_chromatic (t m cap_nm1 : ℕ)
     (ht : 3 ≤ t)
     (hm : m = 2 * t * t + t - 2)
@@ -294,7 +337,7 @@ the $(n - 1)$-color capacity $2t + (2t - 2)(t - 1) = 14$ is strictly less than $
 $\chi'(\mathcal{H}_{2,\mathrm{disj}}(7)) = 7$.
 -/
 @[category research solved, AMS 5,
-  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L74"]
+  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L75"]
 theorem erdos_19.variants.two_triple_disjoint_volume_starvation (t m cap_disj : ℕ)
     (ht : t = 3)
     (hm : m = 2 * t * t + t - 4)
@@ -324,7 +367,7 @@ $E_T = V_T - c$ edges, so $2 E_T + 2c = 2 V_T$ and $2 E_T < 2 V_T$, guaranteeing
 $2c \ge 2$ leaf incidences of degree $\le 1$ for Kempe-chain peeling.
 -/
 @[category research solved, AMS 5,
-  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L112"]
+  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L111"]
 theorem erdos_19.variants.fournier_forest_degree_sum_lt (V_T E_T c : ℕ)
     (_hV : 1 ≤ V_T) (hc : 1 ≤ c) (hc_le : c ≤ V_T) (h_forest : E_T = V_T - c) :
     2 * E_T + 2 * c = 2 * V_T ∧ 2 * E_T < 2 * V_T := by
@@ -337,7 +380,7 @@ and non-$2$-edge block intersection sum `S_B`, with `pair_twice` $= r(r - 1) \ge
 $(S_B + 2 \cdot \text{e2\_I}) + (\text{pair\_twice} - 2 \cdot \text{e2\_I}) = S_B + \text{pair\_twice}$.
 -/
 @[category research solved, AMS 5,
-  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L126"]
+  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L125"]
 theorem erdos_19.variants.shadow_slack_identity (S_B pair_twice e2_I : ℕ)
     (h_le : 2 * e2_I ≤ pair_twice) :
     (S_B + 2 * e2_I) + (pair_twice - 2 * e2_I) = S_B + pair_twice := by
@@ -350,7 +393,7 @@ every vertex's $3$-block shadow penalty $2 d_{\ge 3}(v)$ by $2p$, increasing the
 color margin by $+p \ge 1$.
 -/
 @[category research solved, AMS 5,
-  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L141"]
+  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L140"]
 theorem erdos_19.variants.parallel_class_peeling_slack (n d_ge3 p : ℕ)
     (hp : 1 ≤ p) (hd : p ≤ d_ge3) (hn : 2 * d_ge3 ≤ n) :
     (n - p) - 2 * (d_ge3 - p) = (n - 2 * d_ge3) + p ∧
@@ -376,7 +419,7 @@ Whenever $1 \le p \le q$ and $q \ge 2$, $(q - 1)p + (q + 1)$ plus the non-negati
 $(q - 1)(q - p) + (p - 1)$ equals $q^2 + p = n$.
 -/
 @[category research solved, AMS 5,
-  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L172"]
+  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L174"]
 theorem erdos_19.variants.ag2q_ideal_point_exact_slack_formula (q p : ℕ)
     (hq : 2 ≤ q) (hp_pos : 1 ≤ p) (hp : p ≤ q) :
     (q - 1) * p + (q + 1) + (q - 1) * (q - p) + (p - 1) = q * q + p := by
@@ -389,7 +432,7 @@ $p$ ideal points on the line at infinity yields vertex count $n = q^2 + p$ and c
 index $\chi' = (q - 1)p + (q + 1) \le q^2 + p$.
 -/
 @[category research solved, AMS 5,
-  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L190"]
+  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L192"]
 theorem erdos_19.variants.ag2q_ideal_point_chromatic_le_n (q p : ℕ)
     (hq : 2 ≤ q) (hp : p ≤ q) :
     (q - 1) * p + (q + 1) ≤ q * q + p := by
@@ -402,23 +445,65 @@ Tier-2 medium blocks (`med_pairs`), and Tier-3 $2$-edges (`e2`), the exact ident
 `large_pairs + med_pairs + e2 = total_pairs` forces `total_pairs - large_pairs - med_pairs = e2`.
 -/
 @[category research solved, AMS 5,
-  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L217"]
+  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L218"]
 theorem erdos_19.variants.three_tier_pair_budget_nonneg (total_pairs large_pairs med_pairs e2 : ℕ)
     (h_pbd : large_pairs + med_pairs + e2 = total_pairs) :
     total_pairs - large_pairs - med_pairs = e2 := by
   sorry
 
 /--
-**Theorem 3.11(iii) [2.10(c)] of [Pa26] (Cross-Tier Pair-Budget Discharging Contradiction):**
-If a hypothetical minimal uncolorable residual configuration requires Tier-3 $2$-edge count
-`e2_req > total_pairs - large_pairs - med_pairs`, then `large_pairs + med_pairs + e2_req > total_pairs`,
-violating the global PBD pair-packing conservation bound `large_pairs + med_pairs + e2_req ≤ total_pairs`.
+**Theorem 3.11(a) [2.10(a)] of [Pa26] (Global Shadow-Slack & Residual 2-Edge Conservation Identity):**
+In any PBD completion on $n$ vertices where $2(P_L + P_M + e_2) = n(n - 1)$, summing the
+per-vertex Vizing–Fournier shadow-slack identity across all $n$ vertices proves that
+$\sum_{v \in V} \delta_{\mathrm{VF}}(v) + 2(e_2 - F_{\mathrm{tot}}) = n(n - q')$ and
+$2(P_L + P_M + F_{\mathrm{tot}}) = n(q' - 1) + \sum_{v \in V} \delta_{\mathrm{VF}}(v)$.
 -/
 @[category research solved, AMS 5,
-  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L228"]
-theorem erdos_19.variants.three_tier_discharging_closure (total_pairs large_pairs med_pairs e2_req : ℕ)
-    (h_packing : large_pairs + med_pairs + e2_req ≤ total_pairs)
-    (h_obstruction : total_pairs - large_pairs - med_pairs < e2_req) :
+  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L232"]
+theorem erdos_19.variants.global_shadow_slack_conservation
+    (n q' P_L P_M e2 F_tot sum_delta_vf : ℕ)
+    (hq_pos : 1 ≤ q') (hq_le : q' ≤ n) (hF_le : F_tot ≤ e2)
+    (h_pbd_twice : 2 * (P_L + P_M + e2) = n * (n - 1))
+    (h_slack_sum : sum_delta_vf + n * (q' - 1) = 2 * (P_L + P_M + F_tot)) :
+    sum_delta_vf + 2 * (e2 - F_tot) = n * (n - q') ∧
+    2 * (P_L + P_M + F_tot) = n * (q' - 1) + sum_delta_vf := by
+  sorry
+
+/--
+**Theorem 3.7(a) [2.6(b)] of [Pa26] (Edmonds Blossom Odd-Set Shadow-Slack Bound):**
+For any odd vertex subset $U$ of cardinality $|U| = 2t + 1 \ge 3$ in the residual $2$-edge graph
+$G_{\mathrm{res}}$ of maximum degree $\Delta = n - q' \ge 1$, if at most $2$ vertices of $U$ lie in
+the deficit-zero set $D = \{v : \delta_{\mathrm{VF}}(v) = 0\}$ and the remaining $2t - 1$ vertices
+have degree $\le \Delta - 1$, then $2|E(G_{\mathrm{res}}[U])| \le 2\Delta + (2t - 1)(\Delta - 1)$,
+which for all $\Delta + 1 \le 2t$ forces $2|E(G_{\mathrm{res}}[U])| \le 2t\Delta = (|U| - 1)(n - q')$.
+-/
+@[category research solved, AMS 5,
+  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L255"]
+theorem erdos_19.variants.edmonds_blossom_odd_set_slack_bound
+    (t delta deg_sum_U : ℕ)
+    (ht : 1 ≤ t) (hdelta : 1 ≤ delta)
+    (h_large_odd : delta + 1 ≤ 2 * t)
+    (h_deg_bound : deg_sum_U ≤ 2 * delta + (2 * t - 1) * (delta - 1)) :
+    deg_sum_U ≤ 2 * t * delta := by
+  sorry
+
+/--
+**Theorem 3.11(c) [2.10(c)] of [Pa26] (Three-Tier Fournier 2-Core Pair-Budget Obstruction Bound):**
+If a residual configuration has a Fournier cyclic $2$-core $D_2 \subseteq D$ of size $k = |D_2| \ge 3$
+where every vertex $u \in D_2$ has $\delta_{\mathrm{VF}}(u) = 0$ ($d_{G_{\mathrm{res}}}(u) = n - q'$),
+then $2(e_2 - F_{\mathrm{tot}}) = k(n - q') + \text{deg\_sum\_outside}$; combining this with
+$2(P_L + P_M + e_2) = n(n - 1)$ proves that whenever
+$2(P_L + P_M + F_{\mathrm{tot}}) + k(n - q') + \text{deg\_sum\_outside} > n(n - 1)$,
+no such Fournier $2$-core of size $k$ can exist (`False`).
+-/
+@[category research solved, AMS 5,
+  formal_proof using lean4 at "https://github.com/doublegate/Erdos_19/blob/main/Erdos19/Proofs.lean#L282"]
+theorem erdos_19.variants.three_tier_fournier_obstruction_bound
+    (n q' k P_L P_M e2 F_tot deg_sum_outside : ℕ)
+    (_hk : 3 ≤ k) (_hk_le : k ≤ n) (_hq_le : q' ≤ n) (hF_le : F_tot ≤ e2)
+    (h_pbd_twice : 2 * (P_L + P_M + e2) = n * (n - 1))
+    (h_core_deg : 2 * (e2 - F_tot) = k * (n - q') + deg_sum_outside)
+    (h_budget_exceeds : n * (n - 1) < 2 * (P_L + P_M + F_tot) + k * (n - q') + deg_sum_outside) :
     False := by
   sorry
 

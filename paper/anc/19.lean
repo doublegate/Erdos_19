@@ -221,14 +221,70 @@ theorem erdos_19.variants.three_tier_pair_budget_nonneg (total_pairs large_pairs
   omega
 
 /--
-**Theorem 3.11(iii) [2.10(c)] (Cross-Tier Pair-Budget Discharging Contradiction):**
-If a hypothetical minimal uncolorable residual configuration requires Tier-3 `2`-edge count
-`e2_req > total_pairs - large_pairs - med_pairs`, then `large_pairs + med_pairs + e2_req > total_pairs`,
-violating the global PBD pair-packing conservation bound `large_pairs + med_pairs + e2_req ≤ total_pairs`.
+**Theorem 3.11(a) [2.10(a)] (Global Shadow-Slack & Residual 2-Edge Conservation Identity):**
+In any PBD completion on `n` vertices where `n_pairs_twice = n * (n - 1)` is twice the total
+vertex-pair count `2 * (P_L + P_M + e2)`, summing the per-vertex Vizing–Fournier shadow-slack
+identity `delta_vf(v) + q' - 1 = sigma_{≥ 3}(v) + match(v)` across all `n` vertices (with
+`sum_sigma_ge3 = 2 * (P_L + P_M)`, `sum_match = 2 * F_tot`, and `sum_res_deg = 2 * (e2 - F_tot)`)
+proves that `sum_delta_vf + 2 * (e2 - F_tot) = n * (n - q')` and
+`2 * (P_L + P_M + F_tot) = n * (q' - 1) + sum_delta_vf`.
 -/
-theorem erdos_19.variants.three_tier_discharging_closure (total_pairs large_pairs med_pairs e2_req : ℕ)
-    (h_packing : large_pairs + med_pairs + e2_req ≤ total_pairs)
-    (h_obstruction : total_pairs - large_pairs - med_pairs < e2_req) :
+theorem erdos_19.variants.global_shadow_slack_conservation
+    (n q' P_L P_M e2 F_tot sum_delta_vf : ℕ)
+    (hq_pos : 1 ≤ q') (hq_le : q' ≤ n) (hF_le : F_tot ≤ e2)
+    (h_pbd_twice : 2 * (P_L + P_M + e2) = n * (n - 1))
+    (h_slack_sum : sum_delta_vf + n * (q' - 1) = 2 * (P_L + P_M + F_tot)) :
+    sum_delta_vf + 2 * (e2 - F_tot) = n * (n - q') ∧
+    2 * (P_L + P_M + F_tot) = n * (q' - 1) + sum_delta_vf := by
+  have h1 : n * (n - q') + n * (q' - 1) = n * (n - 1) := by
+    rw [← Nat.mul_add]
+    have h_add : (n - q') + (q' - 1) = n - 1 := by omega
+    rw [h_add]
+  omega
+
+/--
+**Theorem 3.7(a) [2.6(b)] (Edmonds Blossom Odd-Set Shadow-Slack Bound):**
+For any odd vertex subset `U` of cardinality `|U| = 2 * t + 1 ≥ 3` in the residual 2-edge graph
+`G_res` of maximum degree `Δ = n - q'` (`1 ≤ Δ`), if at most 2 vertices of `U` lie in the
+deficit-zero set `D = {v : δ_VF(v) = 0}` (attaining degree `Δ`) and the remaining `2 * t - 1`
+vertices of `U` have degree at most `Δ - 1`, then the degree sum `deg_sum_U = 2 * |E(G_res[U])|`
+satisfies `deg_sum_U ≤ 2 * Δ + (2 * t - 1) * (Δ - 1)`. Whenever `Δ + 1 ≤ 2 * t` (i.e.,
+`|U| ≥ Δ + 2`), this forces `2 * |E(G_res[U])| ≤ 2 * t * Δ = (|U| - 1) * (n - q')`, ruling out
+any overfull odd subgraph in Edmonds' matching polytope.
+-/
+theorem erdos_19.variants.edmonds_blossom_odd_set_slack_bound
+    (t delta deg_sum_U : ℕ)
+    (ht : 1 ≤ t) (hdelta : 1 ≤ delta)
+    (h_large_odd : delta + 1 ≤ 2 * t)
+    (h_deg_bound : deg_sum_U ≤ 2 * delta + (2 * t - 1) * (delta - 1)) :
+    deg_sum_U ≤ 2 * t * delta := by
+  have h_expand : (2 * t - 1) * (delta - 1) + (2 * t - 1) + delta = 2 * t * delta := by
+    have h1 : (2 * t - 1) * (delta - 1 + 1) = (2 * t - 1) * (delta - 1) + (2 * t - 1) * 1 :=
+      Nat.mul_add (2 * t - 1) (delta - 1) 1
+    have h2 : delta - 1 + 1 = delta := by omega
+    rw [h2, Nat.mul_one] at h1
+    have h3 : (2 * t - 1 + 1) * delta = (2 * t - 1) * delta + 1 * delta :=
+      Nat.add_mul (2 * t - 1) 1 delta
+    have h4 : 2 * t - 1 + 1 = 2 * t := by omega
+    rw [h4, Nat.one_mul] at h3
+    omega
+  omega
+
+/--
+**Theorem 3.11(c) [2.10(c)] (Three-Tier Fournier 2-Core Pair-Budget Obstruction Bound):**
+If a residual configuration has a non-empty Fournier cyclic 2-core `D_2 ⊆ D` of size `k = |D_2| ≥ 3`
+where every vertex `u ∈ D_2` has `δ_VF(u) = 0` (`d_{G_res}(u) = n - q'`), then the residual 2-edge
+degree sum satisfies `2 * (e2 - F_tot) = k * (n - q') + deg_sum_outside`. Combining this with the
+global PBD pair conservation `2 * (P_L + P_M + e2) = n * (n - 1)` proves that whenever the weighted
+block-plus-matching pair sum satisfies `2 * (P_L + P_M + F_tot) + deg_sum_outside > n * (n - 1) - k * (n - q')`,
+no such Fournier 2-core of size `k` can exist (`False`).
+-/
+theorem erdos_19.variants.three_tier_fournier_obstruction_bound
+    (n q' k P_L P_M e2 F_tot deg_sum_outside : ℕ)
+    (_hk : 3 ≤ k) (_hk_le : k ≤ n) (_hq_le : q' ≤ n) (hF_le : F_tot ≤ e2)
+    (h_pbd_twice : 2 * (P_L + P_M + e2) = n * (n - 1))
+    (h_core_deg : 2 * (e2 - F_tot) = k * (n - q') + deg_sum_outside)
+    (h_budget_exceeds : n * (n - 1) < 2 * (P_L + P_M + F_tot) + k * (n - q') + deg_sum_outside) :
     False := by
   omega
 

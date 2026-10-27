@@ -19,6 +19,8 @@ import Erdos19.Proofs
 #print axioms Erdos19.erdos_19.variants.ag2q_ideal_point_exact_slack_formula
 #print axioms Erdos19.erdos_19.variants.ag2q_ideal_point_chromatic_le_n
 #print axioms Erdos19.erdos_19.variants.three_tier_pair_budget_nonneg
-#print axioms Erdos19.erdos_19.variants.three_tier_discharging_closure
+#print axioms Erdos19.erdos_19.variants.global_shadow_slack_conservation
+#print axioms Erdos19.erdos_19.variants.edmonds_blossom_odd_set_slack_bound
+#print axioms Erdos19.erdos_19.variants.three_tier_fournier_obstruction_bound
 #print axioms Erdos19.fanoPlanePG22_certified
 #print axioms Erdos19.projectivePlanePG23_certified

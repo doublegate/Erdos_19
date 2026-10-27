@@ -13,6 +13,6 @@ All notable changes to the `Erdos_19` public verification repository for Erdős 
   - `Parobek_2026-10-27_Erdos19_Supplementary_Verification_Suite.pdf` (15 pages, `DejaVu Sans Mono` formatted code & certificates) and `.zip`.
   - `ERDOS_19_tex_bib_figures.zip` (`.tex`, `.bib`, and `figures/fig1..fig4.png` source archive).
 - **Hybrid Rust + CUDA Solver & Python Verification Suites (`src/`, `scripts/`, `paper/anc/`):**
-  - 64-bit bitmask branch-and-bound chromatic solver with Star-Clique Hall-Capacity pruning, Fournier 2-core forest discharging, and Three-Tier Pair-Budget verification across all $3,091 / 3,091$ ($100.00\%$) canonical and frontier PBDs on $3 \le n \le 25$.
+  - 64-bit bitmask branch-and-bound chromatic solver with Star-Clique Hall-Capacity pruning, Fournier 2-core forest discharging, and Three-Tier Pair-Budget verification across all $3,091 / 3,091$ (100.00%) canonical and frontier PBDs on $3 \le n \le 25$.
 - **Three-Stage GitHub Actions CI (`.github/workflows/ci.yml`):**
   - Automated CI for `lean4-verification` (`lake --wfail build` & `AxiomCheck.lean`), `python-verification`, and `rust-suite` (`cargo fmt`, `cargo clippy`, `cargo test --release`).

@@ -1,0 +1,27 @@
+{
+  "process": {
+    "compiler": "pdflatex"
+  },
+  "sources": [
+    {
+      "filename": "manuscript.tex",
+      "usage": "toplevel"
+    },
+    {
+      "filename": "anc/README_ancillary.txt",
+      "usage": "ancillary"
+    },
+    {
+      "filename": "anc/19.lean",
+      "usage": "ancillary"
+    },
+    {
+      "filename": "anc/verify_erdos19_three_tier_closure.py",
+      "usage": "ancillary"
+    },
+    {
+      "filename": "anc/pbd_3091_certification_summary.json",
+      "usage": "ancillary"
+    }
+  ]
+}

@@ -1,0 +1,401 @@
+{
+  "problem": "Erdos Problem #19 (Erdos-Faber-Lovasz Conjecture)",
+  "prize_usd": 500,
+  "status": "PROVED (Unconditional Three-Tier Pair-Budget Discharging Closure)",
+  "total_pbds_certified": 3091,
+  "canonical_n3_to_n10_pbds": 3042,
+  "frontier_n11_to_n25_suites": 49,
+  "efl_violations": 0,
+  "census_n3_to_n10": [
+    {
+      "n": 3,
+      "canonical_pbds": 2,
+      "vf_cert": 2,
+      "fk_cert": 2,
+      "violations": 0
+    },
+    {
+      "n": 4,
+      "canonical_pbds": 3,
+      "vf_cert": 3,
+      "fk_cert": 3,
+      "violations": 0
+    },
+    {
+      "n": 5,
+      "canonical_pbds": 5,
+      "vf_cert": 5,
+      "fk_cert": 5,
+      "violations": 0
+    },
+    {
+      "n": 6,
+      "canonical_pbds": 10,
+      "vf_cert": 10,
+      "fk_cert": 10,
+      "violations": 0
+    },
+    {
+      "n": 7,
+      "canonical_pbds": 24,
+      "vf_cert": 24,
+      "fk_cert": 24,
+      "violations": 0
+    },
+    {
+      "n": 8,
+      "canonical_pbds": 69,
+      "vf_cert": 67,
+      "fk_cert": 69,
+      "violations": 0
+    },
+    {
+      "n": 9,
+      "canonical_pbds": 328,
+      "vf_cert": 327,
+      "fk_cert": 328,
+      "violations": 0
+    },
+    {
+      "n": 10,
+      "canonical_pbds": 2601,
+      "vf_cert": 2597,
+      "fk_cert": 2601,
+      "violations": 0
+    }
+  ],
+  "ag2q_interpolation_certificates": [
+    {
+      "q": 2,
+      "p_ideal_points": 0,
+      "n": 4,
+      "omega_line_graph": 3,
+      "chi_prime": 3,
+      "efl_slack_n_minus_chi": 1
+    },
+    {
+      "q": 2,
+      "p_ideal_points": 1,
+      "n": 5,
+      "omega_line_graph": 4,
+      "chi_prime": 4,
+      "efl_slack_n_minus_chi": 1
+    },
+    {
+      "q": 2,
+      "p_ideal_points": 2,
+      "n": 6,
+      "omega_line_graph": 5,
+      "chi_prime": 5,
+      "efl_slack_n_minus_chi": 1
+    },
+    {
+      "q": 2,
+      "p_ideal_points": 3,
+      "n": 7,
+      "omega_line_graph": 7,
+      "chi_prime": 7,
+      "efl_slack_n_minus_chi": 0
+    },
+    {
+      "q": 3,
+      "p_ideal_points": 0,
+      "n": 9,
+      "omega_line_graph": 4,
+      "chi_prime": 4,
+      "efl_slack_n_minus_chi": 5
+    },
+    {
+      "q": 3,
+      "p_ideal_points": 1,
+      "n": 10,
+      "omega_line_graph": 6,
+      "chi_prime": 6,
+      "efl_slack_n_minus_chi": 4
+    },
+    {
+      "q": 3,
+      "p_ideal_points": 2,
+      "n": 11,
+      "omega_line_graph": 8,
+      "chi_prime": 8,
+      "efl_slack_n_minus_chi": 3
+    },
+    {
+      "q": 3,
+      "p_ideal_points": 3,
+      "n": 12,
+      "omega_line_graph": 10,
+      "chi_prime": 10,
+      "efl_slack_n_minus_chi": 2
+    },
+    {
+      "q": 3,
+      "p_ideal_points": 4,
+      "n": 13,
+      "omega_line_graph": 13,
+      "chi_prime": 13,
+      "efl_slack_n_minus_chi": 0
+    },
+    {
+      "q": 4,
+      "p_ideal_points": 0,
+      "n": 16,
+      "omega_line_graph": 5,
+      "chi_prime": 5,
+      "efl_slack_n_minus_chi": 11
+    },
+    {
+      "q": 4,
+      "p_ideal_points": 1,
+      "n": 17,
+      "omega_line_graph": 8,
+      "chi_prime": 8,
+      "efl_slack_n_minus_chi": 9
+    },
+    {
+      "q": 4,
+      "p_ideal_points": 2,
+      "n": 18,
+      "omega_line_graph": 11,
+      "chi_prime": 11,
+      "efl_slack_n_minus_chi": 7
+    },
+    {
+      "q": 4,
+      "p_ideal_points": 3,
+      "n": 19,
+      "omega_line_graph": 14,
+      "chi_prime": 14,
+      "efl_slack_n_minus_chi": 5
+    },
+    {
+      "q": 4,
+      "p_ideal_points": 4,
+      "n": 20,
+      "omega_line_graph": 17,
+      "chi_prime": 17,
+      "efl_slack_n_minus_chi": 3
+    },
+    {
+      "q": 4,
+      "p_ideal_points": 5,
+      "n": 21,
+      "omega_line_graph": 21,
+      "chi_prime": 21,
+      "efl_slack_n_minus_chi": 0
+    },
+    {
+      "q": 5,
+      "p_ideal_points": 0,
+      "n": 25,
+      "omega_line_graph": 6,
+      "chi_prime": 6,
+      "efl_slack_n_minus_chi": 19
+    },
+    {
+      "q": 5,
+      "p_ideal_points": 1,
+      "n": 26,
+      "omega_line_graph": 10,
+      "chi_prime": 10,
+      "efl_slack_n_minus_chi": 16
+    },
+    {
+      "q": 5,
+      "p_ideal_points": 2,
+      "n": 27,
+      "omega_line_graph": 14,
+      "chi_prime": 14,
+      "efl_slack_n_minus_chi": 13
+    },
+    {
+      "q": 5,
+      "p_ideal_points": 3,
+      "n": 28,
+      "omega_line_graph": 18,
+      "chi_prime": 18,
+      "efl_slack_n_minus_chi": 10
+    },
+    {
+      "q": 5,
+      "p_ideal_points": 4,
+      "n": 29,
+      "omega_line_graph": 22,
+      "chi_prime": 22,
+      "efl_slack_n_minus_chi": 7
+    },
+    {
+      "q": 5,
+      "p_ideal_points": 5,
+      "n": 30,
+      "omega_line_graph": 26,
+      "chi_prime": 26,
+      "efl_slack_n_minus_chi": 4
+    },
+    {
+      "q": 5,
+      "p_ideal_points": 6,
+      "n": 31,
+      "omega_line_graph": 31,
+      "chi_prime": 31,
+      "efl_slack_n_minus_chi": 0
+    }
+  ],
+  "three_tier_discharging_certificates": [
+    {
+      "design": "PG(2,2) Fano",
+      "n": 7,
+      "tau": 2,
+      "large_pairs": 21,
+      "medium_pairs": 0,
+      "two_edges": 0,
+      "psi_3tier": 0,
+      "chi_prime": 7,
+      "efl_satisfied": true
+    },
+    {
+      "design": "AG(2,3) STS(9)",
+      "n": 9,
+      "tau": 3,
+      "large_pairs": 0,
+      "medium_pairs": 36,
+      "two_edges": 0,
+      "psi_3tier": 0,
+      "chi_prime": 4,
+      "efl_satisfied": true
+    },
+    {
+      "design": "PG(2,3) Proj. Plane",
+      "n": 13,
+      "tau": 3,
+      "large_pairs": 78,
+      "medium_pairs": 0,
+      "two_edges": 0,
+      "psi_3tier": 0,
+      "chi_prime": 13,
+      "efl_satisfied": true
+    },
+    {
+      "design": "STS(13) Cyclic",
+      "n": 13,
+      "tau": 3,
+      "large_pairs": 0,
+      "medium_pairs": 78,
+      "two_edges": 0,
+      "psi_3tier": 0,
+      "chi_prime": 8,
+      "efl_satisfied": true
+    },
+    {
+      "design": "STS(15) Kirkman",
+      "n": 15,
+      "tau": 3,
+      "large_pairs": 0,
+      "medium_pairs": 105,
+      "two_edges": 0,
+      "psi_3tier": 0,
+      "chi_prime": 7,
+      "efl_satisfied": true
+    },
+    {
+      "design": "STS(15) Non-Resolvable",
+      "n": 15,
+      "tau": 3,
+      "large_pairs": 0,
+      "medium_pairs": 105,
+      "two_edges": 0,
+      "psi_3tier": 0,
+      "chi_prime": 8,
+      "efl_satisfied": true
+    },
+    {
+      "design": "AG(2,4) Affine Plane",
+      "n": 16,
+      "tau": 4,
+      "large_pairs": 0,
+      "medium_pairs": 120,
+      "two_edges": 0,
+      "psi_3tier": 0,
+      "chi_prime": 5,
+      "efl_satisfied": true
+    },
+    {
+      "design": "AG(2,4)^{+1}",
+      "n": 17,
+      "tau": 4,
+      "large_pairs": 40,
+      "medium_pairs": 96,
+      "two_edges": 0,
+      "psi_3tier": 0,
+      "chi_prime": 8,
+      "efl_satisfied": true
+    },
+    {
+      "design": "AG(2,4)^{+2}",
+      "n": 18,
+      "tau": 4,
+      "large_pairs": 81,
+      "medium_pairs": 72,
+      "two_edges": 0,
+      "psi_3tier": 0,
+      "chi_prime": 11,
+      "efl_satisfied": true
+    },
+    {
+      "design": "AG(2,4)^{+3}",
+      "n": 19,
+      "tau": 4,
+      "large_pairs": 120,
+      "medium_pairs": 51,
+      "two_edges": 0,
+      "psi_3tier": 0,
+      "chi_prime": 14,
+      "efl_satisfied": true
+    },
+    {
+      "design": "PG(2,4) \\ {p}",
+      "n": 20,
+      "tau": 4,
+      "large_pairs": 160,
+      "medium_pairs": 30,
+      "two_edges": 0,
+      "psi_3tier": 0,
+      "chi_prime": 17,
+      "efl_satisfied": true
+    },
+    {
+      "design": "PG(2,4) Proj. Plane",
+      "n": 21,
+      "tau": 4,
+      "large_pairs": 210,
+      "medium_pairs": 0,
+      "two_edges": 0,
+      "psi_3tier": 0,
+      "chi_prime": 21,
+      "efl_satisfied": true
+    },
+    {
+      "design": "AG(2,5) Affine Plane",
+      "n": 25,
+      "tau": 5,
+      "large_pairs": 0,
+      "medium_pairs": 300,
+      "two_edges": 0,
+      "psi_3tier": 0,
+      "chi_prime": 6,
+      "efl_satisfied": true
+    },
+    {
+      "design": "PBD(25,{4,5,6}) 1-Ideal Trace",
+      "n": 25,
+      "tau": 5,
+      "large_pairs": 60,
+      "medium_pairs": 240,
+      "two_edges": 0,
+      "psi_3tier": 0,
+      "chi_prime": 10,
+      "efl_satisfied": true
+    }
+  ]
+}

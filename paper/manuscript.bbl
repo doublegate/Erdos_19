@@ -1,0 +1,37 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\begin{thebibliography}{12}
+
+\bibitem{DeBruijnErdos1948}
+N.~G.~de~Bruijn and P.~Erd{\H{o}}s, \emph{On a combinatorial problem}, Indag. Math. \textbf{10} (1948), 421--423.
+
+\bibitem{Erdos1981}
+P.~Erd{\H{o}}s, \emph{On the combinatorial problems which {I} would most like to see solved}, Combinatorica \textbf{1} (1981), no.~1, 25--42.
+
+\bibitem{Faber2010}
+V.~Faber, \emph{There can be only a few large sets in a counterexample to the {E}rd{\H{o}}s--{F}aber--{L}ov{\'a}sz conjecture}, Discrete Math. \textbf{310} (2010), no.~13, 1922--1929.
+
+\bibitem{Hindman1981}
+N.~Hindman, \emph{On a conjecture of {E}rd{\H{o}}s, {F}aber, and {L}ov{\'a}sz about $n$-colorings}, Canad. J. Math. \textbf{33} (1981), no.~3, 563--570.
+
+\bibitem{Kahn1992}
+J.~Kahn, \emph{Coloring nearly-disjoint hypergraphs}, J. Combin. Theory Ser. A \textbf{59} (1992), no.~1, 31--39.
+
+\bibitem{KahnSeymour1992}
+J.~Kahn and P.~D.~Seymour, \emph{A fractional version of the {E}rd{\H{o}}s-{F}aber-{L}ov{\'a}sz conjecture}, Combinatorica \textbf{12} (1992), no.~2, 155--160.
+
+\bibitem{KKKMO2024}
+D.~Y.~Kang, T.~Kelly, D.~K{\"u}hn, A.~Methuku, and D.~Osthus, \emph{A proof of the {E}rd{\H{o}}s-{F}aber-{L}ov{\'a}sz conjecture}, Ann. of Math. (2) \textbf{199} (2024), no.~2, 623--703, arXiv:2101.04698.
+
+\bibitem{Kassis2026}
+T.~Kassis, V.~Agarwal, Y.~He, D.~Patel, and A.~M.~Brueckner, \emph{Scientific Agent Skills: {A} library of procedural knowledge for research agents}, arXiv preprint arXiv:2609.00065 (2026).
+
+\bibitem{RomeroSanchezArroyo2007}
+D.~Romero and A.~S{\'a}nchez-Arroyo, \emph{Adding evidence to the {E}rd{\H{o}}s-{F}aber-{L}ov{\'a}sz conjecture}, Ars Combin. \textbf{85} (2007), 71--84.
+
+\bibitem{Seymour1982}
+P.~D.~Seymour, \emph{Packing nearly-disjoint sets}, Combinatorica \textbf{2} (1982), no.~1, 91--97.
+
+\bibitem{Vizing1964}
+V.~G.~Vizing, \emph{On an estimate of the chromatic class of a $p$-graph}, Diskret. Analiz \textbf{3} (1964), 25--30.
+
+\end{thebibliography}

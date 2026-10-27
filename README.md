@@ -2,11 +2,14 @@
 
 [![Manuscript PDF](https://img.shields.io/badge/Manuscript-PDF%20%2816%20pp.%29-blue)](./paper/Parobek_2026-10-27_Erdos19_Three_Tier_Discharging_Closure_EFL_Conjecture.pdf)
 [![Lean 4: v4.33.1](https://img.shields.io/badge/Lean%204-v4.33.1%20%280%20sorry%29-brightgreen)](./Erdos19/Proofs.lean)
+[![formal-conjectures PR #7641](https://img.shields.io/badge/formal--conjectures-PR%20%237641-purple)](https://github.com/google-deepmind/formal-conjectures/pull/7641)
+[![teorth/erdosproblems PR #512](https://img.shields.io/badge/teorth%2Ferdosproblems-PR%20%23512-teal)](https://github.com/teorth/erdosproblems/pull/512)
+[![We-Solve #882](https://img.shields.io/badge/We--Solve-Attempt%20%23882-orange)](https://github.com/We-Solve/research/issues/882)
 
 Official formal verification repository, 3,091 / 3,091 Pairwise Balanced Design (PBD) certificate suite, and hybrid Rust + CUDA toolkit accompanying:
 
 > **Lucas Parobek (2026)**, *"Three-Tier Pair-Budget Discharging Closure, Pairwise Balanced Reduction, and GPU Bitmask Certification for Erdős Problem #19 (The Erdős–Faber–Lovász Conjecture)"*
-> **Manuscript PDF:** [`Parobek_2026-10-27_Erdos19_Three_Tier_Discharging_Closure_EFL_Conjecture.pdf`](./paper/Parobek_2026-10-27_Erdos19_Three_Tier_Discharging_Closure_EFL_Conjecture.pdf)
+> **Manuscript PDF:** [`Parobek_2026-10-27_Erdos19_Three_Tier_Discharging_Closure_EFL_Conjecture.pdf`](./paper/Parobek_2026-10-27_Erdos19_Three_Tier_Discharging_Closure_EFL_Conjecture.pdf) · **`formal-conjectures` PR:** [`google-deepmind/formal-conjectures#7641`](https://github.com/google-deepmind/formal-conjectures/pull/7641) · **`erdosproblems` PR:** [`teorth/erdosproblems#512`](https://github.com/teorth/erdosproblems/pull/512) · **`we-solve` Submission:** [`We-Solve/research#882`](https://github.com/We-Solve/research/issues/882)
 
 This repository resolves **Erdős Problem #19** (`erdos_19`, 500 USD prize; [erdosproblems.com/19](https://www.erdosproblems.com/19), [Er81], [Hi81], [Se82], [Ka92], [KaSe92], [RSA07], [Fa10], [KKKMO24]) across all finite orders $n \ge 3$ by proving that every linear hypergraph $\mathcal{H} = ([n], \mathcal{E})$ on $n$ vertices has chromatic index
 

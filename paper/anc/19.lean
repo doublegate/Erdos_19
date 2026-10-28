@@ -15,9 +15,10 @@ This self-contained Lean 4 module (zero `sorry`s, zero custom axioms) machine-ch
 Pairwise Balanced Design (PBD) 2-edge completion conservation law, the single-triple and
 two-triple parity-saturation obstructions, the Vizing–Fournier shadow-slack decomposition,
 the Fournier 2-core forest leaf-discharging bound, the exact Shadow-Slack identity,
-resolvent parallel-class peeling slack, the large-block clique/matching overflow bound,
-the Prime-Power AG(2,q)^{+p} chromatic interpolation identities, the Universal Three-Tier
-Pair-Budget Discharging Closure, and the extremal projective plane witnesses PG(2,2) and PG(2,3).
+Edmonds' Blossom odd-set shadow-slack bound, resolvent parallel-class peeling slack,
+the large-block clique/matching overflow bound, the Prime-Power AG(2,q)^{+p} chromatic
+interpolation identities, the Universal Three-Tier Pair-Budget Discharging Closure, and
+the extremal projective plane witnesses PG(2,2) and PG(2,3).
 -/
 
 namespace Erdos19
@@ -127,7 +128,37 @@ theorem erdos_19.variants.shadow_slack_identity (S_B pair_twice e2_I : ℕ)
     (S_B + 2 * e2_I) + (pair_twice - 2 * e2_I) = S_B + pair_twice := by
   omega
 
-/-! ## 7. Theorem 3.7–3.8 [2.7–2.8(a)]: Resolvent Parallel-Class Peeling Slack Gain -/
+/-! ## 7. Theorem 3.7(a) [2.6(b)]: Edmonds Blossom Odd-Set Shadow-Slack Bound -/
+
+/--
+**Theorem 3.7(a) [2.6(b)] (Edmonds Blossom Odd-Set Shadow-Slack Bound):**
+For any odd vertex subset `U` of cardinality `|U| = 2 * t + 1 ≥ 3` in the residual 2-edge graph
+`G_res` of maximum degree `Δ = n - q'` (`1 ≤ Δ`), if at most 2 vertices of `U` lie in the
+deficit-zero set `D = {v : δ_VF(v) = 0}` (attaining degree `Δ`) and the remaining `2 * t - 1`
+vertices of `U` have degree at most `Δ - 1`, then the degree sum `deg_sum_U = 2 * |E(G_res[U])|`
+satisfies `deg_sum_U ≤ 2 * Δ + (2 * t - 1) * (Δ - 1)`. Whenever `Δ + 1 ≤ 2 * t` (i.e.,
+`|U| ≥ Δ + 2`), this forces `2 * |E(G_res[U])| ≤ 2 * t * Δ = (|U| - 1) * (n - q')`, ruling out
+any overfull odd subgraph in Edmonds' matching polytope.
+-/
+theorem erdos_19.variants.edmonds_blossom_odd_set_slack_bound
+    (t delta deg_sum_U : ℕ)
+    (ht : 1 ≤ t) (hdelta : 1 ≤ delta)
+    (h_large_odd : delta + 1 ≤ 2 * t)
+    (h_deg_bound : deg_sum_U ≤ 2 * delta + (2 * t - 1) * (delta - 1)) :
+    deg_sum_U ≤ 2 * t * delta := by
+  have h_expand : (2 * t - 1) * (delta - 1) + (2 * t - 1) + delta = 2 * t * delta := by
+    have h1 : (2 * t - 1) * (delta - 1 + 1) = (2 * t - 1) * (delta - 1) + (2 * t - 1) * 1 :=
+      Nat.mul_add (2 * t - 1) (delta - 1) 1
+    have h2 : delta - 1 + 1 = delta := by omega
+    rw [h2, Nat.mul_one] at h1
+    have h3 : (2 * t - 1 + 1) * delta = (2 * t - 1) * delta + 1 * delta :=
+      Nat.add_mul (2 * t - 1) 1 delta
+    have h4 : 2 * t - 1 + 1 = 2 * t := by omega
+    rw [h4, Nat.one_mul] at h3
+    omega
+  omega
+
+/-! ## 8. Theorem 3.8(i) [2.8(a)]: Resolvent Parallel-Class Peeling Slack Gain -/
 
 /--
 **Theorem 3.8(i) [2.8(a)] (Resolvent Parallel-Class Peeling Slack Gain):**
@@ -143,7 +174,7 @@ theorem erdos_19.variants.parallel_class_peeling_slack (n d_ge3 p : ℕ)
       n - 2 * d_ge3 < (n - p) - 2 * (d_ge3 - p) := by
   omega
 
-/-! ## 8. Theorem 3.9(i) [2.9(a)]: Large-Block Disjointness Overflow above `⌊√n⌋ + 1` -/
+/-! ## 9. Theorem 3.9(i) [2.9(a)]: Large-Block Disjointness Overflow above `⌊√n⌋ + 1` -/
 
 /--
 **Theorem 3.9(i) [2.9(a)] (Large-Block Disjointness Overflow):**
@@ -164,7 +195,7 @@ theorem erdos_19.variants.large_block_disjoint_overflow (n s : ℕ)
       _ = s * (s + 2) + 1 := by rw [Nat.mul_add]
   omega
 
-/-! ## 9. Theorem 3.10(i) & 3.11(ii) [2.9(b) & 2.10(b)]: Prime-Power AG(2,q)^{+p} Chromatic Interpolation -/
+/-! ## 10. Theorem 3.10(i) & 3.11(ii) [2.9(b) & 2.10(b)]: Prime-Power AG(2,q)^{+p} Chromatic Interpolation -/
 
 /--
 **Theorem 3.10(i) [2.9(b)] (Exact Chromatic Slack Identity for `1 ≤ p ≤ q` and `q ≥ 2`):**
@@ -207,7 +238,7 @@ theorem erdos_19.variants.ag2q_ideal_point_chromatic_le_n (q p : ℕ)
     have h := erdos_19.variants.ag2q_ideal_point_exact_slack_formula q (m + 1) hq (by omega) hp
     omega
 
-/-! ## 10. Theorem 3.10(ii) & 3.11(i)–(iii) [2.10(a)–(c)]: Universal Three-Tier Pair-Budget Discharging Closure -/
+/-! ## 11. Theorem 3.10(ii) & 3.11(i)–(iii) [2.10(a)–(c)]: Universal Three-Tier Pair-Budget Discharging Closure -/
 
 /--
 **Theorem 3.10(ii) & 3.11(i) [2.10(a)] (Three-Tier Pair-Budget Non-Negativity):**
@@ -243,34 +274,6 @@ theorem erdos_19.variants.global_shadow_slack_conservation
   omega
 
 /--
-**Theorem 3.7(a) [2.6(b)] (Edmonds Blossom Odd-Set Shadow-Slack Bound):**
-For any odd vertex subset `U` of cardinality `|U| = 2 * t + 1 ≥ 3` in the residual 2-edge graph
-`G_res` of maximum degree `Δ = n - q'` (`1 ≤ Δ`), if at most 2 vertices of `U` lie in the
-deficit-zero set `D = {v : δ_VF(v) = 0}` (attaining degree `Δ`) and the remaining `2 * t - 1`
-vertices of `U` have degree at most `Δ - 1`, then the degree sum `deg_sum_U = 2 * |E(G_res[U])|`
-satisfies `deg_sum_U ≤ 2 * Δ + (2 * t - 1) * (Δ - 1)`. Whenever `Δ + 1 ≤ 2 * t` (i.e.,
-`|U| ≥ Δ + 2`), this forces `2 * |E(G_res[U])| ≤ 2 * t * Δ = (|U| - 1) * (n - q')`, ruling out
-any overfull odd subgraph in Edmonds' matching polytope.
--/
-theorem erdos_19.variants.edmonds_blossom_odd_set_slack_bound
-    (t delta deg_sum_U : ℕ)
-    (ht : 1 ≤ t) (hdelta : 1 ≤ delta)
-    (h_large_odd : delta + 1 ≤ 2 * t)
-    (h_deg_bound : deg_sum_U ≤ 2 * delta + (2 * t - 1) * (delta - 1)) :
-    deg_sum_U ≤ 2 * t * delta := by
-  have h_expand : (2 * t - 1) * (delta - 1) + (2 * t - 1) + delta = 2 * t * delta := by
-    have h1 : (2 * t - 1) * (delta - 1 + 1) = (2 * t - 1) * (delta - 1) + (2 * t - 1) * 1 :=
-      Nat.mul_add (2 * t - 1) (delta - 1) 1
-    have h2 : delta - 1 + 1 = delta := by omega
-    rw [h2, Nat.mul_one] at h1
-    have h3 : (2 * t - 1 + 1) * delta = (2 * t - 1) * delta + 1 * delta :=
-      Nat.add_mul (2 * t - 1) 1 delta
-    have h4 : 2 * t - 1 + 1 = 2 * t := by omega
-    rw [h4, Nat.one_mul] at h3
-    omega
-  omega
-
-/--
 **Theorem 3.11(c) [2.10(c)] (Three-Tier Fournier 2-Core Pair-Budget Obstruction Bound):**
 If a residual configuration has a non-empty Fournier cyclic 2-core `D_2 ⊆ D` of size `k = |D_2| ≥ 3`
 where every vertex `u ∈ D_2` has `δ_VF(u) = 0` (`d_{G_res}(u) = n - q'`), then the residual 2-edge
@@ -288,7 +291,7 @@ theorem erdos_19.variants.three_tier_fournier_obstruction_bound
     False := by
   omega
 
-/-! ## 11. Section 4: Certified Extremal Projective Plane Witnesses PG(2,2) & PG(2,3) -/
+/-! ## 12. Section 4: Certified Extremal Projective Plane Witnesses PG(2,2) & PG(2,3) -/
 
 /--
 Checks that a family of hyperedges on `{0, ..., n-1}` is a `(n, k, 1)` Steiner 2-design /

@@ -26,14 +26,14 @@ from pathlib import Path
 
 
 def verify_ag2q_interpolation() -> list:
-    """Verify Theorem 2.9(b) & 2.10(b): chi'(AG(2,q)^{+p}) = (q-1)*p + (q+1) < q^2 + p."""
+    """Verify Theorem 3.10(i) & 3.11(ii): chi'(AG(2,q)^{+p}) = (q-1)*p + (q+1) < q^2 + p across q in {2,3,4,5,7,8,9,11,13,16}."""
     records = []
-    for q in [2, 3, 4, 5]:
+    for q in [2, 3, 4, 5, 7, 8, 9, 11, 13, 16]:
         for p in range(q + 1):
             n = q * q + p
             chi_prime = (q - 1) * p + (q + 1)
             slack = n - chi_prime
-            expected_slack = (q * q - q - 1) - (q - 2) * p
+            expected_slack = (q - 1) * (q - p) + (p - 1)
             assert slack == expected_slack and slack > 0, f"Failed at q={q}, p={p}"
             records.append(
                 {

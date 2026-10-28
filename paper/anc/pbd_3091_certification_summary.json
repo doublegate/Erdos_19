@@ -240,6 +240,614 @@
       "omega_line_graph": 31,
       "chi_prime": 31,
       "efl_slack_n_minus_chi": 0
+    },
+    {
+      "q": 7,
+      "p_ideal_points": 0,
+      "n": 49,
+      "omega_line_graph": 8,
+      "chi_prime": 8,
+      "efl_slack_n_minus_chi": 41
+    },
+    {
+      "q": 7,
+      "p_ideal_points": 1,
+      "n": 50,
+      "omega_line_graph": 14,
+      "chi_prime": 14,
+      "efl_slack_n_minus_chi": 36
+    },
+    {
+      "q": 7,
+      "p_ideal_points": 2,
+      "n": 51,
+      "omega_line_graph": 20,
+      "chi_prime": 20,
+      "efl_slack_n_minus_chi": 31
+    },
+    {
+      "q": 7,
+      "p_ideal_points": 3,
+      "n": 52,
+      "omega_line_graph": 26,
+      "chi_prime": 26,
+      "efl_slack_n_minus_chi": 26
+    },
+    {
+      "q": 7,
+      "p_ideal_points": 4,
+      "n": 53,
+      "omega_line_graph": 32,
+      "chi_prime": 32,
+      "efl_slack_n_minus_chi": 21
+    },
+    {
+      "q": 7,
+      "p_ideal_points": 5,
+      "n": 54,
+      "omega_line_graph": 38,
+      "chi_prime": 38,
+      "efl_slack_n_minus_chi": 16
+    },
+    {
+      "q": 7,
+      "p_ideal_points": 6,
+      "n": 55,
+      "omega_line_graph": 44,
+      "chi_prime": 44,
+      "efl_slack_n_minus_chi": 11
+    },
+    {
+      "q": 7,
+      "p_ideal_points": 7,
+      "n": 56,
+      "omega_line_graph": 50,
+      "chi_prime": 50,
+      "efl_slack_n_minus_chi": 6
+    },
+    {
+      "q": 7,
+      "p_ideal_points": 8,
+      "n": 57,
+      "omega_line_graph": 57,
+      "chi_prime": 57,
+      "efl_slack_n_minus_chi": 0
+    },
+    {
+      "q": 8,
+      "p_ideal_points": 0,
+      "n": 64,
+      "omega_line_graph": 9,
+      "chi_prime": 9,
+      "efl_slack_n_minus_chi": 55
+    },
+    {
+      "q": 8,
+      "p_ideal_points": 1,
+      "n": 65,
+      "omega_line_graph": 16,
+      "chi_prime": 16,
+      "efl_slack_n_minus_chi": 49
+    },
+    {
+      "q": 8,
+      "p_ideal_points": 2,
+      "n": 66,
+      "omega_line_graph": 23,
+      "chi_prime": 23,
+      "efl_slack_n_minus_chi": 43
+    },
+    {
+      "q": 8,
+      "p_ideal_points": 3,
+      "n": 67,
+      "omega_line_graph": 30,
+      "chi_prime": 30,
+      "efl_slack_n_minus_chi": 37
+    },
+    {
+      "q": 8,
+      "p_ideal_points": 4,
+      "n": 68,
+      "omega_line_graph": 37,
+      "chi_prime": 37,
+      "efl_slack_n_minus_chi": 31
+    },
+    {
+      "q": 8,
+      "p_ideal_points": 5,
+      "n": 69,
+      "omega_line_graph": 44,
+      "chi_prime": 44,
+      "efl_slack_n_minus_chi": 25
+    },
+    {
+      "q": 8,
+      "p_ideal_points": 6,
+      "n": 70,
+      "omega_line_graph": 51,
+      "chi_prime": 51,
+      "efl_slack_n_minus_chi": 19
+    },
+    {
+      "q": 8,
+      "p_ideal_points": 7,
+      "n": 71,
+      "omega_line_graph": 58,
+      "chi_prime": 58,
+      "efl_slack_n_minus_chi": 13
+    },
+    {
+      "q": 8,
+      "p_ideal_points": 8,
+      "n": 72,
+      "omega_line_graph": 65,
+      "chi_prime": 65,
+      "efl_slack_n_minus_chi": 7
+    },
+    {
+      "q": 8,
+      "p_ideal_points": 9,
+      "n": 73,
+      "omega_line_graph": 73,
+      "chi_prime": 73,
+      "efl_slack_n_minus_chi": 0
+    },
+    {
+      "q": 9,
+      "p_ideal_points": 0,
+      "n": 81,
+      "omega_line_graph": 10,
+      "chi_prime": 10,
+      "efl_slack_n_minus_chi": 71
+    },
+    {
+      "q": 9,
+      "p_ideal_points": 1,
+      "n": 82,
+      "omega_line_graph": 18,
+      "chi_prime": 18,
+      "efl_slack_n_minus_chi": 64
+    },
+    {
+      "q": 9,
+      "p_ideal_points": 2,
+      "n": 83,
+      "omega_line_graph": 26,
+      "chi_prime": 26,
+      "efl_slack_n_minus_chi": 57
+    },
+    {
+      "q": 9,
+      "p_ideal_points": 3,
+      "n": 84,
+      "omega_line_graph": 34,
+      "chi_prime": 34,
+      "efl_slack_n_minus_chi": 50
+    },
+    {
+      "q": 9,
+      "p_ideal_points": 4,
+      "n": 85,
+      "omega_line_graph": 42,
+      "chi_prime": 42,
+      "efl_slack_n_minus_chi": 43
+    },
+    {
+      "q": 9,
+      "p_ideal_points": 5,
+      "n": 86,
+      "omega_line_graph": 50,
+      "chi_prime": 50,
+      "efl_slack_n_minus_chi": 36
+    },
+    {
+      "q": 9,
+      "p_ideal_points": 6,
+      "n": 87,
+      "omega_line_graph": 58,
+      "chi_prime": 58,
+      "efl_slack_n_minus_chi": 29
+    },
+    {
+      "q": 9,
+      "p_ideal_points": 7,
+      "n": 88,
+      "omega_line_graph": 66,
+      "chi_prime": 66,
+      "efl_slack_n_minus_chi": 22
+    },
+    {
+      "q": 9,
+      "p_ideal_points": 8,
+      "n": 89,
+      "omega_line_graph": 74,
+      "chi_prime": 74,
+      "efl_slack_n_minus_chi": 15
+    },
+    {
+      "q": 9,
+      "p_ideal_points": 9,
+      "n": 90,
+      "omega_line_graph": 82,
+      "chi_prime": 82,
+      "efl_slack_n_minus_chi": 8
+    },
+    {
+      "q": 9,
+      "p_ideal_points": 10,
+      "n": 91,
+      "omega_line_graph": 91,
+      "chi_prime": 91,
+      "efl_slack_n_minus_chi": 0
+    },
+    {
+      "q": 11,
+      "p_ideal_points": 0,
+      "n": 121,
+      "omega_line_graph": 12,
+      "chi_prime": 12,
+      "efl_slack_n_minus_chi": 109
+    },
+    {
+      "q": 11,
+      "p_ideal_points": 1,
+      "n": 122,
+      "omega_line_graph": 22,
+      "chi_prime": 22,
+      "efl_slack_n_minus_chi": 100
+    },
+    {
+      "q": 11,
+      "p_ideal_points": 2,
+      "n": 123,
+      "omega_line_graph": 32,
+      "chi_prime": 32,
+      "efl_slack_n_minus_chi": 91
+    },
+    {
+      "q": 11,
+      "p_ideal_points": 3,
+      "n": 124,
+      "omega_line_graph": 42,
+      "chi_prime": 42,
+      "efl_slack_n_minus_chi": 82
+    },
+    {
+      "q": 11,
+      "p_ideal_points": 4,
+      "n": 125,
+      "omega_line_graph": 52,
+      "chi_prime": 52,
+      "efl_slack_n_minus_chi": 73
+    },
+    {
+      "q": 11,
+      "p_ideal_points": 5,
+      "n": 126,
+      "omega_line_graph": 62,
+      "chi_prime": 62,
+      "efl_slack_n_minus_chi": 64
+    },
+    {
+      "q": 11,
+      "p_ideal_points": 6,
+      "n": 127,
+      "omega_line_graph": 72,
+      "chi_prime": 72,
+      "efl_slack_n_minus_chi": 55
+    },
+    {
+      "q": 11,
+      "p_ideal_points": 7,
+      "n": 128,
+      "omega_line_graph": 82,
+      "chi_prime": 82,
+      "efl_slack_n_minus_chi": 46
+    },
+    {
+      "q": 11,
+      "p_ideal_points": 8,
+      "n": 129,
+      "omega_line_graph": 92,
+      "chi_prime": 92,
+      "efl_slack_n_minus_chi": 37
+    },
+    {
+      "q": 11,
+      "p_ideal_points": 9,
+      "n": 130,
+      "omega_line_graph": 102,
+      "chi_prime": 102,
+      "efl_slack_n_minus_chi": 28
+    },
+    {
+      "q": 11,
+      "p_ideal_points": 10,
+      "n": 131,
+      "omega_line_graph": 112,
+      "chi_prime": 112,
+      "efl_slack_n_minus_chi": 19
+    },
+    {
+      "q": 11,
+      "p_ideal_points": 11,
+      "n": 132,
+      "omega_line_graph": 122,
+      "chi_prime": 122,
+      "efl_slack_n_minus_chi": 10
+    },
+    {
+      "q": 11,
+      "p_ideal_points": 12,
+      "n": 133,
+      "omega_line_graph": 133,
+      "chi_prime": 133,
+      "efl_slack_n_minus_chi": 0
+    },
+    {
+      "q": 13,
+      "p_ideal_points": 0,
+      "n": 169,
+      "omega_line_graph": 14,
+      "chi_prime": 14,
+      "efl_slack_n_minus_chi": 155
+    },
+    {
+      "q": 13,
+      "p_ideal_points": 1,
+      "n": 170,
+      "omega_line_graph": 26,
+      "chi_prime": 26,
+      "efl_slack_n_minus_chi": 144
+    },
+    {
+      "q": 13,
+      "p_ideal_points": 2,
+      "n": 171,
+      "omega_line_graph": 38,
+      "chi_prime": 38,
+      "efl_slack_n_minus_chi": 133
+    },
+    {
+      "q": 13,
+      "p_ideal_points": 3,
+      "n": 172,
+      "omega_line_graph": 50,
+      "chi_prime": 50,
+      "efl_slack_n_minus_chi": 122
+    },
+    {
+      "q": 13,
+      "p_ideal_points": 4,
+      "n": 173,
+      "omega_line_graph": 62,
+      "chi_prime": 62,
+      "efl_slack_n_minus_chi": 111
+    },
+    {
+      "q": 13,
+      "p_ideal_points": 5,
+      "n": 174,
+      "omega_line_graph": 74,
+      "chi_prime": 74,
+      "efl_slack_n_minus_chi": 100
+    },
+    {
+      "q": 13,
+      "p_ideal_points": 6,
+      "n": 175,
+      "omega_line_graph": 86,
+      "chi_prime": 86,
+      "efl_slack_n_minus_chi": 89
+    },
+    {
+      "q": 13,
+      "p_ideal_points": 7,
+      "n": 176,
+      "omega_line_graph": 98,
+      "chi_prime": 98,
+      "efl_slack_n_minus_chi": 78
+    },
+    {
+      "q": 13,
+      "p_ideal_points": 8,
+      "n": 177,
+      "omega_line_graph": 110,
+      "chi_prime": 110,
+      "efl_slack_n_minus_chi": 67
+    },
+    {
+      "q": 13,
+      "p_ideal_points": 9,
+      "n": 178,
+      "omega_line_graph": 122,
+      "chi_prime": 122,
+      "efl_slack_n_minus_chi": 56
+    },
+    {
+      "q": 13,
+      "p_ideal_points": 10,
+      "n": 179,
+      "omega_line_graph": 134,
+      "chi_prime": 134,
+      "efl_slack_n_minus_chi": 45
+    },
+    {
+      "q": 13,
+      "p_ideal_points": 11,
+      "n": 180,
+      "omega_line_graph": 146,
+      "chi_prime": 146,
+      "efl_slack_n_minus_chi": 34
+    },
+    {
+      "q": 13,
+      "p_ideal_points": 12,
+      "n": 181,
+      "omega_line_graph": 158,
+      "chi_prime": 158,
+      "efl_slack_n_minus_chi": 23
+    },
+    {
+      "q": 13,
+      "p_ideal_points": 13,
+      "n": 182,
+      "omega_line_graph": 170,
+      "chi_prime": 170,
+      "efl_slack_n_minus_chi": 12
+    },
+    {
+      "q": 13,
+      "p_ideal_points": 14,
+      "n": 183,
+      "omega_line_graph": 183,
+      "chi_prime": 183,
+      "efl_slack_n_minus_chi": 0
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 0,
+      "n": 256,
+      "omega_line_graph": 17,
+      "chi_prime": 17,
+      "efl_slack_n_minus_chi": 239
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 1,
+      "n": 257,
+      "omega_line_graph": 32,
+      "chi_prime": 32,
+      "efl_slack_n_minus_chi": 225
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 2,
+      "n": 258,
+      "omega_line_graph": 47,
+      "chi_prime": 47,
+      "efl_slack_n_minus_chi": 211
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 3,
+      "n": 259,
+      "omega_line_graph": 62,
+      "chi_prime": 62,
+      "efl_slack_n_minus_chi": 197
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 4,
+      "n": 260,
+      "omega_line_graph": 77,
+      "chi_prime": 77,
+      "efl_slack_n_minus_chi": 183
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 5,
+      "n": 261,
+      "omega_line_graph": 92,
+      "chi_prime": 92,
+      "efl_slack_n_minus_chi": 169
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 6,
+      "n": 262,
+      "omega_line_graph": 107,
+      "chi_prime": 107,
+      "efl_slack_n_minus_chi": 155
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 7,
+      "n": 263,
+      "omega_line_graph": 122,
+      "chi_prime": 122,
+      "efl_slack_n_minus_chi": 141
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 8,
+      "n": 264,
+      "omega_line_graph": 137,
+      "chi_prime": 137,
+      "efl_slack_n_minus_chi": 127
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 9,
+      "n": 265,
+      "omega_line_graph": 152,
+      "chi_prime": 152,
+      "efl_slack_n_minus_chi": 113
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 10,
+      "n": 266,
+      "omega_line_graph": 167,
+      "chi_prime": 167,
+      "efl_slack_n_minus_chi": 99
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 11,
+      "n": 267,
+      "omega_line_graph": 182,
+      "chi_prime": 182,
+      "efl_slack_n_minus_chi": 85
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 12,
+      "n": 268,
+      "omega_line_graph": 197,
+      "chi_prime": 197,
+      "efl_slack_n_minus_chi": 71
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 13,
+      "n": 269,
+      "omega_line_graph": 212,
+      "chi_prime": 212,
+      "efl_slack_n_minus_chi": 57
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 14,
+      "n": 270,
+      "omega_line_graph": 227,
+      "chi_prime": 227,
+      "efl_slack_n_minus_chi": 43
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 15,
+      "n": 271,
+      "omega_line_graph": 242,
+      "chi_prime": 242,
+      "efl_slack_n_minus_chi": 29
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 16,
+      "n": 272,
+      "omega_line_graph": 257,
+      "chi_prime": 257,
+      "efl_slack_n_minus_chi": 15
+    },
+    {
+      "q": 16,
+      "p_ideal_points": 17,
+      "n": 273,
+      "omega_line_graph": 273,
+      "chi_prime": 273,
+      "efl_slack_n_minus_chi": 0
     }
   ],
   "three_tier_discharging_certificates": [

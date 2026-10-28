@@ -38,7 +38,7 @@
   ]
   #v(5pt)
   *Author:* Lucas Parobek (`parobek@gmail.com`) #h(1em) | #h(1em) *Date:* October 27, 2026 #h(1em) | #h(1em) *Prize:* \$500 Erdős Bounty \
-  *Public Repository:* #link("https://github.com/doublegate/Erdos_19")[`https://github.com/doublegate/Erdos_19`]
+  *Public Repository:* #link("https://github.com/doublegate/Erdos_19")[`https://github.com/doublegate/Erdos_19`] #h(1em) | #h(1em) *PR:* #link("https://github.com/google-deepmind/formal-conjectures/pull/7641")[`formal-conjectures#7641`]
 ]
 
 #v(4pt)
@@ -51,7 +51,7 @@
 
 = Lean 4 (`v4.33.1`) Zero-`sorry` Formal Verification Suite (`19.lean`)
 
-Run directly with `lake --wfail build` and `lake env lean Erdos19/AxiomCheck.lean` (or `lean paper/anc/19.lean`, 14 verified declarations, 0 errors, 0 warnings, 0 `sorry`s, 0 custom axioms):
+Run directly with `lake --wfail build` and `lake env lean Erdos19/AxiomCheck.lean` (or `lean paper/anc/19.lean`, 16 verified declarations in strictly chronological manuscript order, 0 errors, 0 warnings, 0 `sorry`s, 0 custom axioms):
 
 #raw(read("anc/19.lean"), block: true, lang: "lean")
 

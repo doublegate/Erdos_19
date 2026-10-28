@@ -335,6 +335,113 @@ def fig4_gpu_pruning_and_throughput(out_dir: Path) -> None:
     save_fig(fig, out_dir, "fig4_gpu_pruning_and_throughput")
 
 
+def fig5_three_tier_shadow_slack_conservation(out_dir: Path) -> None:
+    """
+    Figure 5 (We-Solve #882 Remediation Diagnostics):
+      * Panel A: Theorem 3.7(a) [2.6(b)] Edmonds Blossom Odd-Set Shadow-Slack Bound
+        comparing the Edmonds matching polytope capacity 2*t*Delta against the
+        deficit-constrained degree sum 2*Delta + (2*t - 1)*(Delta - 1) across odd
+        subset sizes |U| = 2*t + 1 (with <= 2 deficit-zero vertices in U).
+      * Panel B: Theorem 3.10(i) & Theorem 3.11(a)-(c) Prime-Power AG(2,q)^{+p}
+        Chromatic Interpolation chi' = (q-1)p + (q+1) vs. n = q^2 + p and
+        Global Shadow-Slack Conservation sum delta_VF(v) + 2(e2 - F_tot) = n(n - q').
+    """
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.4, 4.4))
+
+    # Panel A: Edmonds Blossom Odd-Set Shadow-Slack Bound at Delta = n - q' = 6
+    delta = 6
+    t_vals = np.arange(3, 13)
+    u_sizes = 2 * t_vals + 1
+    edmonds_cap = 2 * t_vals * delta
+    constrained_deg_sum = 2 * delta + (2 * t_vals - 1) * (delta - 1)
+
+    ax1.plot(
+        u_sizes,
+        edmonds_cap,
+        color=OKABE_ITO["black"],
+        linestyle="--",
+        marker="s",
+        linewidth=1.8,
+        markersize=5.0,
+        label=r"Edmonds Polytope Ceiling $2t\Delta = (|U|-1)(n-q')$",
+    )
+    ax1.plot(
+        u_sizes,
+        constrained_deg_sum,
+        color=OKABE_ITO["green"],
+        linestyle="-",
+        marker="o",
+        linewidth=2.0,
+        markersize=5.2,
+        label=r"Deficit-Constrained Sum $2\Delta + (2t-1)(\Delta-1)$ (Thm. 3.7a)",
+    )
+    ax1.fill_between(
+        u_sizes,
+        constrained_deg_sum,
+        edmonds_cap,
+        color=OKABE_ITO["green"],
+        alpha=0.14,
+        label=r"Guaranteed Odd-Set Blossom Slack $(2t - 1 - \Delta) \geq 0$",
+    )
+    ax1.axvline(
+        delta + 1,
+        color=OKABE_ITO["orange"],
+        linestyle=":",
+        linewidth=1.4,
+        label=r"Threshold $|U| = \Delta + 1 = 7$ ($2t = \Delta$)",
+    )
+    ax1.set_title(r"A. Theorem 3.7(a) Edmonds Odd-Set Shadow-Slack Bound ($\Delta = 6$)")
+    ax1.set_xlabel(r"Odd Subset Cardinality $|U| = 2t + 1$ in $G_{\mathrm{res}}$")
+    ax1.set_ylabel(r"Twice Internal Edge Count $2|E(G_{\mathrm{res}}[U])|$")
+    ax1.set_xticks(u_sizes)
+    ax1.grid(True, linestyle=":", alpha=0.45)
+    ax1.legend(loc="upper left", frameon=True, fontsize=7.5)
+
+    # Panel B: AG(2,q)^{+p} Exact Chromatic Ratio chi'/n across prime powers q in {2, 3, 4, 5, 7, 9, 13, 16} (n up to 273)
+    q_configs = [
+        (2, OKABE_ITO["sky"], "o-", r"$q=2$ ($n \in [4, 7]$, $\mathrm{PG}(2,2)$)"),
+        (3, OKABE_ITO["blue"], "s-", r"$q=3$ ($n \in [9, 13]$, $\mathrm{PG}(2,3)$)"),
+        (4, OKABE_ITO["green"], "^-", r"$q=4$ ($n \in [16, 21]$, $\mathrm{PG}(2,4)$)"),
+        (5, OKABE_ITO["purple"], "D-", r"$q=5$ ($n \in [25, 31]$, $\mathrm{PG}(2,5)$)"),
+        (7, OKABE_ITO["orange"], "v--", r"$q=7$ ($n \in [49, 57]$, $\mathrm{PG}(2,7)$)"),
+        (9, "#00796B", "P-.", r"$q=9$ ($n \in [81, 91]$, $\mathrm{PG}(2,9)$)"),
+        (13, "#C62828", "*-", r"$q=13$ ($n \in [169, 183]$, $\mathrm{PG}(2,13)$)"),
+        (16, "#1A237E", "h-", r"$q=16$ ($n \in [256, 273]$, $\mathrm{PG}(2,16)$)"),
+    ]
+    ax2.axhline(
+        1.0,
+        color=OKABE_ITO["black"],
+        linestyle="--",
+        linewidth=1.5,
+        label=r"EFL Ceiling $\chi'(\mathcal{H}) / n = 1.00$ (attained only at $p=q+1$, $\mathrm{PG}(2,q)$)",
+    )
+    for q, col, style, lbl in q_configs:
+        t_frac = [p / (q + 1.0) for p in range(0, q + 1)] + [1.0]
+        ns_q = [q * q + p for p in range(0, q + 1)] + [q * q + q + 1]
+        chis_q = [(q - 1) * p + (q + 1) for p in range(0, q + 1)] + [q * q + q + 1]
+        ratios_q = [c / n for c, n in zip(chis_q, ns_q)]
+        ax2.plot(
+            t_frac,
+            ratios_q,
+            style,
+            color=col,
+            linewidth=1.7,
+            markersize=4.3,
+            label=lbl,
+        )
+
+    ax2.set_title(r"B. Theorem 3.10(i) & 3.11(a) $\mathrm{AG}(2,q)^{+p}$ Ratio $\chi'/n$ ($q \in [2, 16], n \leq 273$)")
+    ax2.set_xlabel(r"Normalized Ideal-Point Fraction $p / (q + 1) \in [0, 1]$")
+    ax2.set_ylabel(r"Normalized Chromatic Index $\chi'(\mathrm{AG}(2,q)^{+p}) / n$")
+    ax2.set_xlim(-0.03, 1.03)
+    ax2.set_ylim(0.0, 1.08)
+    ax2.grid(True, linestyle=":", alpha=0.45)
+    ax2.legend(loc="lower right", frameon=True, fontsize=6.5, ncol=1)
+
+    fig.tight_layout()
+    save_fig(fig, out_dir, "fig5_three_tier_shadow_slack_conservation")
+
+
 if __name__ == "__main__":
     root = Path(__file__).resolve().parent.parent
     fig_dir = root / "paper" / "figures"
@@ -342,4 +449,5 @@ if __name__ == "__main__":
     fig2_pbd_census_distribution(fig_dir)
     fig3_line_graph_degree_envelope(fig_dir)
     fig4_gpu_pruning_and_throughput(fig_dir)
-    print("All 4 publication figures generated successfully.")
+    fig5_three_tier_shadow_slack_conservation(fig_dir)
+    print("All 5 publication figures generated successfully.")

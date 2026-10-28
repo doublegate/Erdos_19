@@ -12,13 +12,13 @@ Paper: "Three-Tier Pair-Budget Discharging Closure, Pairwise Balanced Reduction,
 Repo:  https://github.com/doublegate/Erdos_19
 
 This self-contained Lean 4 module (zero `sorry`s, zero custom axioms) machine-checks the
-Pairwise Balanced Design (PBD) 2-edge completion conservation law, the single-triple and
-two-triple parity-saturation obstructions, the Vizing–Fournier shadow-slack decomposition,
-the Fournier 2-core forest leaf-discharging bound, the exact Shadow-Slack identity,
-Edmonds' Blossom odd-set shadow-slack bound, resolvent parallel-class peeling slack,
-the large-block clique/matching overflow bound, the Prime-Power AG(2,q)^{+p} chromatic
-interpolation identities, the Universal Three-Tier Pair-Budget Discharging Closure, and
-the extremal projective plane witnesses PG(2,2) and PG(2,3).
+discrete arithmetic identities and inequalities used in the Pairwise Balanced Design (PBD)
+2-edge completion conservation law, the single-triple and two-triple parity-saturation capacity
+bounds, the Vizing–Fournier shadow-slack degree relation, the Fournier 2-core forest degree-sum
+bound, the Shadow-Slack decomposition identity, Edmonds' Blossom odd-set degree-sum bound,
+resolvent parallel-class peeling slack, the large-block disjointness overflow bound, the
+AG(2,q)^{+p} arithmetic slack identities, the Three-Tier Pair-Budget arithmetic conservation
+relations, and the finite projective plane witnesses PG(2,2) and PG(2,3) of [Pa26].
 -/
 
 namespace Erdos19
@@ -28,10 +28,10 @@ local notation "ℕ" => Nat
 /-! ## 1. Theorem 2.1(i): Exact Pairwise Balanced Design (PBD) Pair Conservation -/
 
 /--
-**Theorem 2.1(i) (PBD 2-Edge Completion Conservation):**
-In a linear hypergraph on `n` vertices where `p_blocks` vertex pairs are covered by blocks
-of size `≥ 3` and the remaining `e2` uncovered vertex pairs are completed by `2`-edges,
-the total pair count equals `total_pairs = n * (n - 1) / 2`, and `e2 = total_pairs - p_blocks`.
+**Arithmetic Lemma for Theorem 2.1(i) (Additive Partition Conservation):**
+For natural numbers `total_pairs`, `p_blocks`, and `e2` satisfying `p_blocks + e2 = total_pairs`,
+`total_pairs - p_blocks = e2` and `p_blocks ≤ total_pairs` (used for the PBD 2-edge pair partition
+`p_blocks + e2 = n * (n - 1) / 2` in Theorem 2.1(i) of [Pa26]).
 -/
 theorem erdos_19.variants.pbd_two_edge_completion_conservation (total_pairs p_blocks e2 : ℕ)
     (h_partition : p_blocks + e2 = total_pairs) :
@@ -41,14 +41,12 @@ theorem erdos_19.variants.pbd_two_edge_completion_conservation (total_pairs p_bl
 /-! ## 2. Theorem 3.2(ii) [2.2(b)]: Single-Triple Parity-Saturation Obstruction -/
 
 /--
-**Theorem 3.2(ii) [2.2(b)] (Single-Triple PBD Parity-Saturation Obstruction):**
-For any odd order `n = 2 * t + 1 ≥ 7` (`t ≥ 3`), replacing a single triangle in `K_n` by a
-3-uniform block `T_0` yields the PBD `H_1(n)` with `m = 2 * t * t + t - 2` hyperedges.
-Because `T_0` covers 3 vertices of odd `n`, the color class containing `T_0` can accept at most
-`t - 1` additional 2-edges (total `t` hyperedges), and each of the remaining `2 * t - 1` color
-classes in a hypothetical `(n - 1)`-coloring can accept at most `t` 2-edges. Thus `(n - 1)` colors
-can cover at most `t + (2 * t - 1) * t = 2 * t * t` hyperedges, which is strictly less than
-`m = 2 * t * t + t - 2` for all `t ≥ 3`, proving `χ'(H_1(n)) = n`.
+**Arithmetic Lemma for Theorem 3.2(ii) [2.2(b)] (Single-Triple Capacity Inequality):**
+For any natural number `t ≥ 3`, if `m = 2 * t * t + t - 2` and `cap_nm1 = t + (2 * t - 1) * t`,
+then `cap_nm1 = 2 * t * t < m`. In Theorem 3.2(ii) of [Pa26], `m` is the edge count of the
+single-triple PBD `H_1(2t + 1)` and `cap_nm1` is the maximum hyperedge capacity of `2t = n - 1`
+color classes when one class contains the 3-block (`t` edges) and `2t - 1` classes contain at
+most `t` 2-edges each.
 -/
 theorem erdos_19.variants.single_triple_parity_saturation_chromatic (t m cap_nm1 : ℕ)
     (ht : 3 ≤ t)
@@ -65,13 +63,10 @@ theorem erdos_19.variants.single_triple_parity_saturation_chromatic (t m cap_nm1
 /-! ## 3. Theorem 3.3(i)–(ii) [2.3(a)–(b)]: Two-Triple Disjoint Volume Starvation -/
 
 /--
-**Theorem 3.3(i)–(ii) [2.3(a)–(b)] (Two-Triple Disjoint PBD Volume Starvation):**
-For odd `n = 2 * t + 1` with two vertex-disjoint 3-blocks `T_1, T_2` (`|T_1 ∪ T_2| = 6`),
-if `T_1` and `T_2` share a color class `C_1`, that class covers 6 vertices and can absorb at most
-`t - 3` additional 2-edges (total `t - 1` hyperedges). More generally, if every color class in a
-`(2 * t)`-coloring has size at most `t - 1` except at most two classes of size `t`, the capacity
-`2 * t + (2 * t - 2) * (t - 1)` is strictly less than `m = 2 * t * t + t - 4` at `t = 3` (`n = 7`),
-forcing `χ'(H_{2,disj}(7)) = 7`.
+**Arithmetic Lemma for Theorem 3.3(i)–(ii) [2.3(a)–(b)] (Two-Triple Capacity Inequality at `t = 3`):**
+For `t = 3`, `m = 2 * t * t + t - 4 = 17`, and `cap_disj = 2 * t + (2 * t - 2) * (t - 1) = 14`,
+`cap_disj < m` holds on `ℕ`. In Theorem 3.3 of [Pa26], this compares the 6-color capacity bound
+against the 17 hyperedges of the disjoint two-triple PBD `H_{2,disj}(7)`.
 -/
 theorem erdos_19.variants.two_triple_disjoint_volume_starvation (t m cap_disj : ℕ)
     (ht : t = 3)
@@ -84,14 +79,11 @@ theorem erdos_19.variants.two_triple_disjoint_volume_starvation (t m cap_disj : 
 /-! ## 4. Theorem 3.4(i) [2.4(a)]: Vizing–Fournier Shadow-Slack Decomposition -/
 
 /--
-**Theorem 3.4(i) [2.4(a)] (Vizing–Fournier Shadow-Slack Identity):**
-At any vertex `v` in a PBD completion `H`, let `d_ge3` be its block degree in `E_{≥ 3}`,
-`d_2` be its 2-edge degree in `E_2`, `q_max` be the maximum block size containing `v`, and
-`q_prime = max(q_max, 2)`. The number of distinct 2-edge colors available at `v` after
-coloring `E_{≥ 3}` is `(n - 1) - (2 * d_ge3 + match_v + rank_excess)`. Substituting the PBD
-pair identity `n - 1 = d_2 + 2 * d_ge3 + rank_excess` shows that the residual 2-edge color
-surplus `(n - 1 - (2 * d_ge3 + match_v + rank_excess)) - (d_2 + 1 - q_prime)` equals
-`q_prime - 1 - match_v`, equivalent to the Vizing–Fournier shadow-slack decomposition.
+**Arithmetic Lemma for Theorem 3.4(i) [2.4(a)] (Linear Elimination for Shadow-Slack):**
+For natural numbers satisfying `n_minus_1 = d_2 + 2 * d_ge3 + rank_excess` and
+`delta_vf + q_prime = 2 * d_ge3 + match_v + rank_excess + 1`, eliminating `2 * d_ge3 + rank_excess`
+yields `n_minus_1 + match_v + 1 = d_2 + delta_vf + q_prime` (the arithmetic elimination step in
+the Vizing–Fournier shadow-slack identity of Theorem 3.4(i) in [Pa26]).
 -/
 theorem erdos_19.variants.vizing_fournier_shadow_slack_identity
     (n_minus_1 d_2 d_ge3 rank_excess match_v q_prime delta_vf : ℕ)
@@ -103,11 +95,10 @@ theorem erdos_19.variants.vizing_fournier_shadow_slack_identity
 /-! ## 5. Theorem 3.5(i) & 3.11(i) [2.5(a) & 2.10(a)]: Fournier 2-Core Forest Leaf Discharging -/
 
 /--
-**Theorem 3.5(i) & 3.11(i) [2.5(a) & 2.10(a)] (Fournier 2-Core Forest Degree-Sum Bound):**
-Every acyclic forest on `V_T ≥ 1` vertices with `c ≥ 1` connected components has
-`E_T = V_T - c` edges, so the degree sum `2 * E_T = 2 * V_T - 2 * c` is strictly less
-than `2 * V_T`, guaranteeing at least `2 * c ≥ 2` leaf incidences of degree `≤ 1` for
-conflict-free Kempe-chain peeling.
+**Arithmetic Lemma for Theorem 3.5(i) & 3.11(i) (Forest Edge-Double Identity):**
+For natural numbers `1 ≤ c ≤ V_T` and `E_T = V_T - c`, `2 * E_T + 2 * c = 2 * V_T` and
+`2 * E_T < 2 * V_T` (the arithmetic step relating forest edge count `E_T = V_T - c` to twice
+the vertex count `2 * V_T` in Theorem 3.5(i) of [Pa26]).
 -/
 theorem erdos_19.variants.fournier_forest_degree_sum_lt (V_T E_T c : ℕ)
     (_hV : 1 ≤ V_T) (hc : 1 ≤ c) (hc_le : c ≤ V_T) (h_forest : E_T = V_T - c) :
@@ -117,11 +108,10 @@ theorem erdos_19.variants.fournier_forest_degree_sum_lt (V_T E_T c : ℕ)
 /-! ## 6. Theorem 3.6(i) [2.6(a)]: Exact Shadow-Slack Identity -/
 
 /--
-**Theorem 3.6(i) [2.6(a)] (Shadow-Slack Decomposition Identity):**
-For any candidate color class `I` of cardinality `r` spanning `e2_I` internal `2`-edges
-and non-2-edge block intersection sum `S_B = ∑_{B : |B| ≥ 3} |I ∩ B|`, the total shadow
-incidence sum equals `S_B + 2 * e2_I`. For `pair_twice = r * (r - 1)` with `2 * e2_I ≤ pair_twice`,
-`(S_B + 2 * e2_I) + (pair_twice - 2 * e2_I) = S_B + pair_twice`.
+**Arithmetic Lemma for Theorem 3.6(i) [2.6(a)] (Additive Cancellation Identity):**
+For natural numbers `S_B`, `pair_twice`, and `e2_I` with `2 * e2_I ≤ pair_twice`,
+`(S_B + 2 * e2_I) + (pair_twice - 2 * e2_I) = S_B + pair_twice` (the arithmetic cancellation step
+in the Shadow-Slack identity of Theorem 3.6(i) in [Pa26]).
 -/
 theorem erdos_19.variants.shadow_slack_identity (S_B pair_twice e2_I : ℕ)
     (h_le : 2 * e2_I ≤ pair_twice) :
@@ -131,14 +121,10 @@ theorem erdos_19.variants.shadow_slack_identity (S_B pair_twice e2_I : ℕ)
 /-! ## 7. Theorem 3.7(a) [2.6(b)]: Edmonds Blossom Odd-Set Shadow-Slack Bound -/
 
 /--
-**Theorem 3.7(a) [2.6(b)] (Edmonds Blossom Odd-Set Shadow-Slack Bound):**
-For any odd vertex subset `U` of cardinality `|U| = 2 * t + 1 ≥ 3` in the residual 2-edge graph
-`G_res` of maximum degree `Δ = n - q'` (`1 ≤ Δ`), if at most 2 vertices of `U` lie in the
-deficit-zero set `D = {v : δ_VF(v) = 0}` (attaining degree `Δ`) and the remaining `2 * t - 1`
-vertices of `U` have degree at most `Δ - 1`, then the degree sum `deg_sum_U = 2 * |E(G_res[U])|`
-satisfies `deg_sum_U ≤ 2 * Δ + (2 * t - 1) * (Δ - 1)`. Whenever `Δ + 1 ≤ 2 * t` (i.e.,
-`|U| ≥ Δ + 2`), this forces `2 * |E(G_res[U])| ≤ 2 * t * Δ = (|U| - 1) * (n - q')`, ruling out
-any overfull odd subgraph in Edmonds' matching polytope.
+**Arithmetic Lemma for Theorem 3.7(a) [2.6(b)] (Linear Degree-Sum Inequality):**
+For natural numbers `t ≥ 1` and `delta ≥ 1` with `delta + 1 ≤ 2 * t`, any `deg_sum_U` satisfying
+`deg_sum_U ≤ 2 * delta + (2 * t - 1) * (delta - 1)` also satisfies `deg_sum_U ≤ 2 * t * delta`
+(the arithmetic inequality used in the odd-set degree-sum bound of Theorem 3.7(a) in [Pa26]).
 -/
 theorem erdos_19.variants.edmonds_blossom_odd_set_slack_bound
     (t delta deg_sum_U : ℕ)
@@ -161,12 +147,10 @@ theorem erdos_19.variants.edmonds_blossom_odd_set_slack_bound
 /-! ## 8. Theorem 3.8(i) [2.8(a)]: Resolvent Parallel-Class Peeling Slack Gain -/
 
 /--
-**Theorem 3.8(i) [2.8(a)] (Resolvent Parallel-Class Peeling Slack Gain):**
-If `E_{≥ 3}` contains `p ≥ 1` parallel classes (each partitioning the ground set into disjoint
-3-blocks), coloring each parallel class with a single dedicated color consumes `p` colors out of
-`n` (reducing the residual color budget from `n` to `n - p`), while reducing every vertex's
-3-block degree from `d_ge3` to `d_ge3 - p` (which reduces the shadow penalty `2 * d_ge3` by `2 * p`).
-The net per-vertex color margin therefore strictly increases by `2 * p - p = p ≥ 1`.
+**Arithmetic Lemma for Theorem 3.8(i) [2.8(a)] (Linear Slack Increment Identity):**
+For natural numbers `1 ≤ p ≤ d_ge3` and `2 * d_ge3 ≤ n`, `(n - p) - 2 * (d_ge3 - p) = (n - 2 * d_ge3) + p`
+and `n - 2 * d_ge3 < (n - p) - 2 * (d_ge3 - p)` (the arithmetic step showing a `+p` slack increase
+when `d_ge3` decreases by `p` and `n` decreases by `p` in Theorem 3.8(i) of [Pa26]).
 -/
 theorem erdos_19.variants.parallel_class_peeling_slack (n d_ge3 p : ℕ)
     (hp : 1 ≤ p) (hd : p ≤ d_ge3) (hn : 2 * d_ge3 ≤ n) :
@@ -177,12 +161,10 @@ theorem erdos_19.variants.parallel_class_peeling_slack (n d_ge3 p : ℕ)
 /-! ## 9. Theorem 3.9(i) [2.9(a)]: Large-Block Disjointness Overflow above `⌊√n⌋ + 1` -/
 
 /--
-**Theorem 3.9(i) [2.9(a)] (Large-Block Disjointness Overflow):**
-Let `s = ⌊√n⌋` so that `n < (s + 1)^2`, i.e., `n ≤ s * (s + 2)`. Any `s + 1` pairwise
-vertex-disjoint blocks each of size `≥ τ = s + 1` would cover at least `(s + 1) * (s + 1)`
-distinct vertices, which strictly exceeds `s * (s + 2) ≥ n`. By the dual traceability bound,
-every block of size `≥ s + 2` intersects every block of size `≥ s + 1`, and at threshold
-`τ = s + 1` at most `s` blocks can be mutually disjoint.
+**Arithmetic Lemma for Theorem 3.9(i) [2.9(a)] (Square Overflow Inequality):**
+For natural numbers `n, s` with `n ≤ s * (s + 2)`, `n < (s + 1) * (s + 1)` since
+`(s + 1)^2 = s(s + 2) + 1` (the arithmetic step used in Theorem 3.9(i) of [Pa26] to show that
+`s + 1` disjoint blocks of size `≥ s + 1` require more than `s(s + 2) ≥ n` vertices).
 -/
 theorem erdos_19.variants.large_block_disjoint_overflow (n s : ℕ)
     (hn : n ≤ s * (s + 2)) :
@@ -198,9 +180,9 @@ theorem erdos_19.variants.large_block_disjoint_overflow (n s : ℕ)
 /-! ## 10. Theorem 3.10(i) & 3.11(ii) [2.9(b) & 2.10(b)]: Prime-Power AG(2,q)^{+p} Chromatic Interpolation -/
 
 /--
-**Theorem 3.10(i) [2.9(b)] (Exact Chromatic Slack Identity for `1 ≤ p ≤ q` and `q ≥ 2`):**
-Whenever `1 ≤ p ≤ q` and `q ≥ 2`, `(q - 1) * p + (q + 1)` plus the non-negative slack
-`(q - 1) * (q - p) + (p - 1)` equals `q * q + p = n`.
+**Arithmetic Lemma for Theorem 3.10(i) [2.9(b)] (Polynomial Slack Identity for `1 ≤ p ≤ q`):**
+Whenever `1 ≤ p ≤ q` and `q ≥ 2`, `(q - 1) * p + (q + 1) + (q - 1) * (q - p) + (p - 1) = q * q + p`
+(the arithmetic identity comparing `(q - 1)p + (q + 1)` and `q^2 + p` in Theorem 3.10(i) of [Pa26]).
 -/
 theorem erdos_19.variants.ag2q_ideal_point_exact_slack_formula (q p : ℕ)
     (hq : 2 ≤ q) (hp_pos : 1 ≤ p) (hp : p ≤ q) :
@@ -215,10 +197,10 @@ theorem erdos_19.variants.ag2q_ideal_point_exact_slack_formula (q p : ℕ)
   omega
 
 /--
-**Theorem 3.10(i) & 3.11(ii) [2.9(b) & 2.10(b)] (Affine-to-Projective Chromatic Slack Inequality):**
-For every integer `q ≥ 2` and `0 ≤ p ≤ q`, extending the affine plane `AG(2, q)` by
-`p` ideal points on the line at infinity yields vertex count `n = q^2 + p` and chromatic
-index `χ' = (q - 1) * p + (q + 1)`, satisfying `(q - 1) * p + (q + 1) ≤ q * q + p`.
+**Arithmetic Lemma for Theorem 3.10(i) & 3.11(ii) (Polynomial Inequality `(q - 1)p + (q + 1) ≤ q^2 + p`):**
+For every natural number `q ≥ 2` and `0 ≤ p ≤ q`, `(q - 1) * p + (q + 1) ≤ q * q + p`
+(the arithmetic inequality showing that the formula `(q - 1)p + (q + 1)` does not exceed `q^2 + p`
+in Theorem 3.10(i) of [Pa26]).
 -/
 theorem erdos_19.variants.ag2q_ideal_point_chromatic_le_n (q p : ℕ)
     (hq : 2 ≤ q) (hp : p ≤ q) :
@@ -241,10 +223,9 @@ theorem erdos_19.variants.ag2q_ideal_point_chromatic_le_n (q p : ℕ)
 /-! ## 11. Theorem 3.10(ii) & 3.11(i)–(iii) [2.10(a)–(c)]: Universal Three-Tier Pair-Budget Discharging Closure -/
 
 /--
-**Theorem 3.10(ii) & 3.11(i) [2.10(a)] (Three-Tier Pair-Budget Non-Negativity):**
-In any PBD completion on `n` vertices partitioned into Tier-1 large blocks (`large_pairs` pairs),
-Tier-2 medium blocks (`med_pairs` pairs), and Tier-3 `2`-edges (`e2` pairs), the exact identity
-`large_pairs + med_pairs + e2 = total_pairs` forces `total_pairs - large_pairs - med_pairs = e2`.
+**Arithmetic Lemma for Theorem 3.10(ii) & 3.11(i) (Three-Term Partition Subtraction):**
+For natural numbers `total_pairs`, `large_pairs`, `med_pairs`, and `e2` satisfying
+`large_pairs + med_pairs + e2 = total_pairs`, `total_pairs - large_pairs - med_pairs = e2`.
 -/
 theorem erdos_19.variants.three_tier_pair_budget_nonneg (total_pairs large_pairs med_pairs e2 : ℕ)
     (h_pbd : large_pairs + med_pairs + e2 = total_pairs) :
@@ -252,13 +233,11 @@ theorem erdos_19.variants.three_tier_pair_budget_nonneg (total_pairs large_pairs
   omega
 
 /--
-**Theorem 3.11(a) [2.10(a)] (Global Shadow-Slack & Residual 2-Edge Conservation Identity):**
-In any PBD completion on `n` vertices where `n_pairs_twice = n * (n - 1)` is twice the total
-vertex-pair count `2 * (P_L + P_M + e2)`, summing the per-vertex Vizing–Fournier shadow-slack
-identity `delta_vf(v) + q' - 1 = sigma_{≥ 3}(v) + match(v)` across all `n` vertices (with
-`sum_sigma_ge3 = 2 * (P_L + P_M)`, `sum_match = 2 * F_tot`, and `sum_res_deg = 2 * (e2 - F_tot)`)
-proves that `sum_delta_vf + 2 * (e2 - F_tot) = n * (n - q')` and
-`2 * (P_L + P_M + F_tot) = n * (q' - 1) + sum_delta_vf`.
+**Arithmetic Lemma for Theorem 3.11(a) [2.10(a)] (Global Linear Conservation Identity):**
+For natural numbers `1 ≤ q' ≤ n` and `F_tot ≤ e2` satisfying `2 * (P_L + P_M + e2) = n * (n - 1)`
+and `sum_delta_vf + n * (q' - 1) = 2 * (P_L + P_M + F_tot)`, we have
+`sum_delta_vf + 2 * (e2 - F_tot) = n * (n - q')` and `2 * (P_L + P_M + F_tot) = n * (q' - 1) + sum_delta_vf`
+(the linear elimination step in Theorem 3.11(a) of [Pa26]).
 -/
 theorem erdos_19.variants.global_shadow_slack_conservation
     (n q' P_L P_M e2 F_tot sum_delta_vf : ℕ)
@@ -274,13 +253,10 @@ theorem erdos_19.variants.global_shadow_slack_conservation
   omega
 
 /--
-**Theorem 3.11(c) [2.10(c)] (Three-Tier Fournier 2-Core Pair-Budget Obstruction Bound):**
-If a residual configuration has a non-empty Fournier cyclic 2-core `D_2 ⊆ D` of size `k = |D_2| ≥ 3`
-where every vertex `u ∈ D_2` has `δ_VF(u) = 0` (`d_{G_res}(u) = n - q'`), then the residual 2-edge
-degree sum satisfies `2 * (e2 - F_tot) = k * (n - q') + deg_sum_outside`. Combining this with the
-global PBD pair conservation `2 * (P_L + P_M + e2) = n * (n - 1)` proves that whenever the weighted
-block-plus-matching pair sum satisfies `2 * (P_L + P_M + F_tot) + deg_sum_outside > n * (n - 1) - k * (n - q')`,
-no such Fournier 2-core of size `k` can exist (`False`).
+**Arithmetic Lemma for Theorem 3.11(c) [2.10(c)] (Linear Budget Contradiction):**
+For natural numbers satisfying `F_tot ≤ e2`, `2 * (P_L + P_M + e2) = n * (n - 1)`, and
+`2 * (e2 - F_tot) = k * (n - q') + deg_sum_outside`, the strict inequality
+`n * (n - 1) < 2 * (P_L + P_M + F_tot) + k * (n - q') + deg_sum_outside` is impossible (`False`).
 -/
 theorem erdos_19.variants.three_tier_fournier_obstruction_bound
     (n q' k P_L P_M e2 F_tot deg_sum_outside : ℕ)
@@ -295,8 +271,8 @@ theorem erdos_19.variants.three_tier_fournier_obstruction_bound
 
 /--
 Checks that a family of hyperedges on `{0, ..., n-1}` is a `(n, k, 1)` Steiner 2-design /
-projective plane: there are `n` blocks, every block has size `k`, and every pair `u < v < n`
-is contained in at most 1 block with total pair count `n * k * (k - 1) / 2 = n * (n - 1) / 2`.
+projective plane: there are `n` blocks, every block has `k` distinct vertices in `{0, ..., n-1}`,
+and the `n` blocks cover all `n * (n - 1) / 2` distinct unordered vertex pairs without duplicates.
 -/
 def pairsOfBlock : List ℕ → List (ℕ × ℕ)
   | [] => []
@@ -305,13 +281,17 @@ def pairsOfBlock : List ℕ → List (ℕ × ℕ)
 def allBlockPairs (blocks : List (List ℕ)) : List (ℕ × ℕ) :=
   blocks.foldr (fun b acc => pairsOfBlock b ++ acc) []
 
+def listNoDups : List ℕ → Bool
+  | [] => true
+  | v :: rest => !(rest.contains v) && listNoDups rest
+
 def pairListNoDups : List (ℕ × ℕ) → Bool
   | [] => true
   | p :: rest => !(rest.contains p) && pairListNoDups rest
 
 def isCertifiedProjectivePlane (n k : ℕ) (blocks : List (List ℕ)) : Bool :=
   (blocks.length == n) &&
-  (blocks.all (fun b => b.length == k)) &&
+  (blocks.all (fun b => b.length == k && listNoDups b && b.all (fun v => v < n))) &&
   (let pairs := allBlockPairs blocks
    (pairs.length == n * (n - 1) / 2) && pairListNoDups pairs)
 

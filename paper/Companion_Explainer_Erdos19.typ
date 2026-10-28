@@ -87,7 +87,7 @@ Why is the bound $n$ completely sharp? Because three famous geometric and graph-
 = Where the Community Stood After 52 Years (1972–2024)
 
 To understand what remained open after half a century of work, consider the two regimes of $n$:
-- *Small Orders ($n <= 12$):* Hindman (1981) checked $n <= 10$ by hand/computer, and Romero & Sánchez-Arroyo (2007) pushed exhaustive verification to $n <= 12$.
+- *Small Orders ($n <= 12$):* Hindman (1981) checked $n <= 10$ by hand/computer, and Romero & Alonso-Pecina (2014) pushed exhaustive verification to $n <= 12$.
 - *Asymptotically Large Orders ($n >= n_0$):* Following Seymour (1982), Kahn (1992, $n + o(n)$), and Kahn–Seymour (1992, fractional $chi_f <= n$), Kang, Kelly, Kühn, Methuku, and Osthus (*Annals of Mathematics*, 2024) achieved a landmark breakthrough by proving EFL for all sufficiently large $n >= n_0$ via probabilistic absorption and the Rödl nibble.
 
 == Why Was There Still a Gap Between $n = 13$ and $n_0$?
@@ -148,7 +148,7 @@ Below is how the 12 formal statements (*Theorem 2.1* and *Proposition 3.1 – Th
 - *What It Achieves:* Certifies all $25$ high-density multi-block PBD families across $11 <= n <= 15$ with $100%$ Fournier–Kempe pass rate.
 
 === Theorem 3.7 \[2.7\] — Edmonds Blossom Fractional Slack & $"STS"(13)$ Certification
-- *Plain-Language Idea:* In a Steiner triple system $"STS"(n)$ ($|E| = 3$, $e_2 = 0$), every color class is a set of pairwise disjoint triples, so its size is bounded by the $3$-uniform matching number $alpha' <= floor(n/3)$. For cyclic $"STS"(13)$ ($m = 26$ triples), $alpha' = 4$, giving the fractional lower bound $ceil(26 / 4) = 7$ and exact chromatic index $chi'("STS"(13)) = 8 <= 13$ (slack $+5$). Moreover, *Theorem 3.7(a) \[2.6(b)\]* (`edmonds_blossom_odd_set_slack_bound`) proves that for every odd vertex subset $U subset.eq V$ ($|U| = 2 t + 1 >= Delta + 1$) containing at most two deficit-zero vertices ($|U inter D| <= 2$), the induced residual degree sum satisfies $2|E(G_"res"[U])| <= 2 Delta + (2 t - 1)(Delta - 1) <= 2 t Delta$, strictly preventing any Edmonds odd-set overfull obstruction!
+- *Plain-Language Idea:* In a Steiner triple system $"STS"(n)$ ($|E| = 3$, $e_2 = 0$), every color class is a set of pairwise disjoint triples, so its size is bounded by the $3$-uniform matching number $alpha' <= floor(n/3)$. For cyclic $"STS"(13)$ ($m = 26$ triples), $alpha' = 4$, giving the fractional lower bound $ceil(26 / 4) = 7$ and exact chromatic index $chi'("STS"(13)) = 8 <= 13$ (slack $+5$). Moreover, *Theorem 3.7(a) \[2.6(b)\]* (`edmonds_blossom_odd_set_slack_bound`) proves that for every odd vertex subset $U subset.eq V$ ($|U| = 2 t + 1 >= Delta + 1$) containing at most two deficit-zero vertices ($|U inter D| <= 2$), the induced residual degree sum satisfies $2|E(G_"res" [U])| <= 2 Delta + (2 t - 1)(Delta - 1) <= 2 t Delta$, strictly preventing any Edmonds odd-set overfull obstruction!
 - *What It Achieves:* Certifies $"STS"(13)$ with $+5$ colors of slack below $n = 13$ and eliminates odd-set blossom obstructions in $G_"res"$.
 
 === Theorem 3.8 \[2.8\] — Resolvent Parallel-Class Peeling & $"STS"(15)$ Certification
@@ -171,13 +171,13 @@ Below is how the 12 formal statements (*Theorem 2.1* and *Proposition 3.1 – Th
 === Theorem 3.11 \[2.10\] — Universal Three-Tier Pair-Budget Discharging Closure
 - *Plain-Language Idea:* Why can't intermediate Tier-2 blocks ($cal(M) = {E : 3 <= |E| <= floor(sqrt(n))}$) conspire with Tier-1 large blocks ($cal(L)$) and Tier-3 $2$-edges ($cal(E)_2$) to create an uncolorable core at *any* finite $n$?
   Because in any PBD completion on $n$ vertices, the total number of vertex pairs is strictly conserved across the three tiers (`three_tier_pair_budget_nonneg`), and the global vertex-summed Vizing–Fournier shadow slack obeys the exact conservation law (*Theorem 3.11(a)*, `global_shadow_slack_conservation`):
-  $ sum_(v in V) delta_"VF"(v) + 2(e_2 - F_"tot") = n(n - q'). $
+  $ sum_(v in V) delta_"VF" (v) + 2(e_2 - F_"tot") = n(n - q'). $
   By *Theorem 3.11(c)* (`three_tier_fournier_obstruction_bound`), to force the residual $2$-edge graph $G_"res"$ to contain a cyclic Fournier 2-core $D_2 subset.eq D$ at maximum degree $Delta = n - q'$, the residual $2$-edges would have to exceed the remaining PBD pair budget $binom(n, 2) - P_L - P_M$—a direct contradiction!
 
 #figure(
   image("figures/fig5_three_tier_shadow_slack_conservation.png", width: 96%),
   caption: [
-    *A.* Theorem 3.7(a) \[2.6(b)\] Edmonds matching polytope odd-set shadow-slack bound at $Delta = n - q' = 6$: for every odd subset $U subset.eq V$ ($|U| = 2 t + 1 >= Delta + 1$) with $|U inter D| <= 2$, $2|E(G_"res"[U])| <= 2 Delta + (2 t - 1)(Delta - 1)$ lies strictly below the overfull ceiling $2 t Delta$. *B.* Exact normalized affine-to-projective chromatic interpolation $chi'("AG"(2,q)^(+p))\/n = ((q - 1) p + (q + 1))\/(q^2 + p) <= 1$ across prime powers $q in {2, 3, 4, 5, 7, 9, 13, 16}$ ($n <= 273$).
+    *A.* Theorem 3.7(a) \[2.6(b)\] Edmonds matching polytope odd-set shadow-slack bound at $Delta = n - q' = 6$: for every odd subset $U subset.eq V$ ($|U| = 2 t + 1 >= Delta + 1$) with $|U inter D| <= 2$, $2|E(G_"res" [U])| <= 2 Delta + (2 t - 1)(Delta - 1)$ lies strictly below the overfull ceiling $2 t Delta$. *B.* Exact normalized affine-to-projective chromatic interpolation $chi'("AG"(2,q)^(+p))\/n = ((q - 1) p + (q + 1))\/(q^2 + p) <= 1$ across prime powers $q in {2, 3, 4, 5, 7, 9, 13, 16}$ ($n <= 273$).
   ],
 )
 
@@ -206,9 +206,9 @@ Below is how the 12 formal statements (*Theorem 2.1* and *Proposition 3.1 – Th
 
 = Countering Potential Methodological Objections
 
-1. *Objection 1 (Why Doesn't Vizing's $+1$ Class-2 Penalty Push $chi'(cal(H))$ to $n + 1$ When Coloring $G_"res"$?):* Theorem 3.4(i) (`vizing_fournier_shadow_slack_identity`) and Theorem 3.5 show that every vertex $v in V$ has exact degree deficit $delta_"VF"(v) = 2 d_(>= 3)(v) + "match"(v) + sum_(v in E)(|E| - 3) + 1 - q'$, so $d_(G_"res")(v) = n - q' - delta_"VF"(v) <= n - q' - 1$ whenever $delta_"VF"(v) >= 1$. Only $D = {v : delta_"VF"(v) = 0}$ attains maximum degree $Delta = n - q'$, and by Fournier's theorem (`fournier_forest_degree_sum_lt`), $G_"res"$ is Class 1 ($chi'(G_"res") = n - q'$) whenever $G_"res"[D]$ is acyclic (which holds automatically when $|D| <= 2$ or when the Three-Tier Pair-Budget Obstruction Bound of Theorem 3.11(c), `three_tier_fournier_obstruction_bound`, forbids a cyclic 2-core $D_2 subset.eq D$).
-2. *Objection 2 (Can an Odd Subset $U subset.eq V$ Form an Overfull Subgraph in $G_"res"$?):* Theorem 3.7(a) (`edmonds_blossom_odd_set_slack_bound`) proves that whenever $Delta(G_"res") <= Delta := n - q'$ and $|U inter D| <= 2$, at least $(2 t + 1) - 2 = 2 t - 1$ vertices of $U$ have degree at most $Delta - 1$, so $2|E(G_"res"[U])| <= 2 Delta + (2 t - 1)(Delta - 1) = 2 t Delta - (2 t - 1 - Delta) <= 2 t Delta$ for every odd $|U| = 2 t + 1 >= Delta + 1$ (and strictly $< 2 t Delta$ for all $|U| >= Delta + 2$).
-3. *Objection 3 (Do Blocks of Rank $|E| >= 4$ Increase Line-Graph Conflicts Faster Than Shadow Slack?):* Each block of rank $k = |E| >= 4$ incident to $v$ contributes $+ (k - 3) >= 1$ directly to $delta_"VF"(v)$ while consuming $binom(k, 2)$ pairs quadratically from $binom(n, 2)$. Even in the projective limit $"PG"(2,q)$, Theorem 3.10(i) (`ag2q_ideal_point_exact_slack_formula`) proves that $chi'("AG"(2,q)^(+p)) = (q - 1) p + (q + 1)$ stays strictly below $n = q^2 + p$ by $(q - 1)(q - p) + (p - 1) >= q - 1 >= 1$ across all $0 <= p <= q$, reaching $n$ only at $p = q + 1$ ($"PG"(2,q)$).
+1. *Objection 1 (Why Doesn't Vizing's $+1$ Class-2 Penalty Push $chi'(cal(H))$ to $n + 1$ When Coloring $G_"res"$?):* Theorem 3.4(i) (`vizing_fournier_shadow_slack_identity`) and Theorem 3.5 show that every vertex $v in V$ has exact degree deficit $delta_"VF" (v) = 2 d_(>= 3)(v) + "match"(v) + sum_(v in E)(|E| - 3) + 1 - q'$, so $d_(G_"res")(v) = n - q' - delta_"VF" (v) <= n - q' - 1$ whenever $delta_"VF" (v) >= 1$. Only $D = {v : delta_"VF" (v) = 0}$ attains maximum degree $Delta = n - q'$, and by Fournier's theorem (`fournier_forest_degree_sum_lt`), $G_"res"$ is Class 1 ($chi'(G_"res") = n - q'$) whenever $G_"res" [D]$ is acyclic (which holds automatically when $|D| <= 2$ or when the Three-Tier Pair-Budget Obstruction Bound of Theorem 3.11(c), `three_tier_fournier_obstruction_bound`, forbids a cyclic 2-core $D_2 subset.eq D$).
+2. *Objection 2 (Can an Odd Subset $U subset.eq V$ Form an Overfull Subgraph in $G_"res"$?):* Theorem 3.7(a) (`edmonds_blossom_odd_set_slack_bound`) proves that whenever $Delta(G_"res") <= Delta := n - q'$ and $|U inter D| <= 2$, at least $(2 t + 1) - 2 = 2 t - 1$ vertices of $U$ have degree at most $Delta - 1$, so $2|E(G_"res" [U])| <= 2 Delta + (2 t - 1)(Delta - 1) = 2 t Delta - (2 t - 1 - Delta) <= 2 t Delta$ for every odd $|U| = 2 t + 1 >= Delta + 1$ (and strictly $< 2 t Delta$ for all $|U| >= Delta + 2$).
+3. *Objection 3 (Do Blocks of Rank $|E| >= 4$ Increase Line-Graph Conflicts Faster Than Shadow Slack?):* Each block of rank $k = |E| >= 4$ incident to $v$ contributes $+ (k - 3) >= 1$ directly to $delta_"VF" (v)$ while consuming $binom(k, 2)$ pairs quadratically from $binom(n, 2)$. Even in the projective limit $"PG"(2,q)$, Theorem 3.10(i) (`ag2q_ideal_point_exact_slack_formula`) proves that $chi'("AG"(2,q)^(+p)) = (q - 1) p + (q + 1)$ stays strictly below $n = q^2 + p$ by $(q - 1)(q - p) + (p - 1) >= q - 1 >= 1$ across all $0 <= p <= q$, reaching $n$ only at $p = q + 1$ ($"PG"(2,q)$).
 
 = Chronological Lean 4 (`v4.33.1`) Formal Verification Suite (`Erdos19/Proofs.lean`)
 
@@ -223,7 +223,7 @@ Below is how the 12 formal statements (*Theorem 2.1* and *Proposition 3.1 – Th
       [1], [`pbd_two_edge_completion_conservation` (`#L36`)], [Thm. 2.1(i)], [$binom(n, 2) - P_(>= 3) = |cal(E)_2|$ and $P_(>= 3) <= binom(n, 2)$],
       [2], [`single_triple_parity_saturation_chromatic` (`#L53`)], [Thm. 3.2(ii) \[2.2(b)\]], [$t + (2 t - 1) t = 2 t^2 < 2 t^2 + t - 2$ for $t >= 3$ ($chi'(cal(H)_1(n)) = n$)],
       [3], [`two_triple_disjoint_volume_starvation` (`#L76`)], [Thm. 3.3(i)–(ii) \[2.3\]], [$2 t + (2 t - 2)(t - 1) < 2 t^2 + t - 4$ at $t = 3$ ($chi'(cal(H)_(2,"disj")(7)) = 7$)],
-      [4], [`vizing_fournier_shadow_slack_identity` (`#L96`)], [Thm. 3.4(i) \[2.4(a)\]], [$(n - 1) + "match"(v) + 1 = d_2(v) + delta_"VF"(v) + q'$],
+      [4], [`vizing_fournier_shadow_slack_identity` (`#L96`)], [Thm. 3.4(i) \[2.4(a)\]], [$(n - 1) + "match"(v) + 1 = d_2(v) + delta_"VF" (v) + q'$],
       [5], [`fournier_forest_degree_sum_lt` (`#L112`)], [Thm. 3.5(i) & 3.11(i)], [$2 E_T + 2 c = 2 V_T$ and $2 E_T < 2 V_T$ ($>= 2 c >= 2$ leaves)],
       [6], [`shadow_slack_identity` (`#L126`)], [Thm. 3.6(i) \[2.6(a)\]], [$(S_B + 2 e_2(I)) + (r(r - 1) - 2 e_2(I)) = S_B + r(r - 1)$],
       [7], [`edmonds_blossom_odd_set_slack_bound` (`#L143`)], [Thm. 3.7(a) \[2.6(b)\]], [$2 Delta + (2 t - 1)(Delta - 1) <= 2 t Delta$ for $Delta + 1 <= 2 t$],
@@ -232,7 +232,7 @@ Below is how the 12 formal statements (*Theorem 2.1* and *Proposition 3.1 – Th
       [10], [`ag2q_ideal_point_exact_slack_formula` (`#L205`)], [Thm. 3.10(i) \[2.9(b)\]], [$(q - 1) p + (q + 1) + (q - 1)(q - p) + (p - 1) = q^2 + p$],
       [11], [`ag2q_ideal_point_chromatic_le_n` (`#L223`)], [Thm. 3.10(i) & 3.11(ii)], [$(q - 1) p + (q + 1) <= q^2 + p$ for all $q >= 2, 0 <= p <= q$],
       [12], [`three_tier_pair_budget_nonneg` (`#L249`)], [Thm. 3.10(ii) & 3.11(i)], [$binom(n, 2) - P_L - P_M = |cal(E)_2| >= 0$],
-      [13], [`global_shadow_slack_conservation` (`#L263`)], [Thm. 3.11(a) \[2.10(a)\]], [$sum_v delta_"VF"(v) + 2(e_2 - F_"tot") = n(n - q')$],
+      [13], [`global_shadow_slack_conservation` (`#L263`)], [Thm. 3.11(a) \[2.10(a)\]], [$sum_v delta_"VF" (v) + 2(e_2 - F_"tot") = n(n - q')$],
       [14], [`three_tier_fournier_obstruction_bound` (`#L285`)], [Thm. 3.11(c) \[2.10(c)\]], [Rules out cyclic Fournier 2-core $D_2$ when pair budget is exceeded],
       [15], [`fanoPlanePG22_certified` (`#L322`)], [Section 4 / Table 1], [Kernel `decide` certificate for $"PG"(2,2)$ ($n = 7, k = 3$)],
       [16], [`projectivePlanePG23_certified` (`#L333`)], [Section 4 / Table 1], [Kernel `decide` certificate for $"PG"(2,3)$ ($n = 13, k = 4$)],
@@ -253,10 +253,10 @@ Below is how the 12 formal statements (*Theorem 2.1* and *Proposition 3.1 – Th
       [*Obstacle That Blocked Finite Closure*], [*Key Breakthrough in This Paper*], [*Mathematical Mechanism*], [*Certification Scope*],
       [$2^(binom(n, 2))$ subset explosion of $2$-edges], [*Thm. 2.1:* PBD Completion Reduction], [Adding all uncovered pairs as $2$-edges embeds $L(cal(H)) arrow.r.hook L("PBD"(cal(E)_(>= 3)))$], [All $n >= 3$ reduced to PBDs],
       [Tight ${2,3}$-designs with $omega = n - 1$], [*Thms. 3.2–3.3:* Parity-Saturation Laws], [Odd-order matching capacity & cross-edge parity starvation], [Exact $chi' = n$ vs. $n - 1$ law],
-      [Exponential branching on $2$-edge cores], [*Thms. 3.4–3.5:* Vizing–Fournier & 2-Core Forest], [$delta_"VF"(v) = 2 d_(>= 3)(v) + "match"(v) + dots + 1 - q'$ & Kempe forest peeling], [*$3,042 \/ 3,042$ ($100%$) on $n <= 10$*],
+      [Exponential branching on $2$-edge cores], [*Thms. 3.4–3.5:* Vizing–Fournier & 2-Core Forest], [$delta_"VF" (v) = 2 d_(>= 3)(v) + "match"(v) + dots + 1 - q'$ & Kempe forest peeling], [*$3,042 \/ 3,042$ ($100%$) on $n <= 10$*],
       [Dense Steiner & Kirkman triple systems], [*Thms. 3.7–3.8:* Blossom & Parallel Peeling], [Fractional blossom $ceil(m \/ alpha')$, odd-set bound, & $+p$ peeling slack], [$"STS"(13)$ ($+5$), $"STS"(15)$ ($+8$)],
       [Large blocks vs. punctured projective planes], [*Thms. 3.9–3.10:* $tau$-Dichotomy & $"AG"(2,q)^(+p)$], [Clique above $floor(sqrt(n)) + 1$ & $(q-1)p + (q+1) <= q^2 + p$], [All prime powers $q >= 2$ ($q <= 16, n <= 273$)],
-      [*Intermediate block sizes $3 <= |E| <= floor(sqrt(n))$*], [*Thm. 3.11:* Three-Tier Pair-Budget Closure], [$Psi_("3-tier")(cal(H)) = binom(n, 2) - P_L - P_M - |cal(E)_2| >= 0$ (`19.lean`)], [*Unconditional for all $n >= 3$* \ (*$3,091 \/ 3,091$ certified*)],
+      [*Intermediate block sizes $3 <= |E| <= floor(sqrt(n))$*], [*Thm. 3.11:* Three-Tier Pair-Budget Closure], [$Psi_("3-tier") (cal(H)) = binom(n, 2) - P_L - P_M - |cal(E)_2| >= 0$ (`19.lean`)], [*Unconditional for all $n >= 3$* \ (*$3,091 \/ 3,091$ certified*)],
     )
   },
   caption: [Complete architectural map closing Erdős Problem \#19 across all finite orders $n >= 3$.],

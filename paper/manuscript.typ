@@ -31,7 +31,7 @@ At a 1972 combinatorial gathering in Boulder, Colorado, Paul Erdős, Vance Faber
   *Erdős–Faber–Lovász (EFL) Conjecture (Erdős Problem \#19).* _Let $G = union.big_(i=1)^n K^((i))$ be the union of $n$ complete graphs $K^((1)), dots, K^((n))$, each of order $|V(K^((i)))| <= n$, such that $|V(K^((i))) inter V(K^((j)))| <= 1$ for all $1 <= i < j <= n$. Then $chi(G) <= n$._
 ]
 
-Over five decades, the conjecture drove foundational advances across extremal hypergraph theory: Hindman [4] verified EFL for $n <= 10$, Seymour [5] proved that every linear hypergraph on $n$ vertices contains a hyperedge of line-graph degree at most $n$ (whence $omega(L(cal(H))) <= n$ by the De Bruijn–Erdős theorem [1]), Kahn [6] proved $chi'(cal(H)) <= n + o(n)$ via the Rödl nibble, Kahn and Seymour [7] proved the fractional relaxation $chi_f (L(cal(H))) <= n$ unconditionally for all $n >= 1$, Romero and Sánchez-Arroyo [8] extended exhaustive verification to $n <= 12$, and Faber [9] eliminated regular and uniform high-rank hypergraphs as minimal counterexamples. Most recently, Kang, Kelly, Kühn, Methuku, and Osthus [10] proved the conjecture for all sufficiently large $n >= n_0$, leaving only the finite range $13 <= n < n_0$ open and rendering Problem \#19 formally `decidable` [11].
+Over five decades, the conjecture drove foundational advances across extremal hypergraph theory: Hindman [4] verified EFL for $n <= 10$, Seymour [5] proved that every linear hypergraph on $n$ vertices contains a hyperedge of line-graph degree at most $n$ (whence $omega(L(cal(H))) <= n$ by the De Bruijn–Erdős theorem [1]), Kahn [6] proved $chi'(cal(H)) <= n + o(n)$ via the Rödl nibble, Kahn and Seymour [7] proved the fractional relaxation $chi_f (L(cal(H))) <= n$ unconditionally for all $n >= 1$, Romero and Alonso-Pecina [8] extended exhaustive verification to $n <= 12$, and Faber [9] eliminated regular and uniform high-rank hypergraphs as minimal counterexamples. Most recently, Kang, Kelly, Kühn, Methuku, and Osthus [10] proved the conjecture for all sufficiently large $n >= n_0$, leaving only the finite range $13 <= n < n_0$ open and rendering Problem \#19 formally `decidable` [11].
 
 #figure(
   image("figures/fig1_tightness_dichotomy.png", width: 98%),
@@ -211,7 +211,7 @@ Over five decades, the conjecture drove foundational advances across extremal hy
 #figure(
   image("figures/fig5_three_tier_shadow_slack_conservation.png", width: 98%),
   caption: [
-    *A.* Theorem 3.7(a) \[2.6(b)\] Edmonds matching polytope odd-set shadow-slack bound at $Delta = n - q' = 6$: for every odd subset $U subset.eq V$ ($|U| = 2 t + 1 >= Delta + 1$) containing at most two deficit-zero vertices ($|U inter D| <= 2$), the induced residual degree sum $2|E(G_"res"[U])| <= 2 Delta + (2 t - 1)(Delta - 1)$ lies strictly below the overfull ceiling $2 t Delta = (|U| - 1)(n - q')$ for all $|U| >= Delta + 2$. *B.* Exact normalized affine-to-projective chromatic interpolation $chi'("AG"(2,q)^(+p))\/n = ((q - 1) p + (q + 1))\/(q^2 + p) <= 1$ across prime powers $q in {2, 3, 4, 5, 7, 9, 13, 16}$ ($n <= 273$, Theorems 3.10–3.11).
+    *A.* Theorem 3.7(a) \[2.6(b)\] Edmonds matching polytope odd-set shadow-slack bound at $Delta = n - q' = 6$: for every odd subset $U subset.eq V$ ($|U| = 2 t + 1 >= Delta + 1$) containing at most two deficit-zero vertices ($|U inter D| <= 2$), the induced residual degree sum $2|E(G_"res" [U])| <= 2 Delta + (2 t - 1)(Delta - 1)$ lies strictly below the overfull ceiling $2 t Delta = (|U| - 1)(n - q')$ for all $|U| >= Delta + 2$. *B.* Exact normalized affine-to-projective chromatic interpolation $chi'("AG"(2,q)^(+p))\/n = ((q - 1) p + (q + 1))\/(q^2 + p) <= 1$ across prime powers $q in {2, 3, 4, 5, 7, 9, 13, 16}$ ($n <= 273$, Theorems 3.10–3.11).
   ],
   placement: none,
 )
@@ -242,9 +242,9 @@ Over five decades, the conjecture drove foundational advances across extremal hy
 
 == Countering Potential Methodological Objections
 
-1. *Objection 1 (Why Doesn't Vizing's $+1$ Class-2 Penalty Push $chi'(cal(H))$ to $n + 1$ When Coloring $G_"res"$?):* Theorem 3.4(i) (`vizing_fournier_shadow_slack_identity`) and Theorem 3.5 show that every vertex $v in V$ has exact degree deficit $delta_"VF"(v) = 2 d_(>= 3)(v) + "match"(v) + sum_(v in E)(|E| - 3) + 1 - q'$, so $d_(G_"res")(v) = n - q' - delta_"VF"(v) <= n - q' - 1$ for every vertex with $delta_"VF"(v) >= 1$. Only $D = {v : delta_"VF"(v) = 0}$ attains maximum degree $Delta = n - q'$, and by Fournier's theorem (`fournier_forest_degree_sum_lt`), $G_"res"$ is Class 1 ($chi'(G_"res") = n - q'$) whenever $G_"res"[D]$ is acyclic (which holds automatically when $|D| <= 2$ or when the Three-Tier Pair-Budget Obstruction Bound of Theorem 3.11(c), `three_tier_fournier_obstruction_bound`, forbids a cyclic 2-core $D_2 subset.eq D$).
-2. *Objection 2 (Can an Odd Subset $U subset.eq V$ Form an Overfull Subgraph in $G_"res"$?):* Theorem 3.7(a) (`edmonds_blossom_odd_set_slack_bound`) proves that whenever $Delta(G_"res") <= Delta := n - q'$ and $|U inter D| <= 2$, at least $(2 t + 1) - 2 = 2 t - 1$ vertices of $U$ have degree at most $Delta - 1$, so $2|E(G_"res"[U])| <= 2 Delta + (2 t - 1)(Delta - 1) = 2 t Delta - (2 t - 1 - Delta) <= 2 t Delta$ for every odd $|U| = 2 t + 1 >= Delta + 1$ (and strictly $< 2 t Delta$ for all $|U| >= Delta + 2$).
-3. *Objection 3 (Do Blocks of Rank $|E| >= 4$ Increase Line-Graph Conflicts Faster Than Shadow Slack?):* Both the local shadow-slack identity $delta_"VF"(v) = 2 d_(>= 3)(v) + "match"(v) + sum_(v in E)(|E| - 3) + 1 - q'$ and global pair conservation $binom(n, 2) - P_cal(L) - P_cal(M) = |cal(E)_2| >= 0$ (`three_tier_pair_budget_nonneg`) prove that each block of rank $k = |E| >= 4$ incident to $v$ contributes $+ (k - 3) >= 1$ directly to $delta_"VF"(v)$ while consuming $binom(k, 2)$ pairs quadratically. Even in the projective limit $"PG"(2,q)$, Theorem 3.10(i) (`ag2q_ideal_point_exact_slack_formula`) proves that $chi'("AG"(2,q)^(+p)) = (q - 1) p + (q + 1)$ stays strictly below $n = q^2 + p$ by $(q - 1)(q - p) + (p - 1) >= q - 1 >= 1$ across all $0 <= p <= q$, reaching $n$ only at $p = q + 1$ ($"PG"(2,q)$).
+1. *Objection 1 (Why Doesn't Vizing's $+1$ Class-2 Penalty Push $chi'(cal(H))$ to $n + 1$ When Coloring $G_"res"$?):* Theorem 3.4(i) (`vizing_fournier_shadow_slack_identity`) and Theorem 3.5 show that every vertex $v in V$ has exact degree deficit $delta_"VF" (v) = 2 d_(>= 3)(v) + "match"(v) + sum_(v in E)(|E| - 3) + 1 - q'$, so $d_(G_"res")(v) = n - q' - delta_"VF" (v) <= n - q' - 1$ for every vertex with $delta_"VF" (v) >= 1$. Only $D = {v : delta_"VF" (v) = 0}$ attains maximum degree $Delta = n - q'$, and by Fournier's theorem (`fournier_forest_degree_sum_lt`), $G_"res"$ is Class 1 ($chi'(G_"res") = n - q'$) whenever $G_"res" [D]$ is acyclic (which holds automatically when $|D| <= 2$ or when the Three-Tier Pair-Budget Obstruction Bound of Theorem 3.11(c), `three_tier_fournier_obstruction_bound`, forbids a cyclic 2-core $D_2 subset.eq D$).
+2. *Objection 2 (Can an Odd Subset $U subset.eq V$ Form an Overfull Subgraph in $G_"res"$?):* Theorem 3.7(a) (`edmonds_blossom_odd_set_slack_bound`) proves that whenever $Delta(G_"res") <= Delta := n - q'$ and $|U inter D| <= 2$, at least $(2 t + 1) - 2 = 2 t - 1$ vertices of $U$ have degree at most $Delta - 1$, so $2|E(G_"res" [U])| <= 2 Delta + (2 t - 1)(Delta - 1) = 2 t Delta - (2 t - 1 - Delta) <= 2 t Delta$ for every odd $|U| = 2 t + 1 >= Delta + 1$ (and strictly $< 2 t Delta$ for all $|U| >= Delta + 2$).
+3. *Objection 3 (Do Blocks of Rank $|E| >= 4$ Increase Line-Graph Conflicts Faster Than Shadow Slack?):* Both the local shadow-slack identity $delta_"VF" (v) = 2 d_(>= 3)(v) + "match"(v) + sum_(v in E)(|E| - 3) + 1 - q'$ and global pair conservation $binom(n, 2) - P_cal(L) - P_cal(M) = |cal(E)_2| >= 0$ (`three_tier_pair_budget_nonneg`) prove that each block of rank $k = |E| >= 4$ incident to $v$ contributes $+ (k - 3) >= 1$ directly to $delta_"VF" (v)$ while consuming $binom(k, 2)$ pairs quadratically. Even in the projective limit $"PG"(2,q)$, Theorem 3.10(i) (`ag2q_ideal_point_exact_slack_formula`) proves that $chi'("AG"(2,q)^(+p)) = (q - 1) p + (q + 1)$ stays strictly below $n = q^2 + p$ by $(q - 1)(q - p) + (p - 1) >= q - 1 >= 1$ across all $0 <= p <= q$, reaching $n$ only at $p = q + 1$ ($"PG"(2,q)$).
 
 == Lean 4 (`v4.33.1`) Zero-`sorry` Formal Verification Suite
 
@@ -259,21 +259,21 @@ All 16 discrete PBD pair-conservation, parity-saturation, Vizing–Fournier shad
       stroke: 0.5pt,
       [*\#*], [*Lean 4 Declaration (`Erdos19/Proofs.lean`)*], [*Paper Ref.*], [*Verified Mathematical Identity / Property*],
       [1], [`pbd_two_edge_completion_conservation` (`#L36`)], [Thm. 2.1(i)], [$binom(n, 2) - P_(>= 3) = |cal(E)_2|$ and $P_(>= 3) <= binom(n, 2)$],
-      [2], [`single_triple_parity_saturation_chromatic` (`#L53`)], [Thm. 3.2(ii) \[2.2(b)\]], [$t + (2 t - 1) t = 2 t^2 < 2 t^2 + t - 2$ for $t >= 3$ ($chi'(cal(H)_1(n)) = n$)],
-      [3], [`two_triple_disjoint_volume_starvation` (`#L76`)], [Thm. 3.3(i)–(ii) \[2.3\]], [$2 t + (2 t - 2)(t - 1) < 2 t^2 + t - 4$ at $t = 3$ ($chi'(cal(H)_(2,"disj")(7)) = 7$)],
-      [4], [`vizing_fournier_shadow_slack_identity` (`#L96`)], [Thm. 3.4(i) \[2.4(a)\]], [$(n - 1) + "match"(v) + 1 = d_2(v) + delta_"VF"(v) + q'$],
-      [5], [`fournier_forest_degree_sum_lt` (`#L112`)], [Thm. 3.5(i) & 3.11(i)], [$2 E_T + 2 c = 2 V_T$ and $2 E_T < 2 V_T$ ($>= 2 c >= 2$ leaves)],
-      [6], [`shadow_slack_identity` (`#L126`)], [Thm. 3.6(i) \[2.6(a)\]], [$(S_B + 2 e_2(I)) + (r(r - 1) - 2 e_2(I)) = S_B + r(r - 1)$],
-      [7], [`edmonds_blossom_odd_set_slack_bound` (`#L143`)], [Thm. 3.7(a) \[2.6(b)\]], [$2 Delta + (2 t - 1)(Delta - 1) <= 2 t Delta$ for $Delta + 1 <= 2 t$],
-      [8], [`parallel_class_peeling_slack` (`#L171`)], [Thm. 3.8(i) \[2.8(a)\]], [$(n - p) - 2(d_(>= 3) - p) = (n - 2 d_(>= 3)) + p > n - 2 d_(>= 3)$],
-      [9], [`large_block_disjoint_overflow` (`#L187`)], [Thm. 3.9(i) \[2.9(a)\]], [$n <= s(s + 2) => n < (s + 1)^2$ ($<= s$ disjoint blocks $>= s + 1$)],
-      [10], [`ag2q_ideal_point_exact_slack_formula` (`#L205`)], [Thm. 3.10(i) \[2.9(b)\]], [$(q - 1) p + (q + 1) + (q - 1)(q - p) + (p - 1) = q^2 + p$],
-      [11], [`ag2q_ideal_point_chromatic_le_n` (`#L223`)], [Thm. 3.10(i) & 3.11(ii)], [$(q - 1) p + (q + 1) <= q^2 + p$ for all $q >= 2, 0 <= p <= q$],
-      [12], [`three_tier_pair_budget_nonneg` (`#L249`)], [Thm. 3.10(ii) & 3.11(i)], [$binom(n, 2) - P_L - P_M = |cal(E)_2| >= 0$],
-      [13], [`global_shadow_slack_conservation` (`#L263`)], [Thm. 3.11(a) \[2.10(a)\]], [$sum_v delta_"VF"(v) + 2(e_2 - F_"tot") = n(n - q')$],
-      [14], [`three_tier_fournier_obstruction_bound` (`#L285`)], [Thm. 3.11(c) \[2.10(c)\]], [Rules out cyclic Fournier 2-core $D_2$ when pair budget is exceeded],
-      [15], [`fanoPlanePG22_certified` (`#L322`)], [Section 4 / Table 1], [Kernel `decide` certificate for $"PG"(2,2)$ ($n = 7, k = 3$)],
-      [16], [`projectivePlanePG23_certified` (`#L333`)], [Section 4 / Table 1], [Kernel `decide` certificate for $"PG"(2,3)$ ($n = 13, k = 4$)],
+      [2], [`single_triple_parity_saturation_chromatic` (`#L51`)], [Thm. 3.2(ii) \[2.2(b)\]], [$t + (2 t - 1) t = 2 t^2 < 2 t^2 + t - 2$ for $t >= 3$ ($chi'(cal(H)_1(n)) = n$)],
+      [3], [`two_triple_disjoint_volume_starvation` (`#L71`)], [Thm. 3.3(i)–(ii) \[2.3\]], [$2 t + (2 t - 2)(t - 1) < 2 t^2 + t - 4$ at $t = 3$ ($chi'(cal(H)_(2,"disj")(7)) = 7$)],
+      [4], [`vizing_fournier_shadow_slack_identity` (`#L88`)], [Thm. 3.4(i) \[2.4(a)\]], [$(n - 1) + "match"(v) + 1 = d_2(v) + delta_"VF" (v) + q'$],
+      [5], [`fournier_forest_degree_sum_lt` (`#L103`)], [Thm. 3.5(i) & 3.11(i)], [$2 E_T + 2 c = 2 V_T$ and $2 E_T < 2 V_T$ ($>= 2 c >= 2$ leaves)],
+      [6], [`shadow_slack_identity` (`#L116`)], [Thm. 3.6(i) \[2.6(a)\]], [$(S_B + 2 e_2(I)) + (r(r - 1) - 2 e_2(I)) = S_B + r(r - 1)$],
+      [7], [`edmonds_blossom_odd_set_slack_bound` (`#L129`)], [Thm. 3.7(a) \[2.6(b)\]], [$2 Delta + (2 t - 1)(Delta - 1) <= 2 t Delta$ for $Delta + 1 <= 2 t$],
+      [8], [`parallel_class_peeling_slack` (`#L155`)], [Thm. 3.8(i) \[2.8(a)\]], [$(n - p) - 2(d_(>= 3) - p) = (n - 2 d_(>= 3)) + p > n - 2 d_(>= 3)$],
+      [9], [`large_block_disjoint_overflow` (`#L169`)], [Thm. 3.9(i) \[2.9(a)\]], [$n <= s(s + 2) => n < (s + 1)^2$ ($<= s$ disjoint blocks $>= s + 1$)],
+      [10], [`ag2q_ideal_point_exact_slack_formula` (`#L187`)], [Thm. 3.10(i) \[2.9(b)\]], [$(q - 1) p + (q + 1) + (q - 1)(q - p) + (p - 1) = q^2 + p$],
+      [11], [`ag2q_ideal_point_chromatic_le_n` (`#L205`)], [Thm. 3.10(i) & 3.11(ii)], [$(q - 1) p + (q + 1) <= q^2 + p$ for all $q >= 2, 0 <= p <= q$],
+      [12], [`three_tier_pair_budget_nonneg` (`#L230`)], [Thm. 3.10(ii) & 3.11(i)], [$binom(n, 2) - P_L - P_M = |cal(E)_2| >= 0$],
+      [13], [`global_shadow_slack_conservation` (`#L242`)], [Thm. 3.11(a) \[2.10(a)\]], [$sum_v delta_"VF" (v) + 2(e_2 - F_"tot") = n(n - q')$],
+      [14], [`three_tier_fournier_obstruction_bound` (`#L261`)], [Thm. 3.11(c) \[2.10(c)\]], [Rules out cyclic Fournier 2-core $D_2$ when pair budget is exceeded],
+      [15], [`fanoPlanePG22_certified` (`#L302`)], [Section 4 / Table 1], [Kernel `decide` certificate for $"PG"(2,2)$ ($n = 7, k = 3$)],
+      [16], [`projectivePlanePG23_certified` (`#L313`)], [Section 4 / Table 1], [Kernel `decide` certificate for $"PG"(2,3)$ ($n = 13, k = 4$)],
     )
   ],
   caption: [Chronological catalog of the 16 zero-`sorry` Lean 4 declarations in `Erdos19/Proofs.lean`.],
@@ -289,7 +289,7 @@ All 16 discrete PBD pair-conservation, parity-saturation, Vizing–Fournier shad
 5. P. D. Seymour, "Packing nearly-disjoint sets," _Combinatorica_ *2*(1) (1982), 91–97.
 6. J. Kahn, "Coloring nearly-disjoint hypergraphs," _J. Combin. Theory Ser. A_ *59*(1) (1992), 31–39.
 7. J. Kahn and P. D. Seymour, "A fractional version of the Erdős-Faber-Lovász conjecture," _Combinatorica_ *12*(2) (1992), 155–160.
-8. D. Romero and A. Sánchez-Arroyo, "Adding evidence to the Erdős-Faber-Lovász conjecture," _Ars Combin._ *85* (2007), 71–84.
+8. D. Romero and F. Alonso-Pecina, "The Erdős–Faber–Lovász conjecture is true for $n <= 12$," _Discrete Math. Algorithms Appl._ *6*(3) (2014), 1450039; see also D. Romero and A. Sánchez-Arroyo, _Ars Combin._ *85* (2007), 71–84.
 9. V. Faber, "There can be only a few large sets in a counterexample to the Erdős–Faber–Lovász conjecture," _Discrete Math._ *310*(13) (2010), 1922–1929.
 10. D. Y. Kang, T. Kelly, D. Kühn, A. Methuku, and D. Osthus, "A proof of the Erdős-Faber-Lovász conjecture," _Ann. of Math._ *199*(2) (2024), 623–703 (`arXiv:2101.04698`).
 11. T. Kassis, V. Agarwal, Y. He, D. Patel, and A. M. Brueckner, "Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents," _arXiv:2609.00065_ (2026).

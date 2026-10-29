@@ -51,8 +51,14 @@ pub const EFL_MILESTONES: &[EflMilestone] = &[
     EflMilestone {
         year: 2007,
         authors: "Romero & Sánchez-Arroyo",
+        regime_or_bound: "Dense linear hypergraph families",
+        significance: "Established EFL for a special infinite class of dense linear hypergraphs",
+    },
+    EflMilestone {
+        year: 2014,
+        authors: "Romero & Alonso-Pecina",
         regime_or_bound: "n <= 12 (all linear hypergraphs)",
-        significance: "Extended finite verification from n <= 10 to n <= 12",
+        significance: "Extended finite computational verification from n <= 10 to n <= 12",
     },
     EflMilestone {
         year: 2010,

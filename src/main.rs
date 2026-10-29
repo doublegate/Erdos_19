@@ -111,7 +111,7 @@ fn cmd_info() {
     println!("Prize: $500 (Paul Erdős, 1972) | Formal Status: DECIDABLE (erdosproblems.com/19)");
     println!("Asymptotic Resolution: Proved for all n >= n_0 by Kang, Kelly, Kühn, Methuku & Osthus (Ann. of Math. 2024)");
     println!(
-        "Small-n Verification: Proved for all n <= 12 (Hindman 1981; Romero & Sánchez-Arroyo 2007)"
+        "Small-n Verification: Proved for all n <= 12 (Hindman 1981; Romero & Alonso-Pecina 2014)"
     );
     println!("Fractional Resolution: χ_f(L(H)) <= n proved for all n >= 1 by Kahn & Seymour (Combinatorica 1992)");
     println!();

@@ -55,7 +55,7 @@ Why is the bound $n$ completely sharp? Because three famous geometric and graph-
 ## 2. Where the Community Stood After 52 Years (1972–2024)
 
 To understand what remained open after half a century of work, consider the two regimes of $n$:
-- **Small Orders ( $n \le 12$ ):** Hindman (1981) checked $n \le 10$ by hand/computer, and Romero & Sánchez-Arroyo (2007) pushed exhaustive verification to $n \le 12$.
+- **Small Orders ( $n \le 12$ ):** Hindman (1981) checked $n \le 10$ by hand/computer, Romero & Sánchez-Arroyo (2007) established an infinite family of dense hypergraphs, and Romero & Alonso-Pecina (2014) pushed computational verification to $n \le 12$.
 - **Asymptotically Large Orders ( $n \ge n_0$ ):** Following Seymour (1982), Kahn (1992, proving $n + o(n)$ ), and Kahn–Seymour (1992, fractional $\chi_f \le n$), Kang, Kelly, Kühn, Methuku, and Osthus (*Annals of Mathematics*, 2024) achieved a landmark breakthrough by proving EFL for all sufficiently large $n \ge n_0$ via probabilistic absorption and the Rödl nibble.
 
 ### 2.1 Why Was There Still a Gap Between $n = 13$ and $n_0$?
@@ -157,21 +157,21 @@ Below is how the 12 formal statements (**Theorem 2.1** and **Proposition 3.1 –
 | # | Lean 4 Declaration (`Erdos19/Proofs.lean`) | Paper Reference | Verified Mathematical Identity / Property |
 | :---: | :--- | :--- | :--- |
 | 1 | `pbd_two_edge_completion_conservation` (`#L36`) | Thm. 2.1(i) | $\binom{n}{2} - P_{\ge 3} = \lvert \mathcal{E}_2 \rvert$ and $P_{\ge 3} \le \binom{n}{2}$ |
-| 2 | `single_triple_parity_saturation_chromatic` (`#L53`) | Thm. 3.2(ii) [2.2(b)] | $t + (2t - 1)t = 2t^2 \lt 2t^2 + t - 2$ for $t \ge 3$ ($\chi'(\mathcal{H}_1(n)) = n$) |
-| 3 | `two_triple_disjoint_volume_starvation` (`#L76`) | Thm. 3.3(i)–(ii) [2.3] | $2t + (2t - 2)(t - 1) \lt 2t^2 + t - 4$ at $t = 3$ ($\chi'(\mathcal{H}_{2,\mathrm{disj}}(7)) = 7$) |
-| 4 | `vizing_fournier_shadow_slack_identity` (`#L96`) | Thm. 3.4(i) [2.4(a)] | $(n - 1) + \mathrm{match}(v) + 1 = d_2(v) + \delta_{\mathrm{VF}}(v) + q'$ |
-| 5 | `fournier_forest_degree_sum_lt` (`#L112`) | Thm. 3.5(i) & 3.11(i) | $2E_T + 2c = 2V_T$ and $2E_T \lt 2V_T$ ($\ge 2c \ge 2$ leaves) |
-| 6 | `shadow_slack_identity` (`#L126`) | Thm. 3.6(i) [2.6(a)] | $(S_B + 2e_2(I)) + (r(r - 1) - 2e_2(I)) = S_B + r(r - 1)$ |
-| 7 | `edmonds_blossom_odd_set_slack_bound` (`#L143`) | Thm. 3.7(a) [2.6(b)] | $2\Delta + (2t - 1)(\Delta - 1) \le 2t\Delta$ for $\Delta + 1 \le 2t$ |
-| 8 | `parallel_class_peeling_slack` (`#L171`) | Thm. 3.8(i) [2.8(a)] | $(n - p) - 2(d_{\ge 3} - p) = (n - 2d_{\ge 3}) + p \gt n - 2d_{\ge 3}$ |
-| 9 | `large_block_disjoint_overflow` (`#L187`) | Thm. 3.9(i) [2.9(a)] | $n \le s(s + 2) \implies n \lt (s + 1)^2$ ($\le s$ disjoint blocks $\ge s + 1$) |
-| 10 | `ag2q_ideal_point_exact_slack_formula` (`#L205`) | Thm. 3.10(i) [2.9(b)] | $(q - 1)p + (q + 1) + (q - 1)(q - p) + (p - 1) = q^2 + p$ |
-| 11 | `ag2q_ideal_point_chromatic_le_n` (`#L223`) | Thm. 3.10(i) & 3.11(ii) | $(q - 1)p + (q + 1) \le q^2 + p$ for all $q \ge 2, 0 \le p \le q$ |
-| 12 | `three_tier_pair_budget_nonneg` (`#L249`) | Thm. 3.10(ii) & 3.11(i) | $\binom{n}{2} - P_{\mathcal{L}} - P_{\mathcal{M}} = \lvert \mathcal{E}_2 \rvert \ge 0$ |
-| 13 | `global_shadow_slack_conservation` (`#L263`) | Thm. 3.11(a) [2.10(a)] | $\sum_v \delta_{\mathrm{VF}}(v) + 2(e_2 - F_{\mathrm{tot}}) = n(n - q')$ |
-| 14 | `three_tier_fournier_obstruction_bound` (`#L285`) | Thm. 3.11(c) [2.10(c)] | Rules out cyclic Fournier 2-core $D_2$ when pair budget is exceeded |
-| 15 | `fanoPlanePG22_certified` (`#L322`) | Section 4 / Table 1 | Kernel `decide` certificate for $\mathrm{PG}(2,2)$ ($n = 7, k = 3$) |
-| 16 | `projectivePlanePG23_certified` (`#L333`) | Section 4 / Table 1 | Kernel `decide` certificate for $\mathrm{PG}(2,3)$ ($n = 13, k = 4$) |
+| 2 | `single_triple_parity_saturation_chromatic` (`#L51`) | Thm. 3.2(ii) [2.2(b)] | $t + (2t - 1)t = 2t^2 \lt 2t^2 + t - 2$ for $t \ge 3$ ($\chi'(\mathcal{H}_1(n)) = n$) |
+| 3 | `two_triple_disjoint_volume_starvation` (`#L71`) | Thm. 3.3(i)–(ii) [2.3] | $2t + (2t - 2)(t - 1) \lt 2t^2 + t - 4$ at $t = 3$ ($\chi'(\mathcal{H}_{2,\mathrm{disj}}(7)) = 7$) |
+| 4 | `vizing_fournier_shadow_slack_identity` (`#L88`) | Thm. 3.4(i) [2.4(a)] | $(n - 1) + \mathrm{match}(v) + 1 = d_2(v) + \delta_{\mathrm{VF}}(v) + q'$ |
+| 5 | `fournier_forest_degree_sum_lt` (`#L103`) | Thm. 3.5(i) & 3.11(i) | $2E_T + 2c = 2V_T$ and $2E_T \lt 2V_T$ ($\ge 2c \ge 2$ leaves) |
+| 6 | `shadow_slack_identity` (`#L116`) | Thm. 3.6(i) [2.6(a)] | $(S_B + 2e_2(I)) + (r(r - 1) - 2e_2(I)) = S_B + r(r - 1)$ |
+| 7 | `edmonds_blossom_odd_set_slack_bound` (`#L129`) | Thm. 3.7(a) [2.6(b)] | $2\Delta + (2t - 1)(\Delta - 1) \le 2t\Delta$ for $\Delta + 1 \le 2t$ |
+| 8 | `parallel_class_peeling_slack` (`#L155`) | Thm. 3.8(i) [2.8(a)] | $(n - p) - 2(d_{\ge 3} - p) = (n - 2d_{\ge 3}) + p \gt n - 2d_{\ge 3}$ |
+| 9 | `large_block_disjoint_overflow` (`#L169`) | Thm. 3.9(i) [2.9(a)] | $n \le s(s + 2) \implies n \lt (s + 1)^2$ ($\le s$ disjoint blocks $\ge s + 1$) |
+| 10 | `ag2q_ideal_point_exact_slack_formula` (`#L187`) | Thm. 3.10(i) [2.9(b)] | $(q - 1)p + (q + 1) + (q - 1)(q - p) + (p - 1) = q^2 + p$ |
+| 11 | `ag2q_ideal_point_chromatic_le_n` (`#L205`) | Thm. 3.10(i) & 3.11(ii) | $(q - 1)p + (q + 1) \le q^2 + p$ for all $q \ge 2, 0 \le p \le q$ |
+| 12 | `three_tier_pair_budget_nonneg` (`#L230`) | Thm. 3.10(ii) & 3.11(i) | $\binom{n}{2} - P_{\mathcal{L}} - P_{\mathcal{M}} = \lvert \mathcal{E}_2 \rvert \ge 0$ |
+| 13 | `global_shadow_slack_conservation` (`#L242`) | Thm. 3.11(a) [2.10(a)] | $\sum_v \delta_{\mathrm{VF}}(v) + 2(e_2 - F_{\mathrm{tot}}) = n(n - q')$ |
+| 14 | `three_tier_fournier_obstruction_bound` (`#L261`) | Thm. 3.11(c) [2.10(c)] | Rules out cyclic Fournier 2-core $D_2$ when pair budget is exceeded |
+| 15 | `fanoPlanePG22_certified` (`#L302`) | Section 4 / Table 1 | Kernel `decide` certificate for $\mathrm{PG}(2,2)$ ($n = 7, k = 3$) |
+| 16 | `projectivePlanePG23_certified` (`#L313`) | Section 4 / Table 1 | Kernel `decide` certificate for $\mathrm{PG}(2,3)$ ($n = 13, k = 4$) |
 
 ---
 

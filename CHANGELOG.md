@@ -2,6 +2,13 @@
 
 All notable changes to the `Erdos_19` public verification repository for Erdős Problem #19 ($500 Erdős–Faber–Lovász Conjecture) are documented in this file.
 
+## [1.1.1] — 2026-10-29
+
+### Fixed & Remediated
+- **`formal-conjectures#7641` Final Attribution Polish & Manuscript/Archive Sync (`FormalConjectures_19.lean`, `submissions/formal_conjectures_lean4/19.lean`, `paper/`, `src/`):**
+  - Removed the parenthetical in `erdos_19.variants.le_twelve` (`FormalConjectures/ErdosProblems/19.lean` in `google-deepmind/formal-conjectures#7641`, approved by `bocowgill`) and dropped the unused `[RoSa07]` header tag so `le_twelve` solely credits Romero & Alonso-Pecina `[RoAl14]` (2014) for $n \le 12$ while `lt_ten` credits Hindman `[Hi81]` (1981) for $n < 10$.
+  - Updated `paper/manuscript.tex` (Section 3, line 256), `paper/Companion_Explainer_Erdos19.md`, `paper/Companion_Explainer_Erdos19.typ` (Lean line anchors `#L36`–`#L313`), `src/records.rs`, `src/main.rs`, and all compiled PDFs (`manuscript.pdf`, `Companion_Explainer_Erdos19.pdf`, `Supplementary_Verification_Suite_Erdos19.pdf`) and `.zip`/`.tar.gz` bundles to consistently distinguish Romero & Sánchez-Arroyo (2007, special infinite class of dense linear hypergraphs) from Romero & Alonso-Pecina (2014, computational verification of $n \le 12$).
+
 ## [1.1.0] — 2026-10-27
 
 ### Added & Remediated

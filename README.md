@@ -13,7 +13,7 @@ Official formal verification repository, 3,091 / 3,091 Pairwise Balanced Design 
 
 This repository investigates **Erdős Problem #19** (`erdos_19`, 500 USD prize; [erdosproblems.com/19](https://www.erdosproblems.com/19), [Er81], [Hi81], [Se82], [Ka92], [KaSe92], [RoSa07], [RoAl14], [Fa10], [KKKMO24]), which asks whether every linear hypergraph $\mathcal{H} = ([n], \mathcal{E})$ on $n$ vertices has chromatic index
 
-$$\chi'(\mathcal{H}) = \chi(L(\mathcal{H})) \le n,$$
+$\displaystyle \chi'(\mathcal{H}) = \chi(L(\mathcal{H})) \le n,$
 
 equivalently asking whether the union $G = \bigcup_{i=1}^n K^{(i)}$ of $n$ edge-disjoint complete graphs of order at most $n$ satisfies $\chi(G) \le n$ (OEIS [`A030050`](https://oeis.org/A030050), [`A001200`](https://oeis.org/A001200), [`A000798`](https://oeis.org/A000798)). We establish the exact Pairwise Balanced Design (PBD) completion reduction (Theorem 2.1), unconditional proofs for all PBDs with $\chi'(\mathcal{E}_{\ge 3}) \le 2$ (Theorem 3.4), single-triple and two-triple parity-saturation classifications $\mathcal{H}_1(n), \mathcal{H}_2(n)$ for all $n \ge 4$ (Theorems 3.2–3.3), the Edmonds blossom odd-set shadow-slack bound (Theorem 3.7(a)), the prime-power affine-to-projective interpolation $\chi'(\mathrm{AG}(2,q)^{+p}) = (q-1)p + (q+1) \le n$ for all prime powers $q \ge 2$ and $0 \le p \le q$ (Theorem 3.10, verified through $q = 16, n = 273$), the global Vizing–Fournier shadow-slack conservation law and Fournier 2-core obstruction threshold (Theorem 3.11), and bit-exact certification of all $3{,}042$ canonical PBDs on $3 \le n \le 10$ and $49$ frontier PBD suites across $11 \le n \le 25$ ( $3{,}091 / 3{,}091 = 100.00\%$ ).
 
@@ -52,8 +52,8 @@ The Lean 4 package (`leanprover/lean4:v4.33.1`, matching `google-deepmind/formal
 | 12 | [`three_tier_pair_budget_nonneg`](./Erdos19/Proofs.lean#L230) | **Theorem 3.10(ii) & 3.11(a) [2.10(a)]** | Three-term partition subtraction `total_pairs - large_pairs - med_pairs = e2`. |
 | 13 | [`global_shadow_slack_conservation`](./Erdos19/Proofs.lean#L242) | **Theorem 3.11(a) [2.10(a)]** | Linear conservation identity $\sum _ {v \in V}\delta _ {\text{VF}}(v) + 2(\lvert\mathcal{E} _ 2\rvert - F _ {\text{tot}}) = n(n - q')$ and $2(P _ L + P _ M + F _ {\text{tot}}) = n(q' - 1) + \sum _ {v \in V}\delta _ {\text{VF}}(v)$. |
 | 14 | [`three_tier_fournier_obstruction_bound`](./Erdos19/Proofs.lean#L261) | **Theorem 3.11(c) [2.10(c)]** | Linear budget contradiction when $2(P _ L + P _ M + F _ {\text{tot}}) + k(n - q') + d _ {\text{out}} \gt n(n - 1)$ (`deg_sum_outside` $= d _ {\text{out}}$). |
-| 15 | [`fanoPlanePG22_certified`](./Erdos19/Proofs.lean#L302) | **Section 4 (Table 1)** | Decidable verification that the Fano plane $\mathrm{PG}(2, 2)$ on $n = 7$ vertices with $7$ lines of size $k = 3$ in $\{0, \dots, 6\}$ covers all $\binom{7}{2} = 21$ distinct pairs without duplicates. |
-| 16 | [`projectivePlanePG23_certified`](./Erdos19/Proofs.lean#L313) | **Section 4 (Table 1)** | Decidable verification that the projective plane $\mathrm{PG}(2, 3)$ on $n = 13$ vertices with $13$ lines of size $k = 4$ in $\{0, \dots, 12\}$ covers all $\binom{13}{2} = 78$ distinct pairs without duplicates. |
+| 15 | [`fanoPlanePG22_certified`](./Erdos19/Proofs.lean#L302) | **Section 4 (Table 1)** | Decidable verification that the Fano plane $\mathrm{PG}(2, 2)$ on $n = 7$ vertices with $7$ lines of size $k = 3$ in $\lbrace 0, \dots, 6\rbrace$ covers all $\binom{7}{2} = 21$ distinct pairs without duplicates. |
+| 16 | [`projectivePlanePG23_certified`](./Erdos19/Proofs.lean#L313) | **Section 4 (Table 1)** | Decidable verification that the projective plane $\mathrm{PG}(2, 3)$ on $n = 13$ vertices with $13$ lines of size $k = 4$ in $\lbrace 0, \dots, 12\rbrace$ covers all $\binom{13}{2} = 78$ distinct pairs without duplicates. |
 
 ### Quick Verification Commands
 

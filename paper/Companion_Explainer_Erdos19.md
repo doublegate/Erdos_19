@@ -22,7 +22,7 @@ At a combinatorial workshop in Boulder, Colorado in 1972, Paul Erdős, Vance Fab
 
 Suppose you take $n$ complete graphs (cliques) $K^{(1)}, K^{(2)}, \dots, K^{(n)}$, where each clique has at most $n$ vertices ( $\lvert V(K^{(i)}) \rvert \le n$ ), and you glue them together under **one strict rule**:
 
-$$\text{Any two cliques } K^{(i)} \text{ and } K^{(j)} \text{ can share at most ONE vertex } \left(\lvert V(K^{(i)}) \cap V(K^{(j)}) \rvert \le 1\right).$$
+$\displaystyle \text{Any two cliques } K^{(i)} \text{ and } K^{(j)} \text{ can share at most ONE vertex } \left(\lvert V(K^{(i)}) \cap V(K^{(j)}) \rvert \le 1\right).$
 
 Equivalently, **no two cliques share an edge** (they are edge-disjoint). Let $G = \bigcup_{i=1}^n K^{(i)}$ be the combined graph.
 - **The Erdős–Faber–Lovász Question:** Can the vertices of $G$ **always** be properly colored using at most $n$ colors ( $\chi(G) \le n$ )?
@@ -34,14 +34,14 @@ Instead of thinking of $K^{(1)}, \dots, K^{(n)}$ as cliques of vertices, flip th
 - Represent each vertex $v$ of the original graph $G$ as a **hyperedge** $e_v \subseteq [n]$ consisting of the indices of the cliques that contain $v$.
 - Because any two cliques shared at most one vertex in $G$, **any two hyperedges $e_u, e_v$ in the dual hypergraph $\mathcal{H} = ([n], \mathcal{E})$ share at most one ground point**:
 
-$$\lvert e_u \cap e_v \rvert \le 1 \quad \text{for all distinct } u \ne v.$$
+$\displaystyle \lvert e_u \cap e_v \rvert \le 1 \quad \text{for all distinct } u \ne v.$
 
 A hypergraph with this property is called a **linear hypergraph** (or **partial linear space**): two "lines" (hyperedges) meet in at most one "point" (vertex).
 - Coloring the vertices of $G$ so that no two vertices in the same clique get the same color is **100% identical** to **edge-coloring the hyperedges of $\mathcal{H}$** so that any two hyperedges sharing a ground point receive different colors!
 
 Thus, in hypergraph language, the Erdős–Faber–Lovász Conjecture states:
 
-$$\text{Every linear hypergraph } \mathcal{H} = ([n], \mathcal{E}) \text{ on } n \text{ vertices has chromatic index } \chi'(\mathcal{H}) = \chi(L(\mathcal{H})) \le n.$$
+$\displaystyle \text{Every linear hypergraph } \mathcal{H} = ([n], \mathcal{E}) \text{ on } n \text{ vertices has chromatic index } \chi'(\mathcal{H}) = \chi(L(\mathcal{H})) \le n.$
 
 ### 1.3 The Three Classical Extremal Families That Hit Exactly $n$ Colors
 

@@ -6,9 +6,9 @@
 
 ---
 
-> **Purpose of This Companion Document:** The primary research manuscript resolves **Erdős Problem #19** (the 500 USD **Erdős–Faber–Lovász (EFL) Conjecture**, posed at Boulder in 1972) across all finite orders $n \ge 3$ without an asymptotic $n_0$ threshold. It proves that every linear hypergraph $\mathcal{H} = ([n], \mathcal{E})$ on $n$ vertices has chromatic index $\chi'(\mathcal{H}) = \chi(L(\mathcal{H})) \le n$. Because the formal proof weaves together Pairwise Balanced Design (PBD) completion, Vizing–Fournier $2 d _ {\ge 3}(v)$ shadow-slack accounting, Fournier 2-core forest / Kempe-chain discharging, Edmonds blossom fractional matchings, resolvent parallel-class peeling, and a three-tier pair-budget conservation functional alongside a 64-bit CUDA SIMT solver, this companion guide explains **in plain terms**:
+> **Purpose of This Companion Document:** The primary research manuscript resolves **Erdős Problem #19** (the 500 USD **Erdős–Faber–Lovász (EFL) Conjecture**, posed at Boulder in 1972) across all finite orders $n \ge 3$ without an asymptotic $n _ 0$ threshold. It proves that every linear hypergraph $\mathcal{H} = ([n], \mathcal{E}){}$ on $n$ vertices has chromatic index $\chi'(\mathcal{H}) = \chi(L(\mathcal{H})) \le n$. Because the formal proof weaves together Pairwise Balanced Design (PBD) completion, Vizing–Fournier $2 d _ {\ge 3}(v){}$ shadow-slack accounting, Fournier 2-core forest / Kempe-chain discharging, Edmonds blossom fractional matchings, resolvent parallel-class peeling, and a three-tier pair-budget conservation functional alongside a 64-bit CUDA SIMT solver, this companion guide explains **in plain terms**:
 > 1. **What the Erdős–Faber–Lovász Conjecture actually asks** in both its clique-union form and its dual linear-hypergraph edge-coloring form;
-> 2. **Where the mathematical community stood after 52 years (1972–2024)**—why Kang, Kelly, Kühn, Methuku, and Osthus (2024) settled $n \ge n_0$ for astronomically large $n_0$, and why the remaining finite gap $13 \le n \lt n_0$ resisted brute-force search;
+> 2. **Where the mathematical community stood after 52 years (1972–2024)**—why Kang, Kelly, Kühn, Methuku, and Osthus (2024) settled $n \ge n _ 0$ for astronomically large $n _ 0$, and why the remaining finite gap $13 \le n \lt n _ 0$ resisted brute-force search;
 > 3. **What each theorem in the paper (Theorem 2.1 and Proposition 3.1 through Theorem 3.11 [2.1–2.10]) accomplishes in plain English**; and
 > 4. **How the Three-Tier Pair-Budget Discharging Closure and 3,091 / 3,091 PBD certification** eliminate every possible finite counterexample without relying on asymptotic absorption.
 
@@ -20,21 +20,21 @@ At a combinatorial workshop in Boulder, Colorado in 1972, Paul Erdős, Vance Fab
 
 ### 1.1 The Original Clique-Union Formulation
 
-Suppose you take $n$ complete graphs (cliques) $K^{(1)}, K^{(2)}, \dots, K^{(n)}$, where each clique has at most $n$ vertices ( $\lvert V(K^{(i)}) \rvert \le n$ ), and you glue them together under **one strict rule**:
+Suppose you take $n$ complete graphs (cliques) $K ^ {(1)}, K ^ {(2)}, \dots, K ^ {(n)}$, where each clique has at most $n$ vertices ( $\lvert V(K ^ {(i)}) \rvert \le n$ ), and you glue them together under **one strict rule**:
 
-$\displaystyle \text{Any two cliques } K^{(i)} \text{ and } K^{(j)} \text{ can share at most ONE vertex } \left(\lvert V(K^{(i)}) \cap V(K^{(j)}) \rvert \le 1\right).$
+$\displaystyle \text{Any two cliques } K ^ {(i)} \text{ and } K ^ {(j)} \text{ can share at most ONE vertex } \left(\lvert V(K ^ {(i)}) \cap V(K ^ {(j)}) \rvert \le 1\right).$
 
-Equivalently, **no two cliques share an edge** (they are edge-disjoint). Let $G = \bigcup_{i=1}^n K^{(i)}$ be the combined graph.
+Equivalently, **no two cliques share an edge** (they are edge-disjoint). Let $G = \bigcup _ {i=1} ^ n K ^ {(i)}$ be the combined graph.
 - **The Erdős–Faber–Lovász Question:** Can the vertices of $G$ **always** be properly colored using at most $n$ colors ( $\chi(G) \le n$ )?
 
 ### 1.2 The Dual Linear-Hypergraph Formulation (Why Everybody Uses Duality)
 
-Instead of thinking of $K^{(1)}, \dots, K^{(n)}$ as cliques of vertices, flip the picture upside down (clique–vertex duality):
+Instead of thinking of $K ^ {(1)}, \dots, K ^ {(n)}$ as cliques of vertices, flip the picture upside down (clique–vertex duality):
 - Represent each of the $n$ cliques as a **ground point** (vertex) in $[n] = \lbrace 1, 2, \dots, n \rbrace$.
-- Represent each vertex $v$ of the original graph $G$ as a **hyperedge** $e_v \subseteq [n]$ consisting of the indices of the cliques that contain $v$.
-- Because any two cliques shared at most one vertex in $G$, **any two hyperedges $e_u, e_v$ in the dual hypergraph $\mathcal{H} = ([n], \mathcal{E})$ share at most one ground point**:
+- Represent each vertex $v$ of the original graph $G$ as a **hyperedge** $e _ v \subseteq [n]$ consisting of the indices of the cliques that contain $v$.
+- Because any two cliques shared at most one vertex in $G$, **any two hyperedges $e _ u, e _ v$ in the dual hypergraph $\mathcal{H} = ([n], \mathcal{E}){}$ share at most one ground point**:
 
-$\displaystyle \lvert e_u \cap e_v \rvert \le 1 \quad \text{for all distinct } u \ne v.$
+$\displaystyle \lvert e _ u \cap e _ v \rvert \le 1 \quad \text{for all distinct } u \ne v.$
 
 A hypergraph with this property is called a **linear hypergraph** (or **partial linear space**): two "lines" (hyperedges) meet in at most one "point" (vertex).
 - Coloring the vertices of $G$ so that no two vertices in the same clique get the same color is **100% identical** to **edge-coloring the hyperedges of $\mathcal{H}$** so that any two hyperedges sharing a ground point receive different colors!
@@ -46,9 +46,9 @@ $\displaystyle \text{Every linear hypergraph } \mathcal{H} = ([n], \mathcal{E}) 
 ### 1.3 The Three Classical Extremal Families That Hit Exactly $n$ Colors
 
 Why is the bound $n$ completely sharp? Because three famous geometric and graph-theoretic families require **every single one** of the $n$ colors ( $\chi'(\mathcal{H}) = n$ ):
-1. **Finite Projective Planes $\mathrm{PG}(2, q)$ ( $n = q^2 + q + 1$ ):** Here there are $n = q^2 + q + 1$ points and $m = n$ lines of size $q + 1$ (e.g., the Fano plane $\mathrm{PG}(2, 2)$ at $n = 7$, or $\mathrm{PG}(2, 3)$ at $n = 13$). Every pair of lines intersects in a point! Since no two lines can share a color, all $n$ lines must get $n$ distinct colors ( $\omega(L(\mathcal{H})) = \chi'(\mathcal{H}) = n$ ).
-2. **Near-Pencils $\mathrm{NP} _ {n}$ (for any $n \ge 3$):** Place $n - 1$ points on a single long line $L_0 = \lbrace 1, 2, \dots, n - 1 \rbrace$ and connect the external apex point $n$ to each point of $L_0$ by $n - 1$ two-element lines $\lbrace i, n \rbrace$. All $n$ lines pairwise intersect, forcing $\omega(L(\mathrm{NP} _ {n})) = \chi'(\mathrm{NP} _ {n}) = n$.
-3. **Complete Graphs $K_n$ of Odd Order $n = 2t + 1$:** Here every hyperedge is an ordinary $2$-edge ( $\lvert e \rvert = 2$ ), so $\mathcal{H} = K_n$ has $\binom{n}{2} = n(n-1)/2$ edges. Every color class is a matching of size at most $\lfloor n/2 \rfloor = (n-1)/2$. To cover $n(n-1)/2$ edges when each color holds at most $(n-1)/2$ edges, Vizing's theorem forces $\chi'(K_n) = n$ colors (even though the maximum clique in $L(K_n)$ is only $\omega(L(K_n)) = n - 1$).
+1. **Finite Projective Planes $\mathrm{PG}(2, q){}$ ( $n = q ^ 2 + q + 1$ ):** Here there are $n = q ^ 2 + q + 1$ points and $m = n$ lines of size $q + 1$ (e.g., the Fano plane $\mathrm{PG}(2, 2){}$ at $n = 7$, or $\mathrm{PG}(2, 3){}$ at $n = 13$). Every pair of lines intersects in a point! Since no two lines can share a color, all $n$ lines must get $n$ distinct colors ( $\omega(L(\mathcal{H})) = \chi'(\mathcal{H}) = n$ ).
+2. **Near-Pencils $\mathrm{NP} _ {n}$ (for any $n \ge 3$):** Place $n - 1$ points on a single long line $L _ 0 = \lbrace 1, 2, \dots, n - 1 \rbrace$ and connect the external apex point $n$ to each point of $L _ 0$ by $n - 1$ two-element lines $\lbrace i, n \rbrace$. All $n$ lines pairwise intersect, forcing $\omega(L(\mathrm{NP} _ {n})) = \chi'(\mathrm{NP} _ {n}) = n$.
+3. **Complete Graphs $K _ n$ of Odd Order $n = 2t + 1$:** Here every hyperedge is an ordinary $2$-edge ( $\lvert e \rvert = 2$ ), so $\mathcal{H} = K _ n$ has $\binom{n}{2} = n(n-1)/2$ edges. Every color class is a matching of size at most $\lfloor n/2 \rfloor = (n-1)/2$. To cover $n(n-1)/2$ edges when each color holds at most $(n-1)/2$ edges, Vizing's theorem forces $\chi'(K _ n) = n$ colors (even though the maximum clique in $L(K _ n){}$ is only $\omega(L(K _ n)) = n - 1$).
 
 ---
 
@@ -56,17 +56,17 @@ Why is the bound $n$ completely sharp? Because three famous geometric and graph-
 
 To understand what remained open after half a century of work, consider the two regimes of $n$:
 - **Small Orders ( $n \le 12$ ):** Hindman (1981) checked $n \le 10$ by hand/computer, Romero & Sánchez-Arroyo (2007) established an infinite family of dense hypergraphs, and Romero & Alonso-Pecina (2014) pushed computational verification to $n \le 12$.
-- **Asymptotically Large Orders ( $n \ge n_0$ ):** Following Seymour (1982), Kahn (1992, proving $n + o(n)$ ), and Kahn–Seymour (1992, fractional $\chi_f \le n$), Kang, Kelly, Kühn, Methuku, and Osthus (*Annals of Mathematics*, 2024) achieved a landmark breakthrough by proving EFL for all sufficiently large $n \ge n_0$ via probabilistic absorption and the Rödl nibble.
+- **Asymptotically Large Orders ( $n \ge n _ 0$ ):** Following Seymour (1982), Kahn (1992, proving $n + o(n){}$ ), and Kahn–Seymour (1992, fractional $\chi _ f \le n$), Kang, Kelly, Kühn, Methuku, and Osthus (*Annals of Mathematics*, 2024) achieved a landmark breakthrough by proving EFL for all sufficiently large $n \ge n _ 0$ via probabilistic absorption and the Rödl nibble.
 
-### 2.1 Why Was There Still a Gap Between $n = 13$ and $n_0$?
+### 2.1 Why Was There Still a Gap Between $n = 13$ and $n _ 0$?
 
-Probabilistic absorption proofs require $n_0$ to be astronomically large so concentration inequalities and absorber reserves hold. Meanwhile, why couldn't computers simply brute-force $n = 13, 14, \dots$?
-1. **Brick Wall 1 — The $2^{\binom{n}{2}}$ Subset Explosion:** At $n = 15$, there are $\binom{15}{2} = 105$ vertex pairs. Even after choosing the large blocks of size $\ge 3$, there are $2^{\text{uncovered pairs}}$ possible subsets of $2$-edges to include!
-2. **Brick Wall 2 — Parity-Saturated Mixed Designs:** Unlike projective planes (where $\omega(L(\mathcal{H})) = n$) or pure graphs $K_n$, what happens when you mix a few blocks of size $3, 4, 5$ with a dense cloud of $2$-edges? Can blocks of size $\ge 3$ "steal" so many available colors from the surrounding $2$-edges that the residual $2$-edge graph becomes an uncolorable Vizing Class-2 core needing $n + 1$ colors?
+Probabilistic absorption proofs require $n _ 0$ to be astronomically large so concentration inequalities and absorber reserves hold. Meanwhile, why couldn't computers simply brute-force $n = 13, 14, \dots$?
+1. **Brick Wall 1 — The $2 ^ {\binom{n}{2}}$ Subset Explosion:** At $n = 15$, there are $\binom{15}{2} = 105$ vertex pairs. Even after choosing the large blocks of size $\ge 3$, there are $2 ^ {\text{uncovered pairs}}$ possible subsets of $2$-edges to include!
+2. **Brick Wall 2 — Parity-Saturated Mixed Designs:** Unlike projective planes (where $\omega(L(\mathcal{H})) = n$) or pure graphs $K _ n$, what happens when you mix a few blocks of size $3, 4, 5$ with a dense cloud of $2$-edges? Can blocks of size $\ge 3$ "steal" so many available colors from the surrounding $2$-edges that the residual $2$-edge graph becomes an uncolorable Vizing Class-2 core needing $n + 1$ colors?
 
 > **The Core Insight That Closes the Finite-to-Asymptotic Gap:**  
 > First, **Theorem 2.1** proves you never have to check arbitrary subsets of $2$-edges: completing *every* uncovered vertex pair with a $2$-edge can only increase $\chi'$, reducing all linear hypergraphs on $[n]$ to **Pairwise Balanced Designs (PBDs)** determined solely by their blocks of size $\ge 3$.  
-> Second, **every block $E$ of size $k \ge 3$ consumes $\binom{k}{2} = k(k-1)/2$ vertex pairs from the global budget $\binom{n}{2}$, while imposing at most a $(k-1)$-edge shadow on each of its vertices**. By splitting blocks at $\tau = \lfloor\sqrt{n}\rfloor$ into three tiers (Large $\ge \tau + 1$, Medium $3 \dots \tau$, and $2$-Edges), **Theorems 3.4–3.11 [2.4–2.10]** prove that any hypothetical minimal counterexample would need more $2$-edges to sustain an uncolorable Fournier 2-core than the global PBD pair budget $\binom{n}{2} - P_L - P_M$ can physically supply!
+> Second, **every block $E$ of size $k \ge 3$ consumes $\binom{k}{2} = k(k-1)/2$ vertex pairs from the global budget $\binom{n}{2}$, while imposing at most a $(k-1){}$-edge shadow on each of its vertices**. By splitting blocks at $\tau = \lfloor\sqrt{n}\rfloor$ into three tiers (Large $\ge \tau + 1$, Medium $3 \dots \tau$, and $2$-Edges), **Theorems 3.4–3.11 [2.4–2.10]** prove that any hypothetical minimal counterexample would need more $2$-edges to sustain an uncolorable Fournier 2-core than the global PBD pair budget $\binom{n}{2} - P _ L - P _ M$ can physically supply!
 
 ---
 
@@ -77,59 +77,59 @@ Below is how the 12 formal statements (**Theorem 2.1** and **Proposition 3.1 –
 ### 3.1 Stage I: Exact PBD Reduction & The Parity-Saturation Laws
 
 - **Theorem 2.1 — Primal–Dual Singleton Stripping & PBD Completion Reduction:**
-  - *Plain-Language Idea:* First, any hyperedge of size $0$ or $1$ sits inside a single point-star of size $\le n - 1$, so it can be greedily colored last. Second, suppose $\mathcal{H}$ has blocks $\mathcal{E} _ {\ge 3}$ of size $\ge 3$ and some partial set of $2$-edges. If we **add every missing $2$-edge** needed to cover all $\binom{n}{2}$ vertex pairs, we get the unique **PBD Completion** $\mathrm{PBD}(\mathcal{E} _ {\ge 3})$. Since $L(\mathcal{H})$ is an induced subgraph of $L(\mathrm{PBD}(\mathcal{E} _ {\ge 3}))$, proving $\chi'(\mathrm{PBD}(\mathcal{E} _ {\ge 3})) \le n$ automatically proves $\chi'(\mathcal{H}) \le n$ for all $2^{\lvert \mathcal{E} _ {2} \rvert}$ sub-hypergraphs at once!
-  - *What It Achieves:* Collapses the search space from $2^{\binom{n}{2}}$ general linear hypergraphs to canonical PBDs determined solely by blocks of size $\ge 3$, with exact pair conservation $\lvert \mathcal{E} _ {2} \rvert = \binom{n}{2} - \sum_{B \in \mathcal{E} _ {\ge 3}} \binom{\lvert B \rvert}{2}$ (machine-checked in Lean 4 as `pbd_two_edge_completion_conservation`).
+  - *Plain-Language Idea:* First, any hyperedge of size $0$ or $1$ sits inside a single point-star of size $\le n - 1$, so it can be greedily colored last. Second, suppose $\mathcal{H}$ has blocks $\mathcal{E} _ {\ge 3}$ of size $\ge 3$ and some partial set of $2$-edges. If we **add every missing $2$-edge** needed to cover all $\binom{n}{2}$ vertex pairs, we get the unique **PBD Completion** $\mathrm{PBD}(\mathcal{E} _ {\ge 3}){}$. Since $L(\mathcal{H}){}$ is an induced subgraph of $L(\mathrm{PBD}(\mathcal{E} _ {\ge 3})){}$, proving $\chi'(\mathrm{PBD}(\mathcal{E} _ {\ge 3})) \le n$ automatically proves $\chi'(\mathcal{H}) \le n$ for all $2 ^ {\lvert \mathcal{E} _ {2} \rvert}$ sub-hypergraphs at once!
+  - *What It Achieves:* Collapses the search space from $2 ^ {\binom{n}{2}}$ general linear hypergraphs to canonical PBDs determined solely by blocks of size $\ge 3$, with exact pair conservation $\lvert \mathcal{E} _ {2} \rvert = \binom{n}{2} - \sum _ {B \in \mathcal{E} _ {\ge 3}} \binom{\lvert B \rvert}{2}$ (machine-checked in Lean 4 as `pbd_two_edge_completion_conservation`).
 
 - **Proposition 3.1 [2.1(b)] — Exact Line-Graph Degree Identity & Upper Envelope:**
-  - *Plain-Language Idea:* How many other hyperedges can a hyperedge $e$ of size $k$ intersect? At each of its $k$ vertices $i \in e$, the remaining $d_{\mathcal{H}}(i) - 1$ hyperedges through $i$ cover disjoint subsets of the remaining $n - k$ vertices. If every hyperedge has size at least $k_{\min}$, then $d_{\mathcal{H}}(i) - 1 \le \lfloor(n - k)/(k_{\min} - 1)\rfloor$.
-  - *What It Achieves:* Gives the exact identity $d_{L(\mathcal{H})}(e) = \sum_{i \in e}(d_{\mathcal{H}}(i) - 1) \le k \lfloor(n - k)/(k_{\min} - 1)\rfloor$.
+  - *Plain-Language Idea:* How many other hyperedges can a hyperedge $e$ of size $k$ intersect? At each of its $k$ vertices $i \in e$, the remaining $d _ {\mathcal{H}}(i) - 1$ hyperedges through $i$ cover disjoint subsets of the remaining $n - k$ vertices. If every hyperedge has size at least $k _ {\min}$, then $d _ {\mathcal{H}}(i) - 1 \le \lfloor(n - k)/(k _ {\min} - 1)\rfloor$.
+  - *What It Achieves:* Gives the exact identity $d _ {L(\mathcal{H})}(e) = \sum _ {i \in e}(d _ {\mathcal{H}}(i) - 1) \le k \lfloor(n - k)/(k _ {\min} - 1)\rfloor$.
 
-- **Theorem 3.2 [2.2] — The Single-Triple PBD $\mathcal{H} _ {1}(n)$ Parity-Saturation Law:**
-  - *Plain-Language Idea:* What happens if you take $K_n$ and replace just *one* triangle $\lbrace 1, 2, 3 \rbrace$ by a single $3$-element block $T_0 = \lbrace 1, 2, 3 \rbrace$? That shrinks the edge count from $\binom{n}{2}$ to $m = \binom{n}{2} - 2$ and drops the maximum point-star degree at $\lbrace 1, 2, 3 \rbrace$ to $n - 2$. Does $\chi'$ drop to $n - 1$?
+- **Theorem 3.2 [2.2] — The Single-Triple PBD $\mathcal{H} _ {1}(n){}$ Parity-Saturation Law:**
+  - *Plain-Language Idea:* What happens if you take $K _ n$ and replace just *one* triangle $\lbrace 1, 2, 3 \rbrace$ by a single $3$-element block $T _ 0 = \lbrace 1, 2, 3 \rbrace$? That shrinks the edge count from $\binom{n}{2}$ to $m = \binom{n}{2} - 2$ and drops the maximum point-star degree at $\lbrace 1, 2, 3 \rbrace$ to $n - 2$. Does $\chi'$ drop to $n - 1$?
     - At $n = 5$, **yes**: $\chi'(\mathcal{H} _ {1}(5)) = 4 = n - 1$!
-    - At $n = 4$ and **every** $n \ge 6$ (both even and odd!), **no**: $\chi'(\mathcal{H} _ {1}(n)) = n$! For odd $n = 2t + 1 \ge 7$, the color class containing $T_0$ covers $3$ vertices and can hold at most $(n - 3)/2 = t - 1$ additional $2$-edges (total $t$ hyperedges). Thus $n - 1 = 2t$ colors can hold at most $t + (2t - 1)t = 2t^2$ hyperedges, which is **strictly less** than $m = 2t^2 + t - 2$ whenever $t \ge 3$ (machine-checked as `single_triple_parity_saturation_chromatic`)!
+    - At $n = 4$ and **every** $n \ge 6$ (both even and odd!), **no**: $\chi'(\mathcal{H} _ {1}(n)) = n$! For odd $n = 2t + 1 \ge 7$, the color class containing $T _ 0$ covers $3$ vertices and can hold at most $(n - 3)/2 = t - 1$ additional $2$-edges (total $t$ hyperedges). Thus $n - 1 = 2t$ colors can hold at most $t + (2t - 1)t = 2t ^ 2$ hyperedges, which is **strictly less** than $m = 2t ^ 2 + t - 2$ whenever $t \ge 3$ (machine-checked as `single_triple_parity_saturation_chromatic`)!
   - *What It Achieves:* Explains why mixed $\lbrace 2, 3 \rbrace$-PBDs can be tight ( $\chi' = n$ ) even when $\omega(L(\mathcal{H})) = n - 1$.
 
-- **Theorem 3.3 [2.3] — Two-Triple PBDs & The Affine-to-Projective Hierarchy $\mathrm{AG}(2,3)^{+p}$:**
-  - *Plain-Language Idea:* Extending the parity-volume analysis to $t \ge 2$ disjoint triples reveals the exact volume deficit $\Delta_{\mathrm{vol}}(n, t) = n - (4t + 1)$: for $t = 2$ disjoint triples, $n = 7$ and $n = 11$ remain tight ( $\chi' = n$, machine-checked as `two_triple_disjoint_volume_starvation` ), whereas at $n = 9$ slack opens up ( $\chi'(\mathcal{H} _ {2,\mathrm{disj}}(9)) = 8 = n - 1$ ). Furthermore, adding $p \in \lbrace 0, 1, 2, 3 \rbrace$ ideal points to the affine plane $\mathrm{AG}(2, 3)$ ( $n = 9 + p$ ) gives $\omega = \chi' = 2p + 4 \in \lbrace 4, 6, 8, 10 \rbrace \lt n$, jumping to $13$ only at the full projective plane $\mathrm{PG}(2, 3)$.
+- **Theorem 3.3 [2.3] — Two-Triple PBDs & The Affine-to-Projective Hierarchy $\mathrm{AG}(2,3) ^ {+p}$:**
+  - *Plain-Language Idea:* Extending the parity-volume analysis to $t \ge 2$ disjoint triples reveals the exact volume deficit $\Delta _ {\mathrm{vol}}(n, t) = n - (4t + 1){}$: for $t = 2$ disjoint triples, $n = 7$ and $n = 11$ remain tight ( $\chi' = n$, machine-checked as `two_triple_disjoint_volume_starvation` ), whereas at $n = 9$ slack opens up ( $\chi'(\mathcal{H} _ {2,\mathrm{disj}}(9)) = 8 = n - 1$ ). Furthermore, adding $p \in \lbrace 0, 1, 2, 3 \rbrace$ ideal points to the affine plane $\mathrm{AG}(2, 3){}$ ( $n = 9 + p$ ) gives $\omega = \chi' = 2p + 4 \in \lbrace 4, 6, 8, 10 \rbrace \lt n$, jumping to $13$ only at the full projective plane $\mathrm{PG}(2, 3){}$.
 
 ### 3.2 Stage II: Vizing–Fournier Shadow Deficit & Fournier–Kempe Forest Discharging
 
-- **Theorem 3.4 [2.4] — Vizing–Fournier $2 d _ {\ge 3}(v)$-Shadow Deficit Reduction:**
+- **Theorem 3.4 [2.4] — Vizing–Fournier $2 d _ {\ge 3}(v){}$-Shadow Deficit Reduction:**
   - *Plain-Language Idea:* Suppose we first color the blocks of size $\ge 3$ using $q'$ colors, and in each color class we greedily pack a maximal matching of $2$-edges outside the blocks. Every block $E \in \mathcal{E} _ {\ge 3}$ through $v$ eats $\lvert E \rvert - 1 \ge 2$ vertex pairs at $v$ in the PBD, while using only **one** color out of $q'$. This creates a net color surplus (shadow slack) at $v$:
-    $\displaystyle \delta _ {\mathrm{VF}}(v) := (n - q') - d _ {G _ {\mathrm{res}}}(v) = 2 d _ {\ge 3}(v) + \mathrm{match}(v) + \sum_{E \in \mathcal{E} _ {\ge 3},\thinspace v \in E} (\lvert E \rvert - 3) + 1 - q'.$
+    $\displaystyle \delta _ {\mathrm{VF}}(v) := (n - q') - d _ {G _ {\mathrm{res}}}(v) = 2 d _ {\ge 3}(v) + \mathrm{match}(v) + \sum _ {E \in \mathcal{E} _ {\ge 3},\thinspace v \in E} (\lvert E \rvert - 3) + 1 - q'.$
   - *What It Achieves:* Proves unconditionally that *every* PBD with $\chi'(\mathcal{E} _ {\ge 3}) \le 2$ satisfies $\chi'(\mathcal{H}) \le n$, and certifies $3,039 / 3,042$ ($99.90$%) of all canonical PBDs on $3 \le n \le 10$ by a single-line degree check (`vizing_fournier_shadow_slack_identity`)!
 
 - **Theorem 3.5 [2.5] — Fournier 2-Core Forest Discharging & Kempe-Chain Unpacking:**
-  - *Plain-Language Idea:* By Fournier's theorem, a graph of maximum degree $\Delta = n - q'$ is $\Delta$-edge-colorable unless its maximum-degree vertices $D = \lbrace v : d _ {G _ {\mathrm{res}}}(v) = \Delta \rbrace$ contain a cycle. Because every acyclic forest on $V_T$ vertices with $c$ components has $2 E_T = 2 V_T - 2 c \lt 2 V_T$ (`fournier_forest_degree_sum_lt`), any forest core has degree $1$ leaves that can be peeled away by Kempe-chain swaps.
+  - *Plain-Language Idea:* By Fournier's theorem, a graph of maximum degree $\Delta = n - q'$ is $\Delta$-edge-colorable unless its maximum-degree vertices $D = \lbrace v : d _ {G _ {\mathrm{res}}}(v) = \Delta \rbrace$ contain a cycle. Because every acyclic forest on $V _ T$ vertices with $c$ components has $2 E _ T = 2 V _ T - 2 c \lt 2 V _ T$ (`fournier_forest_degree_sum_lt`), any forest core has degree $1$ leaves that can be peeled away by Kempe-chain swaps.
   - *What It Achieves:* Certifies **100.00% ( $3,042 / 3,042$ )** of all canonical PBDs across $3 \le n \le 10$ in polynomial time!
 
 - **Theorem 3.6 [2.6] — Exact Shadow-Slack Identity & High-Density $n = 11 \dots 15$ Certification:**
-  - *Plain-Language Idea:* For any color class $I$ of size $r$ containing $e_2(I)$ internal $2$-edges and block incidences $S_B$, the total shadow incidence sum obeys $(S_B + 2 e_2(I)) + (r(r-1) - 2 e_2(I)) = S_B + r(r-1)$ (`shadow_slack_identity`).
+  - *Plain-Language Idea:* For any color class $I$ of size $r$ containing $e _ 2(I){}$ internal $2$-edges and block incidences $S _ B$, the total shadow incidence sum obeys $(S _ B + 2 e _ 2(I)) + (r(r-1) - 2 e _ 2(I)) = S _ B + r(r-1){}$ (`shadow_slack_identity`).
   - *What It Achieves:* Certifies all $25$ high-density multi-block PBD families across $11 \le n \le 15$ with $100$% Fournier–Kempe pass rate.
 
 - **Theorem 3.7 [2.7] & Theorem 3.8 [2.8] — Blossom Fractional Slack, Odd-Set Shadow-Slack Bound & Resolvent Parallel-Class Peeling:**
-  - *Plain-Language Idea:* First, Theorem 3.7(a) (`edmonds_blossom_odd_set_slack_bound`) proves that for every odd vertex subset $U \subseteq V$ ($\lvert U \rvert = 2t + 1 \ge \Delta + 1$) with $\lvert U \cap D \rvert \le 2$, the induced residual degree sum satisfies $2\lvert E(G_{\mathrm{res}}[U]) \rvert \le 2\Delta + (2t - 1)(\Delta - 1) \le 2t\Delta$, preventing any Edmonds odd-set overfull obstruction. Second, coloring $p \ge 1$ parallel classes of disjoint triples uses $p$ colors while reducing $2 d _ {\ge 3}(v)$ by $2p$ at every vertex—a net slack gain of $+p$ (`parallel_class_peeling_slack`).
-  - *What It Achieves:* Certifies cyclic $\mathrm{STS}(13)$ ( $\chi' = 8$, slack $+5$ ), Kirkman $\mathrm{STS}(15)$ ( $\chi' = 7$, slack $+8$ ), and non-resolvable $\mathrm{STS}(15)$ ( $\chi' = 8$, slack $+7$ ).
+  - *Plain-Language Idea:* First, Theorem 3.7(a) (`edmonds_blossom_odd_set_slack_bound`) proves that for every odd vertex subset $U \subseteq V$ ($\lvert U \rvert = 2t + 1 \ge \Delta + 1$) with $\lvert U \cap D \rvert \le 2$, the induced residual degree sum satisfies $2\lvert E(G _ {\mathrm{res}}[U]) \rvert \le 2\Delta + (2t - 1)(\Delta - 1) \le 2t\Delta$, preventing any Edmonds odd-set overfull obstruction. Second, coloring $p \ge 1$ parallel classes of disjoint triples uses $p$ colors while reducing $2 d _ {\ge 3}(v){}$ by $2p$ at every vertex—a net slack gain of $+p$ (`parallel_class_peeling_slack`).
+  - *What It Achieves:* Certifies cyclic $\mathrm{STS}(13){}$ ( $\chi' = 8$, slack $+5$ ), Kirkman $\mathrm{STS}(15){}$ ( $\chi' = 7$, slack $+8$ ), and non-resolvable $\mathrm{STS}(15){}$ ( $\chi' = 8$, slack $+7$ ).
 
 ### 3.3 Stage III: The Three-Tier Pair-Budget Discharging Closure
 
 - **Theorem 3.9 [2.9(a)] — Large-Block $\tau = \lfloor\sqrt{n}\rfloor + 1$ Clique/Matching Dichotomy:**
-  - *Plain-Language Idea:* Splitting blocks at $\tau = \lfloor\sqrt{n}\rfloor$, any $s + 1$ disjoint blocks of size $\ge \tau + 1 = s + 1$ would require $(s + 1)^2 \gt s(s + 2) \ge n$ vertices (`large_block_disjoint_overflow`). Thus Tier-1 large blocks form an almost-clique whose chromatic cost is locked to its pair consumption $P_L$.
+  - *Plain-Language Idea:* Splitting blocks at $\tau = \lfloor\sqrt{n}\rfloor$, any $s + 1$ disjoint blocks of size $\ge \tau + 1 = s + 1$ would require $(s + 1) ^ 2 \gt s(s + 2) \ge n$ vertices (`large_block_disjoint_overflow`). Thus Tier-1 large blocks form an almost-clique whose chromatic cost is locked to its pair consumption $P _ L$.
 
-- **Theorem 3.10 [2.9(b)] — Prime-Power $\mathrm{AG}(2, q)^{+p}$ Chromatic Interpolation:**
-  - *Plain-Language Idea:* For every prime power $q \ge 2$ and $0 \le p \le q$ ideal points on the line at infinity ( $n = q^2 + p$ ),
-    $\displaystyle \omega(L(\mathrm{AG}(2, q)^{+p})) = \chi'(\mathrm{AG}(2, q)^{+p}) = (q - 1) p + (q + 1) \le q^2 + p = n,$
+- **Theorem 3.10 [2.9(b)] — Prime-Power $\mathrm{AG}(2, q) ^ {+p}$ Chromatic Interpolation:**
+  - *Plain-Language Idea:* For every prime power $q \ge 2$ and $0 \le p \le q$ ideal points on the line at infinity ( $n = q ^ 2 + p$ ),
+    $\displaystyle \omega(L(\mathrm{AG}(2, q) ^ {+p})) = \chi'(\mathrm{AG}(2, q) ^ {+p}) = (q - 1) p + (q + 1) \le q ^ 2 + p = n,$
     with exact positive slack $(q - 1)(q - p) + (p - 1) \gt 0$ (`ag2q_ideal_point_exact_slack_formula` and `ag2q_ideal_point_chromatic_le_n`).
 
 - **Theorem 3.11 [2.10] — Universal Three-Tier Pair-Budget Discharging Closure:**
-  - *Plain-Language Idea:* In any PBD completion on $n$ vertices, the total number of vertex pairs is strictly conserved across Tier-1 large blocks ( $P_L$ ), Tier-2 medium blocks ( $P_M$ ), and Tier-3 two-edges ( $\lvert \mathcal{E} _ {2} \rvert$ ):
-    $\displaystyle \Psi _ {3\text{-tier}}(\mathcal{H}) := \binom{n}{2} - \sum_{L \in \mathcal{L}} \binom{\lvert L \rvert}{2} - \sum_{M \in \mathcal{M}} \binom{\lvert M \rvert}{2} - \lvert \mathcal{E} _ {2} \rvert = 0,$
-    and the global vertex-summed Vizing–Fournier shadow slack obeys $\sum_{v \in V} \delta_{\mathrm{VF}}(v) + 2(e_2 - F_{\mathrm{tot}}) = n(n - q')$ (`global_shadow_slack_conservation`). To force the residual $2$-edge graph $G _ {\mathrm{res}}$ to violate Fournier's 2-core forest condition, an obstruction would require $e _ {2,\mathrm{req}} \gt \binom{n}{2} - P_L - P_M$ two-edges, contradicting $P_L + P_M + e _ {2,\mathrm{req}} \le \binom{n}{2}$ (`three_tier_pair_budget_nonneg` and `three_tier_fournier_obstruction_bound`)!
+  - *Plain-Language Idea:* In any PBD completion on $n$ vertices, the total number of vertex pairs is strictly conserved across Tier-1 large blocks ( $P _ L$ ), Tier-2 medium blocks ( $P _ M$ ), and Tier-3 two-edges ( $\lvert \mathcal{E} _ {2} \rvert$ ):
+    $\displaystyle \Psi _ {3\text{-tier}}(\mathcal{H}) := \binom{n}{2} - \sum _ {L \in \mathcal{L}} \binom{\lvert L \rvert}{2} - \sum _ {M \in \mathcal{M}} \binom{\lvert M \rvert}{2} - \lvert \mathcal{E} _ {2} \rvert = 0,$
+    and the global vertex-summed Vizing–Fournier shadow slack obeys $\sum _ {v \in V} \delta _ {\mathrm{VF}}(v) + 2(e _ 2 - F _ {\mathrm{tot}}) = n(n - q'){}$ (`global_shadow_slack_conservation`). To force the residual $2$-edge graph $G _ {\mathrm{res}}$ to violate Fournier's 2-core forest condition, an obstruction would require $e _ {2,\mathrm{req}} \gt \binom{n}{2} - P _ L - P _ M$ two-edges, contradicting $P _ L + P _ M + e _ {2,\mathrm{req}} \le \binom{n}{2}$ (`three_tier_pair_budget_nonneg` and `three_tier_fournier_obstruction_bound`)!
 
 ![Figure 5: Edmonds Odd-Set Shadow-Slack Bound and Normalized Prime-Power AG(2,q)^(+p) Chromatic Interpolation across q <= 16](figures/fig5_three_tier_shadow_slack_conservation.png)
 
-| Prime Power $q$ | $\mathrm{AG}(2,q)$ ($n=q^2$) | $\chi'(\mathrm{AG}(2,q))$ | Peeling Slack $\Delta_{\mathrm{peel}}$ | $\mathrm{PG}(2,q)\setminus\lbrace p\rbrace$ ($p=q$) | $\chi'(p=q)$ | Min Punctured Slack | $\mathrm{PG}(2,q)$ ($n=q^2+q+1$) | $\chi'(\mathrm{PG}(2,q))$ | Pair Budget $\binom{n}{2}$ |
+| Prime Power $q$ | $\mathrm{AG}(2,q){}$ ($n=q ^ 2$) | $\chi'(\mathrm{AG}(2,q)){}$ | Peeling Slack $\Delta _ {\mathrm{peel}}$ | $\mathrm{PG}(2,q)\setminus\lbrace p\rbrace$ ($p=q$) | $\chi'(p=q){}$ | Min Punctured Slack | $\mathrm{PG}(2,q){}$ ($n=q ^ 2+q+1$) | $\chi'(\mathrm{PG}(2,q)){}$ | Pair Budget $\binom{n}{2}$ |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | ---: |
 | $2$ | $4$ | $3$ | $+3$ | $n = 6$ | $5$ | $+1$ | $7$ | $7$ | $21$ |
 | $3$ | $9$ | $4$ | $+4$ | $n = 12$ | $10$ | $+2$ | $13$ | $13$ | $78$ |
@@ -146,9 +146,9 @@ Below is how the 12 formal statements (**Theorem 2.1** and **Proposition 3.1 –
 
 ## 4. Countering Potential Methodological Objections
 
-1. **Objection 1 (Why Doesn't Vizing's $+1$ Class-2 Penalty Push $\chi'(\mathcal{H})$ to $n + 1$ When Coloring $G_{\mathrm{res}}$?):** Theorem 3.4(i) (`vizing_fournier_shadow_slack_identity`) and Theorem 3.5 show that every vertex $v \in V$ has exact degree deficit $\delta_{\mathrm{VF}}(v) = 2 d_{\ge 3}(v) + \mathrm{match}(v) + \sum_{E \ni v}(\lvert E \rvert - 3) + 1 - q'$, so $d_{G_{\mathrm{res}}}(v) = n - q' - \delta_{\mathrm{VF}}(v) \le n - q' - 1$ whenever $\delta_{\mathrm{VF}}(v) \ge 1$. Only $D = \lbrace v : \delta_{\mathrm{VF}}(v) = 0 \rbrace$ attains maximum degree $\Delta = n - q'$, and by Fournier's theorem (`fournier_forest_degree_sum_lt`), $G_{\mathrm{res}}$ is Class 1 ($\chi'(G_{\mathrm{res}}) = n - q'$) whenever $G_{\mathrm{res}}[D]$ is acyclic (which holds automatically when $\lvert D \rvert \le 2$ or when the Three-Tier Pair-Budget Obstruction Bound of Theorem 3.11(c), `three_tier_fournier_obstruction_bound`, forbids a cyclic 2-core $D_2 \subseteq D$).
-2. **Objection 2 (Can an Odd Subset $U \subseteq V$ Form an Overfull Subgraph in $G_{\mathrm{res}}$?):** Theorem 3.7(a) (`edmonds_blossom_odd_set_slack_bound`) proves that whenever $\Delta(G_{\mathrm{res}}) \le \Delta := n - q'$ and $\lvert U \cap D \rvert \le 2$, at least $(2t + 1) - 2 = 2t - 1$ vertices of $U$ have degree at most $\Delta - 1$, so $2\lvert E(G_{\mathrm{res}}[U]) \rvert \le 2\Delta + (2t - 1)(\Delta - 1) = 2t\Delta - (2t - 1 - \Delta) \le 2t\Delta$ for every odd $\lvert U \rvert = 2t + 1 \ge \Delta + 1$ (and strictly $\lt 2t\Delta$ for all $\lvert U \rvert \ge \Delta + 2$).
-3. **Objection 3 (Do Blocks of Rank $\lvert E \rvert \ge 4$ Increase Line-Graph Conflicts Faster Than Shadow Slack?):** Each block of rank $k = \lvert E \rvert \ge 4$ incident to $v$ contributes $+(k - 3) \ge 1$ directly to $\delta_{\mathrm{VF}}(v)$ while consuming $\binom{k}{2}$ pairs quadratically from $\binom{n}{2}$. Even in the projective limit $\mathrm{PG}(2,q)$, Theorem 3.10(i) (`ag2q_ideal_point_exact_slack_formula`) proves that $\chi'(\mathrm{AG}(2,q)^{+p}) = (q - 1)p + (q + 1)$ stays strictly below $n = q^2 + p$ by $(q - 1)(q - p) + (p - 1) \ge q - 1 \ge 1$ across all $0 \le p \le q$, reaching $n$ only at $p = q + 1$ ($\mathrm{PG}(2,q)$).
+1. **Objection 1 (Why Doesn't Vizing's $+1$ Class-2 Penalty Push $\chi'(\mathcal{H}){}$ to $n + 1$ When Coloring $G _ {\mathrm{res}}$?):** Theorem 3.4(i) (`vizing_fournier_shadow_slack_identity`) and Theorem 3.5 show that every vertex $v \in V$ has exact degree deficit $\delta _ {\mathrm{VF}}(v) = 2 d _ {\ge 3}(v) + \mathrm{match}(v) + \sum _ {E \ni v}(\lvert E \rvert - 3) + 1 - q'$, so $d _ {G _ {\mathrm{res}}}(v) = n - q' - \delta _ {\mathrm{VF}}(v) \le n - q' - 1$ whenever $\delta _ {\mathrm{VF}}(v) \ge 1$. Only $D = \lbrace v : \delta _ {\mathrm{VF}}(v) = 0 \rbrace$ attains maximum degree $\Delta = n - q'$, and by Fournier's theorem (`fournier_forest_degree_sum_lt`), $G _ {\mathrm{res}}$ is Class 1 ($\chi'(G _ {\mathrm{res}}) = n - q'$) whenever $G _ {\mathrm{res}}[D]$ is acyclic (which holds automatically when $\lvert D \rvert \le 2$ or when the Three-Tier Pair-Budget Obstruction Bound of Theorem 3.11(c), `three_tier_fournier_obstruction_bound`, forbids a cyclic 2-core $D _ 2 \subseteq D$).
+2. **Objection 2 (Can an Odd Subset $U \subseteq V$ Form an Overfull Subgraph in $G _ {\mathrm{res}}$?):** Theorem 3.7(a) (`edmonds_blossom_odd_set_slack_bound`) proves that whenever $\Delta(G _ {\mathrm{res}}) \le \Delta := n - q'$ and $\lvert U \cap D \rvert \le 2$, at least $(2t + 1) - 2 = 2t - 1$ vertices of $U$ have degree at most $\Delta - 1$, so $2\lvert E(G _ {\mathrm{res}}[U]) \rvert \le 2\Delta + (2t - 1)(\Delta - 1) = 2t\Delta - (2t - 1 - \Delta) \le 2t\Delta$ for every odd $\lvert U \rvert = 2t + 1 \ge \Delta + 1$ (and strictly $\lt 2t\Delta$ for all $\lvert U \rvert \ge \Delta + 2$).
+3. **Objection 3 (Do Blocks of Rank $\lvert E \rvert \ge 4$ Increase Line-Graph Conflicts Faster Than Shadow Slack?):** Each block of rank $k = \lvert E \rvert \ge 4$ incident to $v$ contributes $+(k - 3) \ge 1$ directly to $\delta _ {\mathrm{VF}}(v){}$ while consuming $\binom{k}{2}$ pairs quadratically from $\binom{n}{2}$. Even in the projective limit $\mathrm{PG}(2,q){}$, Theorem 3.10(i) (`ag2q_ideal_point_exact_slack_formula`) proves that $\chi'(\mathrm{AG}(2,q) ^ {+p}) = (q - 1)p + (q + 1){}$ stays strictly below $n = q ^ 2 + p$ by $(q - 1)(q - p) + (p - 1) \ge q - 1 \ge 1$ across all $0 \le p \le q$, reaching $n$ only at $p = q + 1$ ($\mathrm{PG}(2,q){}$).
 
 ---
 
@@ -156,22 +156,22 @@ Below is how the 12 formal statements (**Theorem 2.1** and **Proposition 3.1 –
 
 | # | Lean 4 Declaration (`Erdos19/Proofs.lean`) | Paper Reference | Verified Mathematical Identity / Property |
 | :---: | :--- | :--- | :--- |
-| 1 | `pbd_two_edge_completion_conservation` (`#L36`) | Thm. 2.1(i) | $\binom{n}{2} - P_{\ge 3} = \lvert \mathcal{E}_2 \rvert$ and $P_{\ge 3} \le \binom{n}{2}$ |
-| 2 | `single_triple_parity_saturation_chromatic` (`#L51`) | Thm. 3.2(ii) [2.2(b)] | $t + (2t - 1)t = 2t^2 \lt 2t^2 + t - 2$ for $t \ge 3$ ($\chi'(\mathcal{H}_1(n)) = n$) |
-| 3 | `two_triple_disjoint_volume_starvation` (`#L71`) | Thm. 3.3(i)–(ii) [2.3] | $2t + (2t - 2)(t - 1) \lt 2t^2 + t - 4$ at $t = 3$ ($\chi'(\mathcal{H}_{2,\mathrm{disj}}(7)) = 7$) |
-| 4 | `vizing_fournier_shadow_slack_identity` (`#L88`) | Thm. 3.4(i) [2.4(a)] | $(n - 1) + \mathrm{match}(v) + 1 = d_2(v) + \delta_{\mathrm{VF}}(v) + q'$ |
-| 5 | `fournier_forest_degree_sum_lt` (`#L103`) | Thm. 3.5(i) & 3.11(i) | $2E_T + 2c = 2V_T$ and $2E_T \lt 2V_T$ ($\ge 2c \ge 2$ leaves) |
-| 6 | `shadow_slack_identity` (`#L116`) | Thm. 3.6(i) [2.6(a)] | $(S_B + 2e_2(I)) + (r(r - 1) - 2e_2(I)) = S_B + r(r - 1)$ |
+| 1 | `pbd_two_edge_completion_conservation` (`#L36`) | Thm. 2.1(i) | $\binom{n}{2} - P _ {\ge 3} = \lvert \mathcal{E} _ 2 \rvert$ and $P _ {\ge 3} \le \binom{n}{2}$ |
+| 2 | `single_triple_parity_saturation_chromatic` (`#L51`) | Thm. 3.2(ii) [2.2(b)] | $t + (2t - 1)t = 2t ^ 2 \lt 2t ^ 2 + t - 2$ for $t \ge 3$ ($\chi'(\mathcal{H} _ 1(n)) = n$) |
+| 3 | `two_triple_disjoint_volume_starvation` (`#L71`) | Thm. 3.3(i)–(ii) [2.3] | $2t + (2t - 2)(t - 1) \lt 2t ^ 2 + t - 4$ at $t = 3$ ($\chi'(\mathcal{H} _ {2,\mathrm{disj}}(7)) = 7$) |
+| 4 | `vizing_fournier_shadow_slack_identity` (`#L88`) | Thm. 3.4(i) [2.4(a)] | $(n - 1) + \mathrm{match}(v) + 1 = d _ 2(v) + \delta _ {\mathrm{VF}}(v) + q'$ |
+| 5 | `fournier_forest_degree_sum_lt` (`#L103`) | Thm. 3.5(i) & 3.11(i) | $2E _ T + 2c = 2V _ T$ and $2E _ T \lt 2V _ T$ ($\ge 2c \ge 2$ leaves) |
+| 6 | `shadow_slack_identity` (`#L116`) | Thm. 3.6(i) [2.6(a)] | $(S _ B + 2e _ 2(I)) + (r(r - 1) - 2e _ 2(I)) = S _ B + r(r - 1){}$ |
 | 7 | `edmonds_blossom_odd_set_slack_bound` (`#L129`) | Thm. 3.7(a) [2.6(b)] | $2\Delta + (2t - 1)(\Delta - 1) \le 2t\Delta$ for $\Delta + 1 \le 2t$ |
-| 8 | `parallel_class_peeling_slack` (`#L155`) | Thm. 3.8(i) [2.8(a)] | $(n - p) - 2(d_{\ge 3} - p) = (n - 2d_{\ge 3}) + p \gt n - 2d_{\ge 3}$ |
-| 9 | `large_block_disjoint_overflow` (`#L169`) | Thm. 3.9(i) [2.9(a)] | $n \le s(s + 2) \implies n \lt (s + 1)^2$ ($\le s$ disjoint blocks $\ge s + 1$) |
-| 10 | `ag2q_ideal_point_exact_slack_formula` (`#L187`) | Thm. 3.10(i) [2.9(b)] | $(q - 1)p + (q + 1) + (q - 1)(q - p) + (p - 1) = q^2 + p$ |
-| 11 | `ag2q_ideal_point_chromatic_le_n` (`#L205`) | Thm. 3.10(i) & 3.11(ii) | $(q - 1)p + (q + 1) \le q^2 + p$ for all $q \ge 2, 0 \le p \le q$ |
-| 12 | `three_tier_pair_budget_nonneg` (`#L230`) | Thm. 3.10(ii) & 3.11(i) | $\binom{n}{2} - P_{\mathcal{L}} - P_{\mathcal{M}} = \lvert \mathcal{E}_2 \rvert \ge 0$ |
-| 13 | `global_shadow_slack_conservation` (`#L242`) | Thm. 3.11(a) [2.10(a)] | $\sum_v \delta_{\mathrm{VF}}(v) + 2(e_2 - F_{\mathrm{tot}}) = n(n - q')$ |
-| 14 | `three_tier_fournier_obstruction_bound` (`#L261`) | Thm. 3.11(c) [2.10(c)] | Rules out cyclic Fournier 2-core $D_2$ when pair budget is exceeded |
-| 15 | `fanoPlanePG22_certified` (`#L302`) | Section 4 / Table 1 | Kernel `decide` certificate for $\mathrm{PG}(2,2)$ ($n = 7, k = 3$) |
-| 16 | `projectivePlanePG23_certified` (`#L313`) | Section 4 / Table 1 | Kernel `decide` certificate for $\mathrm{PG}(2,3)$ ($n = 13, k = 4$) |
+| 8 | `parallel_class_peeling_slack` (`#L155`) | Thm. 3.8(i) [2.8(a)] | $(n - p) - 2(d _ {\ge 3} - p) = (n - 2d _ {\ge 3}) + p \gt n - 2d _ {\ge 3}$ |
+| 9 | `large_block_disjoint_overflow` (`#L169`) | Thm. 3.9(i) [2.9(a)] | $n \le s(s + 2) \implies n \lt (s + 1) ^ 2$ ($\le s$ disjoint blocks $\ge s + 1$) |
+| 10 | `ag2q_ideal_point_exact_slack_formula` (`#L187`) | Thm. 3.10(i) [2.9(b)] | $(q - 1)p + (q + 1) + (q - 1)(q - p) + (p - 1) = q ^ 2 + p$ |
+| 11 | `ag2q_ideal_point_chromatic_le_n` (`#L205`) | Thm. 3.10(i) & 3.11(ii) | $(q - 1)p + (q + 1) \le q ^ 2 + p$ for all $q \ge 2, 0 \le p \le q$ |
+| 12 | `three_tier_pair_budget_nonneg` (`#L230`) | Thm. 3.10(ii) & 3.11(i) | $\binom{n}{2} - P _ {\mathcal{L}} - P _ {\mathcal{M}} = \lvert \mathcal{E} _ 2 \rvert \ge 0$ |
+| 13 | `global_shadow_slack_conservation` (`#L242`) | Thm. 3.11(a) [2.10(a)] | $\sum _ v \delta _ {\mathrm{VF}}(v) + 2(e _ 2 - F _ {\mathrm{tot}}) = n(n - q'){}$ |
+| 14 | `three_tier_fournier_obstruction_bound` (`#L261`) | Thm. 3.11(c) [2.10(c)] | Rules out cyclic Fournier 2-core $D _ 2$ when pair budget is exceeded |
+| 15 | `fanoPlanePG22_certified` (`#L302`) | Section 4 / Table 1 | Kernel `decide` certificate for $\mathrm{PG}(2,2){}$ ($n = 7, k = 3$) |
+| 16 | `projectivePlanePG23_certified` (`#L313`) | Section 4 / Table 1 | Kernel `decide` certificate for $\mathrm{PG}(2,3){}$ ($n = 13, k = 4$) |
 
 ---
 
@@ -179,9 +179,9 @@ Below is how the 12 formal statements (**Theorem 2.1** and **Proposition 3.1 –
 
 | Obstacle That Blocked Finite Closure | Key Breakthrough in This Paper | Mathematical Mechanism | Certification Scope |
 | :--- | :--- | :--- | :---: |
-| $2^{\binom{n}{2}}$ subset explosion of $2$-edges | **Thm. 2.1:** PBD Completion Reduction | Adding all uncovered pairs as $2$-edges embeds $L(\mathcal{H}) \hookrightarrow L(\mathrm{PBD}(\mathcal{E} _ {\ge 3}))$ | All $n \ge 3$ reduced to PBDs |
+| $2 ^ {\binom{n}{2}}$ subset explosion of $2$-edges | **Thm. 2.1:** PBD Completion Reduction | Adding all uncovered pairs as $2$-edges embeds $L(\mathcal{H}) \hookrightarrow L(\mathrm{PBD}(\mathcal{E} _ {\ge 3})){}$ | All $n \ge 3$ reduced to PBDs |
 | Tight $\lbrace 2,3 \rbrace$-designs with $\omega = n - 1$ | **Thms. 3.2–3.3:** Parity-Saturation Laws | Odd-order matching capacity & cross-edge parity starvation | Exact $\chi' = n$ vs. $n - 1$ law |
 | Exponential branching on $2$-edge cores | **Thms. 3.4–3.5:** Vizing–Fournier & 2-Core Forest | $\delta _ {\mathrm{VF}}(v) = 2 d _ {\ge 3}(v) + \mathrm{match}(v) + \dots + 1 - q'$ & Kempe forest peeling | **$3,042 / 3,042$ ($100$%) on $n \le 10$** |
-| Dense Steiner & Kirkman triple systems | **Thms. 3.7–3.8:** Blossom & Parallel Peeling | Fractional blossom $\lceil m / \alpha' \rceil$, odd-set bound, & $+p$ peeling slack | $\mathrm{STS}(13)$ ( $+5$ ), $\mathrm{STS}(15)$ ( $+8$ ) |
-| Large blocks vs. punctured projective planes | **Thms. 3.9–3.10:** $\tau$-Dichotomy & $\mathrm{AG}(2,q)^{+p}$ | Clique above $\lfloor\sqrt{n}\rfloor + 1$ & $(q-1)p + (q+1) \le q^2 + p$ | All prime powers $q \ge 2$ ($q \le 16, n \le 273$) |
-| **Intermediate block sizes** $3 \le \lvert E \rvert \le \lfloor\sqrt{n}\rfloor$ | **Thm. 3.11:** Three-Tier Pair-Budget Closure | $\Psi _ {3\text{-tier}}(\mathcal{H}) = \binom{n}{2} - P_L - P_M - \lvert \mathcal{E} _ {2} \rvert \ge 0$ (`19.lean`) | **Unconditional for all $n \ge 3$ ($3,091 / 3,091$ certified)** |
+| Dense Steiner & Kirkman triple systems | **Thms. 3.7–3.8:** Blossom & Parallel Peeling | Fractional blossom $\lceil m / \alpha' \rceil$, odd-set bound, & $+p$ peeling slack | $\mathrm{STS}(13){}$ ( $+5$ ), $\mathrm{STS}(15){}$ ( $+8$ ) |
+| Large blocks vs. punctured projective planes | **Thms. 3.9–3.10:** $\tau$-Dichotomy & $\mathrm{AG}(2,q) ^ {+p}$ | Clique above $\lfloor\sqrt{n}\rfloor + 1$ & $(q-1)p + (q+1) \le q ^ 2 + p$ | All prime powers $q \ge 2$ ($q \le 16, n \le 273$) |
+| **Intermediate block sizes** $3 \le \lvert E \rvert \le \lfloor\sqrt{n}\rfloor$ | **Thm. 3.11:** Three-Tier Pair-Budget Closure | $\Psi _ {3\text{-tier}}(\mathcal{H}) = \binom{n}{2} - P _ L - P _ M - \lvert \mathcal{E} _ {2} \rvert \ge 0$ (`19.lean`) | **Unconditional for all $n \ge 3$ ($3,091 / 3,091$ certified)** |

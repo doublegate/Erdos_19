@@ -11,6 +11,12 @@ Paper: "Three-Tier Pair-Budget Discharging Closure, Pairwise Balanced Reduction,
         and GPU Bitmask Certification for Erdős Problem #19" (Parobek, 2026)
 Repo:  https://github.com/doublegate/Erdos_19
 
+Status (2026-11-03): Erdős Problem #19 remains open in the finite range not covered by
+Kang–Kelly–Kühn–Methuku–Osthus. The manuscript [Pa26] has been withdrawn after an independent
+review found its closure theorem vacuous and its n ≤ 10 census incomplete; see the repository
+README. No declaration below mentions hypergraphs, colourings, chromatic index or any range of
+`n`, so none of them verifies a manuscript theorem.
+
 This self-contained Lean 4 module (zero `sorry`s, zero custom axioms) machine-checks the
 discrete arithmetic identities and inequalities used in the Pairwise Balanced Design (PBD)
 2-edge completion conservation law, the single-triple and two-triple parity-saturation capacity
@@ -220,7 +226,7 @@ theorem erdos_19.variants.ag2q_ideal_point_chromatic_le_n (q p : ℕ)
     have h := erdos_19.variants.ag2q_ideal_point_exact_slack_formula q (m + 1) hq (by omega) hp
     omega
 
-/-! ## 11. Theorem 3.10(ii) & 3.11(i)–(iii) [2.10(a)–(c)]: Universal Three-Tier Pair-Budget Discharging Closure -/
+/-! ## 11. Theorem 3.10(ii) & 3.11(i)–(iii) [2.10(a)–(c)]: Three-Tier Pair-Budget Arithmetic (closure claim withdrawn) -/
 
 /--
 **Arithmetic Lemma for Theorem 3.10(ii) & 3.11(i) (Three-Term Partition Subtraction):**
@@ -257,6 +263,10 @@ theorem erdos_19.variants.global_shadow_slack_conservation
 For natural numbers satisfying `F_tot ≤ e2`, `2 * (P_L + P_M + e2) = n * (n - 1)`, and
 `2 * (e2 - F_tot) = k * (n - q') + deg_sum_outside`, the strict inequality
 `n * (n - 1) < 2 * (P_L + P_M + F_tot) + k * (n - q') + deg_sum_outside` is impossible (`False`).
+Consequence (2026-11-03): the hypothesis of manuscript Theorem 2.10(b) is exactly this strict
+inequality, and the other two equations always hold. So the inequality never holds, and
+Theorem 2.10(b) excludes no configuration. This lemma shows the closure step is vacuous; it does
+not support it.
 -/
 theorem erdos_19.variants.three_tier_fournier_obstruction_bound
     (n q' k P_L P_M e2 F_tot deg_sum_outside : ℕ)

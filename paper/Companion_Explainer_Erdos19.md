@@ -1,5 +1,7 @@
 # How Erdős Problem #19 (The Erdős–Faber–Lovász Conjecture) Was Closed Across All Finite Orders: A Plain-Language Companion Explainer and Theorem-by-Theorem Architecture Guide
 
+> **Status (2026-11-03): the claimed resolution of Erdős Problem #19 described below is withdrawn; the problem remains open. See the status note in the repository [README](../README.md) for the specific errors and what still stands.**
+
 **Companion Expository Guide to:** *"Three-Tier Pair-Budget Discharging Closure, Pairwise Balanced Reduction, and GPU Bitmask Certification for [Erdős Problem #19](https://www.erdosproblems.com/19) (The Erdős–Faber–Lovász Conjecture)"*  
 **Author:** Lucas Parobek (`parobek@gmail.com`) | **Date:** October 27, 2026  
 **Public Verification Repository:** [`https://github.com/doublegate/Erdos_19`](https://github.com/doublegate/Erdos_19) | **Prize Status:** 500 USD Erdős Bounty (Unconditionally Resolved)

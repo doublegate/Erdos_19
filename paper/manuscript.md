@@ -1,5 +1,7 @@
 # Pairwise Balanced Reduction, Cross-Edge Parity Saturation, and GPU Bitmask Certification for Erdős Problem #19 (The Erdős–Faber–Lovász Conjecture)
 
+> **Status (2026-11-03): the claimed resolution of Erdős Problem #19 described below is withdrawn; the problem remains open. See the status note in the repository [README](../README.md) for the specific errors and what still stands.**
+
 **Lucas Parobek**  
 *Independent Researcher · `parobek@gmail.com` · <https://github.com/doublegate/erdos19>*  
 *October 2026 · MSC 2020: Primary 05C15, 05C65; Secondary 05B05, 68W10*

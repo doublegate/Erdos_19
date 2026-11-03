@@ -1,4 +1,15 @@
-# Erdos_19 — Three-Tier Pair-Budget Discharging Closure & Formal Verification for [Erdős Problem #19](https://www.erdosproblems.com/19) (The Erdős–Faber–Lovász Conjecture)
+# Erdos_19 — Pairwise-Balanced Reduction, Design Colourings & Lean 4 Arithmetic Checks for [Erdős Problem #19](https://www.erdosproblems.com/19) (Erdős–Faber–Lovász; open)
+
+> [!WARNING]
+> **Status (2026-11-03): Erdős Problem #19 (Erdős–Faber–Lovász) remains open in the finite range not covered by Kang–Kelly–Kühn–Methuku–Osthus. The claimed closure in this repository is withdrawn.**
+>
+> An independent review found that the main argument does not hold:
+> - **The decisive Theorem 2.10(b) is vacuous.** By the identities stated with it, the left-hand side of its hypothesis always equals 2(P_L + P_M + |E₂|) = n(n−1), so the strict inequality "> n(n−1)" can never hold and the theorem excludes nothing. The Lean twin derives a conclusion from an unsatisfiable hypothesis.
+> - **The "complete" n ≤ 10 census is not exhaustive.** It deduplicates by an invariant that does not separate isomorphism classes. It finds 328 and 2,601 linear spaces on 9 and 10 points; the true counts are 384 and 5,250 (OEIS A001200).
+> - **11 ≤ n ≤ 25 is covered only by 49 hand-picked designs** (there are 232,929 linear spaces on 11 points). No explicit KKKMO threshold n₀ is identified, so nothing connects the computations to the asymptotic theorem.
+> - **The Lean 4 files check elementary arithmetic and two finite design facts.** No Lean statement mentions chromatic number or any range of n.
+>
+> What stands: the standard pairwise-balanced-design reduction, the Fournier/VAL sufficient condition, the AG(2,q)^{+p} / PG(2,q) family, and explicit colourings of specific designs. The manuscript, explainer, tables and scripts below are kept unchanged for reference. Read every "closure", "100%" or "PROVED" claim in them as withdrawn.
 
 [![Manuscript PDF](https://img.shields.io/badge/Manuscript-PDF%20%2820%20pp.%29-blue)](./paper/Parobek_2026-10-27_Erdos19_Three_Tier_Discharging_Closure_EFL_Conjecture.pdf)
 [![Lean 4: v4.33.1](https://img.shields.io/badge/Lean%204-v4.33.1%20%280%20sorry%29-brightgreen)](./Erdos19/Proofs.lean)

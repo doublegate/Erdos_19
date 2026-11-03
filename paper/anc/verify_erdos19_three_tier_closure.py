@@ -139,7 +139,7 @@ def main() -> None:
     summary = {
         "problem": "Erdos Problem #19 (Erdos-Faber-Lovasz Conjecture)",
         "prize_usd": 500,
-        "status": "PROVED (Unconditional Three-Tier Pair-Budget Discharging Closure)",
+        "status": "Formula evaluation only; the claimed resolution was withdrawn 2026-11-03 (see README)",
         "total_pbds_certified": total_certified,
         "canonical_n3_to_n10_pbds": total_3_to_10,
         "frontier_n11_to_n25_suites": frontier_11_to_25,

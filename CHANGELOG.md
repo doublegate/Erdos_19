@@ -5,6 +5,7 @@ All notable changes to the `Erdos_19` public verification repository for Erdős 
 ## [Unreleased] - 2026-11-03
 
 ### Withdrawn
+- The 2026-10-27 ResearchGate preprint (doi:10.13140/RG.2.2.19097.99688) now carries a withdrawal version (posted 2026-11-06), and the README status note links it.
 - The claim that this repository resolves Erdős Problem #19 is **withdrawn**: the problem remains open. An independent review on 2026-11-03 found the main argument invalid. The README status note gives the specific errors and lists what still stands.
 - Retitled the README and the `Cargo.toml` description, added the status note to the README, the companion explainer and `paper/manuscript.md`, and replaced the verifier's "PROVED"/"VERIFIED" status string with a neutral one. The manuscripts and PDFs are otherwise unchanged and await a full revision.
 

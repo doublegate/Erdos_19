@@ -10,6 +10,8 @@
 > - **The Lean 4 files check elementary arithmetic and two finite design facts.** No Lean statement mentions chromatic number or any range of n.
 >
 > What stands: the standard pairwise-balanced-design reduction, the Fournier/VAL sufficient condition, the AG(2,q)^{+p} / PG(2,q) family, and explicit colourings of specific designs. The manuscript, explainer, tables and scripts below are kept unchanged for reference. Read every "closure", "100%" or "PROVED" claim in them as withdrawn.
+>
+> The 2026-10-27 ResearchGate preprint of the manuscript ([doi:10.13140/RG.2.2.19097.99688](https://doi.org/10.13140/RG.2.2.19097.99688)) has been replaced by a withdrawal version (2026-11-06): a one-page notice followed by the unchanged manuscript.
 
 [![Manuscript PDF](https://img.shields.io/badge/Manuscript-PDF%20%2820%20pp.%29-blue)](./paper/Parobek_2026-10-27_Erdos19_Three_Tier_Discharging_Closure_EFL_Conjecture.pdf)
 [![Lean 4: v4.33.1](https://img.shields.io/badge/Lean%204-v4.33.1%20%280%20sorry%29-brightgreen)](./Erdos19/Proofs.lean)
